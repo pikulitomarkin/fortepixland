@@ -1,0 +1,1227 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>FortePix — Verifique antes de transferir. Sempre.</title>
+<meta name="description" content="O FortePix analisa o risco de chaves Pix em tempo real antes de qualquer transferência. Proteja seu dinheiro de golpes e fraudes com tecnologia, educação e confiança." />
+<meta name="theme-color" content="#0A1628" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="FortePix — Verifique antes de transferir. Sempre." />
+<meta property="og:description" content="Análise de risco em chaves Pix em tempo real. Proteção, educação e tranquilidade para cada transferência." />
+<meta property="og:image" content="https://fortepix.com.br/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%230A1628%22/><g fill=%22none%22 stroke=%22%23B8962E%22 stroke-width=%223%22 stroke-linecap=%22round%22><path d=%22M16 20 C 16 8, 48 8, 48 20%22/><path d=%22M14 30 C 14 14, 50 14, 50 30 V 36%22/><path d=%22M22 30 C 22 20, 42 20, 42 30 V 42%22/><path d=%22M28 32 V 46%22/><path d=%22M34 32 V 48%22/><path d=%22M14 30 V 22%22/><path d=%22M50 30 V 22%22/></g></svg>' />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+/* -------- reset + tokens -------- */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A1628;
+  --bg-2:#091222;
+  --bg-3:#0d1f38;
+  --gold:#B8962E;
+  --gold-bright:#D4B048;
+  --gold-soft:rgba(184,150,46,0.25);
+  --gold-line:rgba(184,150,46,0.3);
+  --gold-glow:rgba(184,150,46,0.18);
+  --text:#FFFFFF;
+  --muted:rgba(255,255,255,0.55);
+  --muted-2:rgba(255,255,255,0.75);
+  --hairline:rgba(255,255,255,0.08);
+  --silver:#C0C0C0;
+  --diamond:#4FC3F7;
+  --radius:16px;
+  --max:1200px;
+  --pad:24px;
+  --display:"Bebas Neue", "Arial Narrow", sans-serif;
+  --body:"Nunito", system-ui, sans-serif;
+}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.55;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+::selection{background:var(--gold);color:var(--bg)}
+
+/* -------- helpers -------- */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{
+  font-family:var(--body);font-weight:800;letter-spacing:.22em;font-size:12px;
+  text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--gold)}
+.h-display{font-family:var(--display);font-weight:400;letter-spacing:.01em;line-height:.92;text-transform:uppercase}
+.h1{font-size:clamp(56px,9vw,128px)}
+.h2{font-size:clamp(40px,6vw,72px)}
+.h3{font-size:clamp(28px,3.4vw,40px)}
+.gold{color:var(--gold)}
+.muted{color:var(--muted)}
+.section{padding:clamp(72px,9vw,128px) 0;position:relative}
+.section-head{max-width:760px;margin:0 auto 56px;text-align:center}
+.section-head .eyebrow{justify-content:center;display:inline-flex;margin-bottom:18px}
+.section-head p{color:var(--muted);font-size:17px;margin-top:18px}
+.hairline{height:1px;background:linear-gradient(90deg,transparent,var(--gold-line),transparent)}
+
+/* glows */
+.glow{position:absolute;pointer-events:none;border-radius:50%;filter:blur(60px);opacity:.45;z-index:0}
+.glow.gold{background:radial-gradient(circle,var(--gold-glow),transparent 70%)}
+
+/* -------- CTA buttons -------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 22px;border-radius:8px;font-weight:900;letter-spacing:.02em;
+  font-size:15px;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease,border-color .2s ease;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--gold);color:var(--bg);box-shadow:0 10px 28px -12px rgba(184,150,46,.55)}
+.btn-primary:hover{background:var(--gold-bright);transform:translateY(-2px);box-shadow:0 16px 36px -14px rgba(184,150,46,.75)}
+.btn-outline{border:1.5px solid var(--gold);color:var(--gold);background:transparent}
+.btn-outline:hover{background:rgba(184,150,46,.08);transform:translateY(-2px)}
+.btn-ghost{color:var(--text);border:1px solid var(--hairline)}
+.btn-ghost:hover{border-color:var(--gold-line);color:var(--gold)}
+.btn .ico{width:18px;height:18px;flex:none}
+
+/* -------- header -------- */
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  transition:background .25s ease,backdrop-filter .25s ease,border-color .25s ease;
+  border-bottom:1px solid transparent;
+}
+.header.scrolled{
+  background:rgba(10,22,40,.78);
+  backdrop-filter:saturate(140%) blur(14px);
+  -webkit-backdrop-filter:saturate(140%) blur(14px);
+  border-bottom-color:var(--hairline);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .logo{width:36px;height:36px;flex:none}
+.brand .wm{font-family:var(--display);font-size:26px;letter-spacing:.06em;line-height:1}
+.brand .wm .gold{margin-left:1px}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{
+  color:var(--muted-2);font-weight:600;font-size:14px;letter-spacing:.02em;
+  position:relative;padding:6px 0;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);
+  transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.burger{
+  display:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--hairline);
+  align-items:center;justify-content:center;color:var(--text);
+}
+.burger span{display:block;width:18px;height:2px;background:currentColor;position:relative;border-radius:2px;transition:transform .25s,opacity .25s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;right:0;height:2px;background:currentColor;border-radius:2px;transition:transform .25s}
+.burger span::before{top:-6px}
+.burger span::after{top:6px}
+body.menu-open .burger span{background:transparent}
+body.menu-open .burger span::before{transform:translateY(6px) rotate(45deg)}
+body.menu-open .burger span::after{transform:translateY(-6px) rotate(-45deg)}
+
+.mobile-menu{
+  position:fixed;inset:72px 0 0 0;z-index:49;
+  background:rgba(9,18,34,.96);backdrop-filter:blur(20px);
+  transform:translateY(-12px);opacity:0;pointer-events:none;transition:transform .3s ease,opacity .3s ease;
+  border-top:1px solid var(--hairline);
+}
+body.menu-open .mobile-menu{transform:translateY(0);opacity:1;pointer-events:auto}
+.mobile-menu .inner{padding:32px var(--pad);display:flex;flex-direction:column;gap:6px}
+.mobile-menu a{
+  font-family:var(--display);font-size:32px;letter-spacing:.04em;padding:10px 0;
+  border-bottom:1px solid var(--hairline);color:var(--text);
+}
+.mobile-menu a:last-of-type{border-bottom:0}
+.mobile-menu .btn{margin-top:20px;justify-content:center}
+
+/* -------- hero -------- */
+.hero{position:relative;padding:140px 0 90px;overflow:hidden}
+.hero .glow.g1{width:600px;height:600px;top:-150px;right:-150px;opacity:.5}
+.hero .glow.g2{width:500px;height:500px;bottom:-200px;left:-200px;opacity:.35}
+.hero-grid{
+  display:grid;grid-template-columns:1fr;gap:48px;align-items:center;position:relative;z-index:1;
+}
+.hero-copy{max-width:640px}
+.hero h1{margin:18px 0 24px}
+.hero .sub{color:var(--muted);font-size:18px;max-width:520px;margin-bottom:32px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:28px}
+.verified-badge{
+  display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;
+  border:1px solid var(--gold-line);background:rgba(184,150,46,.08);color:var(--text);
+  font-size:13px;font-weight:700;letter-spacing:.02em;
+}
+.verified-badge .dot{
+  width:18px;height:18px;border-radius:50%;background:var(--gold);color:var(--bg);
+  display:inline-flex;align-items:center;justify-content:center;flex:none;
+}
+.hero-mocks{position:relative;height:560px;display:flex;align-items:center;justify-content:center}
+.hero-mocks .glow-bg{
+  position:absolute;width:520px;height:520px;
+  background:radial-gradient(circle,rgba(184,150,46,.28),transparent 65%);
+  filter:blur(40px);
+}
+.phone{
+  position:absolute;width:240px;height:480px;border-radius:36px;
+  background:linear-gradient(180deg,#0d1f38,#091222);
+  border:1.5px solid var(--gold-soft);
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.6),inset 0 0 0 2px rgba(255,255,255,.02);
+  padding:14px;overflow:hidden;
+}
+.phone .notch{
+  position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  width:78px;height:18px;background:#000;border-radius:12px;
+}
+.phone .screen{
+  height:100%;border-radius:24px;background:#0A1628;padding:30px 16px 16px;
+  display:flex;flex-direction:column;gap:12px;overflow:hidden;position:relative;
+}
+.phone.left{transform:translate(-180px,30px) rotate(-10deg)}
+.phone.right{transform:translate(180px,30px) rotate(10deg)}
+.phone.center{z-index:2;transform:translateY(-10px) scale(1.05)}
+.ph-bar{height:6px;border-radius:3px;background:rgba(255,255,255,.08)}
+.ph-bar.gold{background:var(--gold)}
+.ph-input{
+  height:32px;border-radius:8px;border:1px solid var(--gold-soft);
+  background:rgba(184,150,46,.05);display:flex;align-items:center;padding:0 10px;
+  font-size:10px;color:var(--muted);
+}
+.ph-card{
+  border-radius:10px;padding:10px;background:rgba(255,255,255,.03);
+  border:1px solid var(--hairline);font-size:9px;color:var(--muted-2);
+  display:flex;flex-direction:column;gap:6px;
+}
+.ph-cta{
+  background:var(--gold);color:var(--bg);height:34px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:10px;
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.ph-title{font-family:var(--display);font-size:14px;letter-spacing:.06em;line-height:1.1;color:var(--text)}
+.ph-fp{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--gold);margin:6px auto;display:flex;align-items:center;justify-content:center}
+.ph-pill{padding:3px 8px;border-radius:999px;font-size:9px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;display:inline-block}
+.ph-pill.low{background:rgba(43,164,89,.18);color:#5bd07f;border:1px solid rgba(91,208,127,.4)}
+.ph-pill.med{background:rgba(214,158,46,.18);color:#e9c46a;border:1px solid rgba(233,196,106,.4)}
+
+/* -------- sobre -------- */
+.about-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:48px}
+.feature-card{
+  border:1.5px solid var(--gold-soft);border-radius:var(--radius);
+  background:linear-gradient(180deg,rgba(184,150,46,.04),rgba(184,150,46,0));
+  padding:28px;transition:transform .25s,border-color .25s,box-shadow .25s;
+}
+.feature-card:hover{transform:translateY(-4px);border-color:var(--gold-line);box-shadow:0 24px 60px -30px rgba(184,150,46,.4)}
+.feature-card .ic{
+  width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  background:rgba(184,150,46,.1);border:1px solid var(--gold-soft);color:var(--gold);margin-bottom:18px;
+}
+.feature-card h3{font-family:var(--display);font-size:26px;letter-spacing:.04em;margin-bottom:10px}
+.feature-card p{color:var(--muted);font-size:15px}
+
+.stats{
+  display:grid;grid-template-columns:1fr;gap:1px;margin-top:64px;
+  border:1px solid var(--gold-soft);border-radius:var(--radius);overflow:hidden;
+  background:var(--gold-soft);
+}
+.stat{padding:36px 24px;text-align:center;background:var(--bg)}
+.stat .num{font-family:var(--display);font-size:clamp(48px,6vw,72px);color:var(--gold);line-height:1}
+.stat .lbl{color:var(--muted);margin-top:8px;font-size:14px;letter-spacing:.04em}
+
+/* -------- como funciona -------- */
+.timeline{position:relative;max-width:780px;margin:0 auto;padding:20px 0}
+.timeline::before{
+  content:"";position:absolute;left:32px;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,transparent,var(--gold) 10%,var(--gold) 90%,transparent);
+}
+.step{position:relative;padding:0 0 56px 96px;display:block}
+.step:last-child{padding-bottom:0}
+.step .num{
+  position:absolute;left:0;top:-6px;width:64px;height:64px;border-radius:50%;
+  background:var(--bg);border:1.5px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;font-family:var(--display);
+  font-size:32px;color:var(--gold);line-height:1;
+  box-shadow:0 0 0 6px var(--bg),0 0 24px -4px rgba(184,150,46,.5);
+}
+.step h3{font-family:var(--display);font-size:30px;letter-spacing:.04em;margin-bottom:8px;display:flex;align-items:center;gap:14px}
+.step h3 .ic{width:28px;height:28px;color:var(--gold);flex:none}
+.step p{color:var(--muted);font-size:16px;max-width:520px}
+
+/* -------- missão -------- */
+.mission{background:var(--bg-3)}
+.mission-quote{
+  max-width:920px;margin:0 auto;text-align:center;
+  font-family:var(--display);font-size:clamp(28px,4vw,48px);line-height:1.1;letter-spacing:.02em;
+  color:var(--text);
+}
+.mission-quote .gold{display:inline}
+.pillars{display:grid;grid-template-columns:1fr;gap:20px;margin:64px 0 56px}
+.disclaimer{
+  border:1.5px solid var(--gold-soft);border-radius:var(--radius);
+  background:rgba(184,150,46,.05);padding:28px;max-width:920px;margin:0 auto;
+  position:relative;
+}
+.disclaimer::before{
+  content:"!";position:absolute;left:-14px;top:-14px;width:36px;height:36px;
+  background:var(--gold);color:var(--bg);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-family:var(--display);font-size:22px;
+}
+.disclaimer p{color:var(--muted-2);font-size:15px;line-height:1.7}
+
+/* -------- planos -------- */
+.plans-toggle{
+  display:inline-flex;background:rgba(255,255,255,.04);border:1px solid var(--hairline);
+  border-radius:999px;padding:4px;margin:0 auto 48px;position:relative;
+}
+.plans-toggle button{
+  padding:10px 22px;border-radius:999px;font-weight:800;font-size:13px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);transition:color .2s;position:relative;z-index:1;
+}
+.plans-toggle button.on{color:var(--bg)}
+.plans-toggle .slider{
+  position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);
+  background:var(--gold);border-radius:999px;transition:transform .3s ease;
+}
+.plans-toggle.annual .slider{transform:translateX(100%)}
+.save-pill{
+  display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;
+  background:rgba(91,208,127,.15);color:#5bd07f;border:1px solid rgba(91,208,127,.4);
+  font-size:11px;font-weight:800;letter-spacing:.05em;
+}
+.plans-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:stretch}
+.plan{
+  border:1.5px solid var(--gold-soft);border-radius:var(--radius);
+  background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));
+  padding:32px 28px;display:flex;flex-direction:column;
+  position:relative;transition:transform .25s,border-color .25s,box-shadow .25s;
+}
+.plan:hover{transform:translateY(-4px)}
+.plan .gem{
+  width:64px;height:64px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+  background:rgba(255,255,255,.03);
+}
+.plan.silver{border-color:rgba(192,192,192,.35)}
+.plan.silver .gem{background:rgba(192,192,192,.08);border:1px solid rgba(192,192,192,.3);color:var(--silver)}
+.plan.gold{
+  border-color:var(--gold);
+  box-shadow:0 0 0 1px var(--gold),0 30px 80px -30px rgba(184,150,46,.5);
+  background:linear-gradient(180deg,rgba(184,150,46,.06),rgba(184,150,46,0));
+}
+.plan.gold .gem{background:rgba(184,150,46,.1);border:1px solid var(--gold-soft);color:var(--gold)}
+.plan.diamond{border-color:rgba(79,195,247,.35)}
+.plan.diamond .gem{background:rgba(79,195,247,.08);border:1px solid rgba(79,195,247,.3);color:var(--diamond)}
+.plan .badge{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  padding:6px 14px;border-radius:999px;font-size:11px;font-weight:900;letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.plan .badge.pop{background:var(--gold);color:var(--bg)}
+.plan .tier{
+  font-family:var(--display);font-size:13px;letter-spacing:.2em;color:var(--muted);margin-bottom:6px;
+}
+.plan h3{font-family:var(--display);font-size:48px;letter-spacing:.04em;line-height:1}
+.plan.silver h3{color:var(--silver)}
+.plan.gold h3{color:var(--gold)}
+.plan.diamond h3{color:var(--diamond)}
+.plan .price{display:flex;align-items:baseline;gap:6px;margin:18px 0 6px}
+.plan .price .v{font-family:var(--display);font-size:56px;line-height:1;color:var(--text)}
+.plan .price .c{color:var(--muted);font-size:14px;font-weight:600}
+.plan .price .strike{text-decoration:line-through;color:var(--muted);font-size:14px;margin-left:6px}
+.plan .price-sub{color:var(--muted);font-size:13px;margin-bottom:22px}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.plan li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted-2)}
+.plan li .check{width:18px;height:18px;flex:none;margin-top:2px}
+.plan.silver li .check{color:var(--silver)}
+.plan.gold li .check{color:var(--gold)}
+.plan.diamond li .check{color:var(--diamond)}
+.plan li.off{color:var(--muted);opacity:.55}
+.plan li.off .check{color:var(--muted)}
+.plan .btn{margin-top:auto;width:100%}
+.plan.silver .btn{border:1.5px solid var(--silver);color:var(--silver)}
+.plan.silver .btn:hover{background:rgba(192,192,192,.08)}
+.plan.diamond .btn{border:1.5px solid var(--diamond);color:var(--diamond)}
+.plan.diamond .btn:hover{background:rgba(79,195,247,.08)}
+.plans-note{text-align:center;color:var(--muted);font-size:14px;margin-top:32px}
+
+/* -------- termos -------- */
+.terms-section{background:var(--bg-2)}
+.terms-layout{display:grid;grid-template-columns:1fr;gap:40px;margin-top:48px}
+.terms-toc{
+  position:relative;border:1px solid var(--hairline);border-radius:var(--radius);padding:20px;
+  background:rgba(255,255,255,.02);
+}
+.terms-toc h4{
+  font-family:var(--display);font-size:18px;letter-spacing:.1em;color:var(--gold);
+  margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--gold-soft);
+}
+.terms-toc ol{list-style:none;counter-reset:t;display:flex;flex-direction:column;gap:6px}
+.terms-toc li{counter-increment:t}
+.terms-toc a{
+  display:block;padding:8px 10px;border-radius:8px;font-size:13px;color:var(--muted-2);
+  transition:background .2s,color .2s;
+}
+.terms-toc a::before{content:counter(t,decimal-leading-zero) ". ";color:var(--gold);font-weight:700}
+.terms-toc a:hover,.terms-toc a.active{background:rgba(184,150,46,.08);color:var(--text)}
+.terms-updated{color:var(--muted);font-size:13px;margin-bottom:24px;text-align:center}
+.terms-body{font-size:15px;line-height:1.75;color:var(--muted-2)}
+.terms-body article{margin-bottom:40px}
+.terms-body article:last-child{margin-bottom:0}
+.terms-body h3{
+  font-family:var(--display);font-size:26px;letter-spacing:.04em;color:var(--gold);
+  margin-bottom:14px;padding-top:8px;
+}
+.terms-body p{margin-bottom:12px}
+.terms-body ul{padding-left:20px;margin:8px 0 12px;display:flex;flex-direction:column;gap:6px}
+.terms-body li::marker{color:var(--gold)}
+.terms-callout{
+  border-left:3px solid var(--gold);background:rgba(184,150,46,.06);
+  padding:16px 18px;border-radius:0 10px 10px 0;color:var(--text);font-style:italic;
+  margin:16px 0;
+}
+
+/* -------- contato -------- */
+.contact-grid{display:grid;grid-template-columns:1fr;gap:40px;margin-top:48px}
+.contact-info{display:flex;flex-direction:column;gap:18px}
+.contact-row{
+  display:flex;gap:16px;align-items:flex-start;padding:18px;border-radius:14px;
+  border:1px solid var(--hairline);background:rgba(255,255,255,.02);transition:border-color .2s;
+}
+.contact-row:hover{border-color:var(--gold-soft)}
+.contact-row .ic{
+  width:44px;height:44px;border-radius:10px;background:rgba(184,150,46,.1);
+  border:1px solid var(--gold-soft);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;flex:none;
+}
+.contact-row .lbl{font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;font-weight:800}
+.contact-row .v{font-size:15px;color:var(--text);font-weight:600;margin-top:2px}
+.socials{display:flex;gap:10px;margin-top:8px}
+.socials a{
+  width:42px;height:42px;border-radius:10px;border:1px solid var(--gold-soft);
+  display:flex;align-items:center;justify-content:center;color:var(--gold);
+  transition:background .2s,color .2s;
+}
+.socials a:hover{background:var(--gold);color:var(--bg)}
+
+.contact-form{
+  border:1.5px solid var(--gold-soft);border-radius:var(--radius);padding:28px;
+  background:linear-gradient(180deg,rgba(184,150,46,.04),rgba(184,150,46,0));
+  display:flex;flex-direction:column;gap:16px;
+}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.field input,.field select,.field textarea{
+  background:rgba(255,255,255,.04);border:1px solid var(--hairline);
+  border-radius:10px;padding:14px 14px;color:var(--text);font-size:15px;
+  transition:border-color .2s,background .2s;
+}
+.field textarea{min-height:130px;resize:vertical;font-family:var(--body)}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--gold);background:rgba(184,150,46,.06);
+}
+.field-row{display:grid;grid-template-columns:1fr;gap:16px}
+
+/* -------- footer -------- */
+.footer{background:var(--bg-2);padding:64px 0 32px;position:relative;border-top:1px solid var(--gold-line)}
+.footer-top{display:grid;grid-template-columns:1fr;gap:40px}
+.footer-brand p{color:var(--muted);font-size:14px;margin-top:14px;max-width:340px}
+.footer-col h5{
+  font-family:var(--display);font-size:16px;letter-spacing:.16em;color:var(--gold);margin-bottom:18px;
+}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col a{color:var(--muted-2);font-size:14px;transition:color .2s}
+.footer-col a:hover{color:var(--gold)}
+.store-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.store{
+  display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:10px;
+  border:1px solid var(--gold-soft);background:rgba(184,150,46,.04);min-width:160px;
+  transition:background .2s;
+}
+.store:hover{background:rgba(184,150,46,.1)}
+.store .ic{width:24px;height:24px;color:var(--gold);flex:none}
+.store .t1{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.store .t2{font-size:13px;color:var(--text);font-weight:800;line-height:1.1}
+.footer-bottom{
+  margin-top:48px;padding-top:24px;border-top:1px solid var(--hairline);
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  color:var(--muted);font-size:13px;
+}
+
+/* -------- reveal animations -------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-delay="1"]{transition-delay:.08s}
+.reveal[data-delay="2"]{transition-delay:.16s}
+.reveal[data-delay="3"]{transition-delay:.24s}
+
+/* -------- responsive -------- */
+@media(max-width:767px){
+  .nav-links,.nav-cta .btn{display:none}
+  .burger{display:flex}
+  .hero{padding-top:120px}
+  .hero-mocks{height:420px;transform:scale(.78)}
+}
+@media(min-width:768px){
+  .about-grid{grid-template-columns:repeat(3,1fr)}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .pillars{grid-template-columns:repeat(3,1fr)}
+  .plans-grid{grid-template-columns:repeat(3,1fr);align-items:center}
+  .plan.gold{transform:scale(1.04)}
+  .plan.gold:hover{transform:scale(1.04) translateY(-4px)}
+  .contact-grid{grid-template-columns:1fr 1.1fr}
+  .footer-top{grid-template-columns:1.4fr 1fr 1fr 1fr}
+  .field-row{grid-template-columns:1fr 1fr}
+}
+@media(min-width:1024px){
+  .hero-grid{grid-template-columns:1.05fr 1fr;gap:60px}
+  .terms-layout{grid-template-columns:280px 1fr;align-items:flex-start}
+  .terms-toc{position:sticky;top:96px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ HEADER ============================ -->
+<header class="header" id="siteHeader">
+  <div class="wrap nav" role="navigation" aria-label="Principal">
+    <a class="brand" href="#inicio" aria-label="FortePix — início">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+        <g fill="none" stroke="#B8962E" stroke-width="3" stroke-linecap="round">
+          <path d="M16 20 C 16 8, 48 8, 48 20"/>
+          <path d="M14 30 C 14 14, 50 14, 50 30 V 36"/>
+          <path d="M22 30 C 22 20, 42 20, 42 30 V 42"/>
+          <path d="M28 32 V 46"/>
+          <path d="M34 32 V 48"/>
+          <path d="M14 30 V 22"/>
+          <path d="M50 30 V 22"/>
+        </g>
+      </svg>
+      <span class="wm">FORTE<span class="gold">PIX</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#como-funciona">Como Funciona</a>
+      <a href="#planos">Planos</a>
+      <a href="#termos">Termos de Uso</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="#planos">Baixar App</a>
+      <button class="burger" id="burger" aria-label="Abrir menu" aria-controls="mobileMenu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="inner">
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#como-funciona">Como Funciona</a>
+      <a href="#planos">Planos</a>
+      <a href="#termos">Termos de Uso</a>
+      <a href="#contato">Contato</a>
+      <a class="btn btn-primary" href="#planos">Baixar App</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================ HERO ============================ -->
+<section id="inicio" class="hero">
+  <div class="glow gold g1"></div>
+  <div class="glow gold g2"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow reveal">Segurança Pix em tempo real</span>
+      <h1 class="h-display h1 reveal" data-delay="1">
+        Verifique antes<br/>
+        de transferir.<br/>
+        <span class="gold">Sempre.</span>
+      </h1>
+      <p class="sub reveal" data-delay="2">
+        O FortePix analisa o risco de cada chave Pix antes da sua transferência. Insira CPF, CNPJ, telefone ou e-mail do destinatário e descubra na hora se a transação é segura — antes que seja tarde.
+      </p>
+      <div class="hero-ctas reveal" data-delay="3">
+        <a class="btn btn-primary" href="#planos">
+          <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5V3.5c0-.7.8-1.1 1.4-.7L20 11.3c.6.4.6 1.3 0 1.7L4.4 21.2c-.6.4-1.4 0-1.4-.7z"/></svg>
+          Baixar na Play Store
+        </a>
+        <a class="btn btn-outline" href="#planos">
+          <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 1c.1 1.5-.5 3-1.4 4-1 1-2.5 1.8-4 1.7-.2-1.5.5-3 1.4-4 1-1 2.6-1.8 4-1.7zM20.3 17.5c-.7 1.6-1.1 2.3-2 3.7-1.3 2-3.2 4.5-5.5 4.5-2 0-2.6-1.3-5.4-1.3-2.8 0-3.4 1.3-5.4 1.3C-.3 25.7-2.2 23.3-3.5 21.3c-3.6-5.7-4-12.3-1.8-15.9 1.6-2.5 4.1-4 6.4-4 2.4 0 3.9 1.3 5.9 1.3 1.9 0 3.1-1.3 5.8-1.3 2.1 0 4.3 1.1 5.9 3.1-5.2 2.8-4.3 10.2 1.6 12.0z" transform="translate(3 0)"/></svg>
+          Disponível em breve no iOS
+        </a>
+      </div>
+      <span class="verified-badge reveal" data-delay="3">
+        <span class="dot"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg></span>
+        Conta Verificada
+      </span>
+    </div>
+
+    <!-- mockup -->
+    <div class="hero-mocks reveal" data-delay="2" aria-hidden="true">
+      <div class="glow-bg"></div>
+
+      <!-- LEFT: login -->
+      <div class="phone left">
+        <span class="notch"></span>
+        <div class="screen" style="align-items:center;justify-content:center;padding-top:50px">
+          <div class="ph-fp" style="margin-bottom:16px">
+            <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="#B8962E" stroke-width="2" stroke-linecap="round">
+              <path d="M8 10 C 8 4, 24 4, 24 10"/>
+              <path d="M7 15 C 7 7, 25 7, 25 15 V 18"/>
+              <path d="M11 15 C 11 10, 21 10, 21 15 V 21"/>
+              <path d="M14 16 V 23"/>
+              <path d="M18 16 V 24"/>
+            </svg>
+          </div>
+          <div class="ph-title" style="text-align:center;margin-bottom:12px">ENTRAR<br/>NO FORTEPIX</div>
+          <div class="ph-input" style="width:100%;margin-bottom:8px">CPF ou e-mail</div>
+          <div class="ph-input" style="width:100%;margin-bottom:14px">Senha</div>
+          <div class="ph-cta" style="width:100%;margin-bottom:10px">Acessar</div>
+          <div style="font-size:9px;color:#B8962E;letter-spacing:.08em">USAR BIOMETRIA</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: explorar -->
+      <div class="phone right">
+        <span class="notch"></span>
+        <div class="screen">
+          <div class="ph-title">EXPLORAR</div>
+          <div style="font-size:9px;color:rgba(255,255,255,.5);margin-bottom:4px">Aprenda a se proteger</div>
+          <div class="ph-card">
+            <div style="display:flex;justify-content:space-between"><span style="color:#B8962E;font-weight:800">GOLPE DO PIX</span><span>›</span></div>
+            <div style="color:rgba(255,255,255,.6)">Como identificar e evitar</div>
+          </div>
+          <div class="ph-card">
+            <div style="display:flex;justify-content:space-between"><span style="color:#B8962E;font-weight:800">FALSO EMPRÉSTIMO</span><span>›</span></div>
+            <div style="color:rgba(255,255,255,.6)">Saiba os sinais de alerta</div>
+          </div>
+          <div class="ph-card">
+            <div style="display:flex;justify-content:space-between"><span style="color:#B8962E;font-weight:800">CHAVES SUSPEITAS</span><span>›</span></div>
+            <div style="color:rgba(255,255,255,.6)">Base atualizada diariamente</div>
+          </div>
+          <div class="ph-card">
+            <div style="display:flex;justify-content:space-between"><span style="color:#B8962E;font-weight:800">LGPD &amp; PIX</span><span>›</span></div>
+            <div style="color:rgba(255,255,255,.6)">Seus direitos como vítima</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CENTER: dashboard -->
+      <div class="phone center">
+        <span class="notch"></span>
+        <div class="screen">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-size:9px;color:rgba(255,255,255,.5)">Olá,</div>
+              <div class="ph-title" style="font-size:13px">CAMILA SOUZA</div>
+            </div>
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(184,150,46,.18);border:1px solid #B8962E;display:flex;align-items:center;justify-content:center;color:#B8962E;font-weight:900;font-size:11px">CS</div>
+          </div>
+          <div class="ph-card" style="border-color:rgba(184,150,46,.4);background:rgba(184,150,46,.06);padding:12px">
+            <div style="font-family:'Bebas Neue';font-size:13px;letter-spacing:.06em;color:#fff">VERIFICAR CHAVE PIX</div>
+            <div class="ph-input" style="background:rgba(0,0,0,.25);border-color:rgba(184,150,46,.35)">cpf@destino.com</div>
+            <div class="ph-cta" style="height:28px">Verificar agora</div>
+          </div>
+          <div style="font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-top:2px">Histórico</div>
+          <div class="ph-card" style="padding:8px 10px;flex-direction:row;align-items:center;justify-content:space-between;gap:8px">
+            <div>
+              <div style="color:#fff;font-weight:700;font-size:10px">João P. — 11 9****-1822</div>
+              <div style="font-size:8px;color:rgba(255,255,255,.5)">Hoje, 14:32</div>
+            </div>
+            <span class="ph-pill low">Baixo</span>
+          </div>
+          <div class="ph-card" style="padding:8px 10px;flex-direction:row;align-items:center;justify-content:space-between;gap:8px">
+            <div>
+              <div style="color:#fff;font-weight:700;font-size:10px">CNPJ 33.******/0001</div>
+              <div style="font-size:8px;color:rgba(255,255,255,.5)">Ontem, 19:08</div>
+            </div>
+            <span class="ph-pill med">Médio</span>
+          </div>
+          <div class="ph-card" style="padding:8px 10px;flex-direction:row;align-items:center;justify-content:space-between;gap:8px">
+            <div>
+              <div style="color:#fff;font-weight:700;font-size:10px">marcos@****.com</div>
+              <div style="font-size:8px;color:rgba(255,255,255,.5)">2 dias atrás</div>
+            </div>
+            <span class="ph-pill low">Baixo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="hairline"></div></div>
+
+<!-- ============================ SOBRE ============================ -->
+<section id="sobre" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Quem somos</span>
+      <h2 class="h-display h2 reveal" data-delay="1">SOBRE O <span class="gold">FORTEPIX</span></h2>
+      <p class="reveal" data-delay="2">
+        Somos uma fintech brasileira dedicada à proteção patrimonial dos usuários do Pix. Construímos uma camada de inteligência que antecipa o risco de cada transferência, transformando uma transação cega em uma decisão consciente.
+      </p>
+      <p class="muted reveal" data-delay="3" style="font-size:16px;margin-top:14px">
+        Nascemos da convicção de que a melhor proteção contra a fraude não é a punição depois — é a informação antes. Cruzamos bases de dados, comportamento e contexto para devolver ao brasileiro o poder de decidir com segurança.
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="feature-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Proteção real</h3>
+        <p>Análise de risco em tempo real antes de qualquer transferência Pix — sem atrito, sem espera, sem surpresa.</p>
+      </div>
+      <div class="feature-card reveal" data-delay="1">
+        <div class="ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+        <h3>Tecnologia avançada</h3>
+        <p>Algoritmo proprietário que cruza bases públicas, privadas e padrões comportamentais de fraudes conhecidas.</p>
+      </div>
+      <div class="feature-card reveal" data-delay="2">
+        <div class="ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c4 3 8 3 12 0v-5"/></svg></div>
+        <h3>Educação financeira</h3>
+        <p>Conteúdo claro, atualizado e prático para você nunca mais cair em golpes — proteção começa pelo conhecimento.</p>
+      </div>
+    </div>
+
+    <div class="stats reveal" data-delay="1">
+      <div class="stat"><div class="num"><span data-count="50000" data-prefix="+">+0</span></div><div class="lbl">Verificações realizadas</div></div>
+      <div class="stat"><div class="num"><span data-count="98" data-suffix="%">0%</span></div><div class="lbl">De precisão na análise</div></div>
+      <div class="stat"><div class="num"><span data-count="12" data-prefix="R$ " data-suffix="M">R$ 0M</span></div><div class="lbl">Em fraudes evitadas</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="hairline"></div></div>
+
+<!-- ============================ COMO FUNCIONA ============================ -->
+<section id="como-funciona" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">O processo</span>
+      <h2 class="h-display h2 reveal" data-delay="1">COMO <span class="gold">FUNCIONA</span></h2>
+      <p class="reveal" data-delay="2">Quatro passos simples entre você e uma transferência mais segura. Nada de burocracia — apenas confiança.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="step reveal">
+        <div class="num">01</div>
+        <h3>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+          Cadastre-se
+        </h3>
+        <p>Crie sua conta gratuitamente em menos de 2 minutos. CPF, e-mail e senha — pronto, sua proteção começa.</p>
+      </div>
+      <div class="step reveal" data-delay="1">
+        <div class="num">02</div>
+        <h3>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M7 12h4M14 12h3"/></svg>
+          Insira a chave Pix
+        </h3>
+        <p>Digite o CPF, CNPJ, telefone ou e-mail do destinatário. Funciona com qualquer tipo de chave Pix válida.</p>
+      </div>
+      <div class="step reveal" data-delay="2">
+        <div class="num">03</div>
+        <h3>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          Análise instantânea
+        </h3>
+        <p>Nosso algoritmo cruza bases de fraude e padrões comportamentais e devolve o nível de risco em poucos segundos.</p>
+      </div>
+      <div class="step reveal" data-delay="3">
+        <div class="num">04</div>
+        <h3>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          Transfira com segurança
+        </h3>
+        <p>Receba o resultado — Baixo, Médio ou Alto — e decida com confiança. A última palavra é sempre sua.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MISSÃO ============================ -->
+<section id="missao" class="section mission">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Por que existimos</span>
+      <h2 class="h-display h2 reveal" data-delay="1">NOSSA <span class="gold">MISSÃO</span></h2>
+    </div>
+
+    <p class="mission-quote reveal">
+      Proteger o dinheiro dos brasileiros tornando cada transferência Pix mais <span class="gold">segura</span>, <span class="gold">transparente</span> e <span class="gold">consciente</span>.
+    </p>
+
+    <div class="pillars">
+      <div class="feature-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z"/></svg></div>
+        <h3>Prevenção</h3>
+        <p>Antecipamos a fraude antes da transação. Cada chave passa por uma análise silenciosa que só interrompe sua vida se algo merecer atenção.</p>
+      </div>
+      <div class="feature-card reveal" data-delay="1">
+        <div class="ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c4 3 8 3 12 0v-5"/><path d="M12 15v6"/></svg></div>
+        <h3>Educação</h3>
+        <p>Acreditamos que conhecimento é proteção. Por isso, mantemos uma trilha viva de conteúdo sobre golpes, comportamento e direitos.</p>
+      </div>
+      <div class="feature-card reveal" data-delay="2">
+        <div class="ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 14.4 8.3 21 8.6l-5.2 4.2 1.8 6.4L12 16l-5.6 3.2 1.8-6.4L3 8.6l6.6-.3L12 2z"/></svg></div>
+        <h3>Confiança</h3>
+        <p>Construímos uma relação de longo prazo com transparência, dados claros e responsabilidade absoluta sobre o que entregamos.</p>
+      </div>
+    </div>
+
+    <div class="disclaimer reveal">
+      <p>
+        Nós da FortePix ressaltamos nosso compromisso com prevenção e precaução em fraudes e golpes digitais e ressaltamos que <strong>nenhum valor é realmente transacionado ou retido pelo aplicativo</strong>, sendo que o mesmo apenas atua como ferramenta auxiliar com potencial de indicar aos seus usuários a realizar suas transações com maior segurança e responsabilidade.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PLANOS ============================ -->
+<section id="planos" class="section">
+  <div class="glow gold" style="width:600px;height:600px;top:10%;left:-200px;opacity:.25"></div>
+  <div class="wrap" style="position:relative;z-index:1">
+    <div class="section-head">
+      <span class="eyebrow reveal">Planos &amp; preços</span>
+      <h2 class="h-display h2 reveal" data-delay="1">ESCOLHA SEU <span class="gold">PLANO</span></h2>
+      <p class="reveal" data-delay="2">Comece com o Prata e evolua quando precisar de mais proteção. Sem fidelidade, cancele quando quiser.</p>
+    </div>
+
+    <div style="text-align:center" class="reveal">
+      <div class="plans-toggle" id="plansToggle" role="tablist" aria-label="Periodicidade">
+        <span class="slider" aria-hidden="true"></span>
+        <button type="button" class="on" data-period="monthly" role="tab" aria-selected="true">Mensal</button>
+        <button type="button" data-period="annual" role="tab" aria-selected="false">Anual <span class="save-pill">-20%</span></button>
+      </div>
+    </div>
+
+    <div class="plans-grid">
+
+      <!-- PRATA -->
+      <div class="plan silver reveal" data-monthly="69.90" data-annual="55.92">
+        <div class="gem" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+            <path d="M6 12 16 4l10 8-10 16z"/><path d="M6 12h20"/><path d="M11 12 16 4l5 8-5 16z"/>
+          </svg>
+        </div>
+        <div class="tier">Plano</div>
+        <h3>PRATA</h3>
+        <div class="price"><span class="v" data-price>R$ 69,90</span><span class="c">/mês</span></div>
+        <div class="price-sub">Cobrança mensal, sem fidelidade.</div>
+        <ul>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> 50 verificações por mês</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Histórico dos últimos 30 dias</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Alertas de risco básicos</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Conteúdo educacional completo</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Suporte por e-mail em até 48h</li>
+          <li class="off"><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 11h14v2H5z"/></svg> Suporte prioritário</li>
+          <li class="off"><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 11h14v2H5z"/></svg> API de integração</li>
+        </ul>
+        <a class="btn" href="#contato">Assinar Prata</a>
+      </div>
+
+      <!-- OURO -->
+      <div class="plan gold reveal" data-delay="1" data-monthly="89.90" data-annual="71.92">
+        <span class="badge pop">Mais Popular</span>
+        <div class="gem" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+            <path d="M16 3l3.5 7 7.5 1-5.5 5.3 1.3 7.7L16 20.5 9.2 24l1.3-7.7L5 11l7.5-1z"/>
+          </svg>
+        </div>
+        <div class="tier">Plano</div>
+        <h3>OURO</h3>
+        <div class="price"><span class="v" data-price>R$ 89,90</span><span class="c">/mês</span></div>
+        <div class="price-sub">Recomendado para uso pessoal intenso.</div>
+        <ul>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Verificações <strong>ilimitadas</strong></li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Histórico completo sem limite</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Alertas de risco em tempo real</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Relatório mensal de segurança</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Suporte prioritário em até 4h</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Acesso antecipado a novidades</li>
+          <li class="off"><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 11h14v2H5z"/></svg> Gerente de conta dedicado</li>
+        </ul>
+        <a class="btn btn-primary" href="#contato">Assinar Ouro</a>
+      </div>
+
+      <!-- DIAMANTE -->
+      <div class="plan diamond reveal" data-delay="2" data-monthly="129.90" data-annual="103.92">
+        <div class="gem" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+            <path d="M8 11 16 3l8 8-8 18z"/><path d="M8 11h16"/><path d="M16 3v8"/><path d="M16 29l-4-18M16 29l4-18"/>
+          </svg>
+        </div>
+        <div class="tier">Plano</div>
+        <h3>DIAMANTE</h3>
+        <div class="price"><span class="v" data-price>R$ 129,90</span><span class="c">/mês</span></div>
+        <div class="price-sub">Para quem precisa do máximo de proteção.</div>
+        <ul>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Tudo do plano Ouro</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Multi-dispositivos (até 5)</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> API de integração pessoal</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Relatório semanal detalhado</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Gerente de conta dedicado</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> SLA de resposta em 1h</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Onboarding personalizado</li>
+        </ul>
+        <a class="btn" href="#contato">Assinar Diamante</a>
+      </div>
+
+    </div>
+
+    <p class="plans-note reveal">Todos os planos incluem <strong>período de teste gratuito de 7 dias</strong>. Cancele quando quiser, sem multa.</p>
+  </div>
+</section>
+
+<!-- ============================ TERMOS ============================ -->
+<section id="termos" class="section terms-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Documentação</span>
+      <h2 class="h-display h2 reveal" data-delay="1">TERMOS DE <span class="gold">USO</span></h2>
+      <p class="terms-updated reveal" data-delay="2">Última atualização: 13 de maio de 2026</p>
+    </div>
+
+    <div class="terms-layout">
+      <aside class="terms-toc reveal" aria-label="Sumário dos termos">
+        <h4>Sumário</h4>
+        <ol id="termsToc">
+          <li><a href="#t1">Sobre o Aplicativo</a></li>
+          <li><a href="#t2">Finalidade e Caráter do Serviço</a></li>
+          <li><a href="#t3">Aceite e Cadastro</a></li>
+          <li><a href="#t4">Responsabilidade do Usuário</a></li>
+          <li><a href="#t5">Sistema Antifraude</a></li>
+          <li><a href="#t6">Limitações do Serviço</a></li>
+          <li><a href="#t7">Conformidade Regulatória</a></li>
+          <li><a href="#t8">Limitação de Responsabilidade</a></li>
+          <li><a href="#t9">Compromisso da Empresa</a></li>
+          <li><a href="#t10">Declaração de Aceite</a></li>
+        </ol>
+      </aside>
+
+      <div class="terms-body reveal" data-delay="1">
+
+        <article id="t1">
+          <h3>1. Sobre o Aplicativo</h3>
+          <p>Este documento estabelece a Política de Uso do aplicativo <strong>FortePix</strong>. O aplicativo consiste em uma ferramenta tecnológica em desenvolvimento cujo objetivo principal é auxiliar usuários na análise preventiva de possíveis fraudes digitais associadas a transações financeiras, especialmente aquelas relacionadas a estelionato digital.</p>
+        </article>
+
+        <article id="t2">
+          <h3>2. Finalidade e Caráter do Serviço</h3>
+          <p>O FortePix possui caráter prioritariamente <strong>informativo, protetivo e preventivo</strong>. Sua finalidade é oferecer ao usuário mecanismos de análise de risco e alertas preventivos, contribuindo para a tomada de decisões mais seguras no contexto de transações eletrônicas.</p>
+        </article>
+
+        <article id="t3">
+          <h3>3. Aceite e Cadastro</h3>
+          <p>Ao realizar o download, cadastro e utilização do aplicativo, o usuário declara estar ciente de que o sistema antifraude está em operação e que concorda com a utilização para coleta de informações, aprimoramento tecnológico e avaliação de desempenho das funcionalidades disponíveis.</p>
+        </article>
+
+        <article id="t4">
+          <h3>4. Responsabilidade do Usuário</h3>
+          <p>O usuário reconhece e aceita que é o <strong>único responsável</strong> pela utilização das funcionalidades disponibilizadas no aplicativo, incluindo a escolha e ativação de mecanismos de segurança adicionais oferecidos pela plataforma, tais como autenticação em dois fatores (2FAT) ou autenticação em dois fatores associada à biometria (2FAT + Biometria).</p>
+        </article>
+
+        <article id="t5">
+          <h3>5. Sistema Antifraude</h3>
+          <p>O sistema antifraude do aplicativo opera por meio de mecanismos de análise de dados e comparação com banco de dados de ocorrências previamente registradas. Quando identificado potencial indício de fraude ou associação a contas vinculadas a golpes digitais, o sistema poderá emitir alertas preventivos ao usuário.</p>
+          <p>Nos casos em que o sistema identificar alto índice de risco associado ao destinatário da transação, poderão ser apresentados avisos visuais claros indicando possível conta suspeita. Nessas circunstâncias, o sistema poderá sugerir ao usuário a adoção de medidas preventivas, como bloqueio temporário de código 2FAT ou bloqueio preventivo da transação por período limitado de horas.</p>
+          <div class="terms-callout">
+            Importante: tais bloqueios preventivos são executados exclusivamente na própria conta pagadora/instituição financeira do usuário dentro do aplicativo e possuem finalidade exclusivamente protetiva e preventiva.
+          </div>
+        </article>
+
+        <article id="t6">
+          <h3>6. Limitações do Serviço</h3>
+          <p>O FortePix <strong>não realiza custódia de valores</strong>, não intermedeia pagamentos e não mantém posse de qualquer recurso financeiro relacionado às transações analisadas. O aplicativo atua apenas como ferramenta auxiliar de análise crítica de situações potencialmente relacionadas a fraudes digitais e golpes de estelionato eletrônico, fornecendo informações que auxiliem o usuário em sua decisão final sobre realizar ou não determinada transação.</p>
+        </article>
+
+        <article id="t7">
+          <h3>7. Conformidade Regulatória</h3>
+          <p>Considerando o contexto contemporâneo de internacionalização normativa e eventual interconexão com normas de Direito Internacional e Direitos Humanos que possam repercutir em registros vinculados ao CPF ou CNPJ, o aplicativo poderá observar restrições decorrentes de normas nacionais ou internacionais aplicáveis, incluindo, quando pertinente, regulamentações relacionadas a sanções internacionais.</p>
+          <p>Embora o FortePix não seja um aplicativo integrante do Sistema Financeiro Nacional, a plataforma poderá adotar medidas compatíveis com tais regulamentações caso existam determinações legais ou regulatórias que recomendem sua observância.</p>
+        </article>
+
+        <article id="t8">
+          <h3>8. Limitação de Responsabilidade</h3>
+          <p>Por se tratar de um código com tecnologia inovadora e perspectiva preventiva, o usuário, ao aceitar os termos de uso deste aplicativo, entende que o FortePix apenas intermedeia as transações e, por meio de seu sistema antifraude, promove associação entre as transações de forma consciente e sistemática a fim de prevenir a ocorrência de estelionatos e golpes digitais.</p>
+          <div class="terms-callout">
+            A FortePix não se responsabiliza por eventuais prejuízos decorrentes de uso indevido do aplicativo, interpretação equivocada das informações apresentadas ou decisões tomadas exclusivamente pelo usuário com base nas análises fornecidas pela ferramenta.
+          </div>
+        </article>
+
+        <article id="t9">
+          <h3>9. Compromisso da Empresa</h3>
+          <p>A empresa responsável pelo desenvolvimento do aplicativo reafirma seu compromisso com a <strong>transparência</strong>, com a <strong>proteção dos usuários</strong> e com a evolução contínua das tecnologias de prevenção a fraudes digitais.</p>
+        </article>
+
+        <article id="t10">
+          <h3>10. Declaração de Aceite</h3>
+          <p>Este documento deve ser apresentado em formato digital aos usuários do aplicativo durante o cadastro ou atualização de uso, sendo o aceite condição necessária para continuidade de acesso às funcionalidades da plataforma.</p>
+          <ul>
+            <li><strong>ACEITO</strong> — Declaro que li e concordo com os termos da Política de Usuário da FortePix.</li>
+            <li><strong>NÃO ACEITO</strong> — Declaro que não concordo com os termos apresentados.</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTATO ============================ -->
+<section id="contato" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Estamos por aqui</span>
+      <h2 class="h-display h2 reveal" data-delay="1">FALE <span class="gold">CONOSCO</span></h2>
+      <p class="reveal" data-delay="2">Tem dúvidas, sugestões ou propostas de parceria? Adoramos uma boa conversa.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="contact-row">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
+          <div>
+            <div class="lbl">E-mail geral</div>
+            <div class="v">contato@fortepix.com.br</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 1 1 5.7 1.5c-.6 1.2-2.3 1.5-2.8 2.5-.2.4-.2.8-.2 1.2"/><circle cx="12" cy="17.5" r=".8" fill="currentColor"/></svg></div>
+          <div>
+            <div class="lbl">Suporte</div>
+            <div class="v">suporte@fortepix.com.br</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.5 8-13a8 8 0 1 0-16 0c0 5.5 8 13 8 13z"/><circle cx="12" cy="9" r="3"/></svg></div>
+          <div>
+            <div class="lbl">Endereço</div>
+            <div class="v">Brasil — atendimento 100% digital</div>
+          </div>
+        </div>
+        <div class="contact-row" style="align-items:center">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2c3 3.5 3 16.5 0 20M12 2c-3 3.5-3 16.5 0 20"/></svg></div>
+          <div>
+            <div class="lbl">Redes sociais</div>
+            <div class="socials" style="margin-top:6px">
+              <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+              <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22zM8.5 8h4.36v1.91h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.45h-4.55v-6.6c0-1.58-.03-3.6-2.2-3.6-2.2 0-2.53 1.72-2.53 3.5V22H8.5z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" data-delay="1" novalidate onsubmit="event.preventDefault(); this.querySelector('button[type=submit]').textContent='Mensagem enviada ✓'; this.querySelector('button[type=submit]').disabled=true;">
+        <div class="field-row">
+          <div class="field">
+            <label for="f-nome">Nome</label>
+            <input id="f-nome" type="text" required placeholder="Seu nome completo" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="f-email">E-mail</label>
+            <input id="f-email" type="email" required placeholder="voce@email.com" autocomplete="email" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-assunto">Assunto</label>
+          <select id="f-assunto" required>
+            <option value="" disabled selected>Selecione um assunto</option>
+            <option>Suporte Técnico</option>
+            <option>Planos</option>
+            <option>Parceria</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-msg">Mensagem</label>
+          <textarea id="f-msg" required placeholder="Conte o que precisa — respondemos rapidamente."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%">Enviar mensagem</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="#inicio">
+          <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+            <g fill="none" stroke="#B8962E" stroke-width="3" stroke-linecap="round">
+              <path d="M16 20 C 16 8, 48 8, 48 20"/>
+              <path d="M14 30 C 14 14, 50 14, 50 30 V 36"/>
+              <path d="M22 30 C 22 20, 42 20, 42 30 V 42"/>
+              <path d="M28 32 V 46"/>
+              <path d="M34 32 V 48"/>
+              <path d="M14 30 V 22"/>
+              <path d="M50 30 V 22"/>
+            </g>
+          </svg>
+          <span class="wm">FORTE<span class="gold">PIX</span></span>
+        </a>
+        <p>Protegendo transferências Pix desde 2026.</p>
+        <div class="store-badges">
+          <a class="store" href="#" aria-label="Disponível no Google Play">
+            <svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5V3.5c0-.7.8-1.1 1.4-.7L20 11.3c.6.4.6 1.3 0 1.7L4.4 21.2c-.6.4-1.4 0-1.4-.7z"/></svg>
+            <div><div class="t1">Disponível no</div><div class="t2">Google Play</div></div>
+          </a>
+          <a class="store" href="#" aria-label="Em breve na App Store">
+            <svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 1c.1 1.5-.5 3-1.4 4-1 1-2.5 1.8-4 1.7-.2-1.5.5-3 1.4-4 1-1 2.6-1.8 4-1.7zM20.3 17.5c-.7 1.6-1.1 2.3-2 3.7-1.3 2-3.2 4.5-5.5 4.5-2 0-2.6-1.3-5.4-1.3-2.8 0-3.4 1.3-5.4 1.3-2.3 0-4.2-2.4-5.5-4.4-3.6-5.7-4-12.3-1.8-15.9 1.6-2.5 4.1-4 6.4-4 2.4 0 3.9 1.3 5.9 1.3 1.9 0 3.1-1.3 5.8-1.3 2.1 0 4.3 1.1 5.9 3.1-5.2 2.8-4.3 10.2 1.6 12z" transform="translate(3 0)"/></svg>
+            <div><div class="t1">Em breve na</div><div class="t2">App Store</div></div>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Produto</h5>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#planos">Planos</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#termos">Termos de uso</a></li>
+          <li><a href="#termos">Política de privacidade</a></li>
+          <li><a href="#termos">LGPD</a></li>
+          <li><a href="#termos">Cookies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="#missao">Missão</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="#contato">Imprensa</a></li>
+          <li><a href="#contato">Trabalhe conosco</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 FortePix. Todos os direitos reservados.</span>
+      <span>Feito no Brasil <span class="gold">●</span> CNPJ em constituição</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ----- header scroll state ----- */
+  const header = document.getElementById('siteHeader');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 12);
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* ----- mobile menu ----- */
+  const burger = document.getElementById('burger');
+  burger.addEventListener('click', () => {
+    const open = document.body.classList.toggle('menu-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  });
+  document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', () => {
+    document.body.classList.remove('menu-open');
+    burger.setAttribute('aria-expanded','false');
+  }));
+
+  /* ----- reveal on scroll ----- */
+  const reveal = (els) => {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {rootMargin:'0px 0px -10% 0px', threshold:0.08});
+    els.forEach(el => io.observe(el));
+  };
+  reveal(document.querySelectorAll('.reveal'));
+
+  /* ----- counters ----- */
+  const counters = document.querySelectorAll('[data-count]');
+  const fmt = (n) => n.toLocaleString('pt-BR');
+  const animateCount = (el) => {
+    const target = parseFloat(el.dataset.count);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const dur = 1600; const start = performance.now();
+    const tick = (t) => {
+      const p = Math.min(1, (t - start)/dur);
+      const eased = 1 - Math.pow(1-p, 3);
+      const v = Math.round(target * eased);
+      el.textContent = prefix + fmt(v) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const cio = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ animateCount(e.target); cio.unobserve(e.target); }});
+  }, {threshold:0.4});
+  counters.forEach(c => cio.observe(c));
+
+  /* ----- plans toggle ----- */
+  const toggle = document.getElementById('plansToggle');
+  const tbtns = toggle.querySelectorAll('button');
+  const fmtBRL = (v) => 'R$ ' + v.toFixed(2).replace('.', ',');
+  const setPeriod = (period) => {
+    toggle.classList.toggle('annual', period === 'annual');
+    tbtns.forEach(b => {
+      const on = b.dataset.period === period;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    document.querySelectorAll('.plan').forEach(plan => {
+      const m = parseFloat(plan.dataset.monthly);
+      const a = parseFloat(plan.dataset.annual);
+      const priceEl = plan.querySelector('[data-price]');
+      const cycleEl = plan.querySelector('.price .c');
+      if (period === 'annual'){
+        priceEl.innerHTML = fmtBRL(a) + ' <span class="strike">'+fmtBRL(m)+'</span>';
+        cycleEl.textContent = '/mês · cobrado anualmente';
+      } else {
+        priceEl.textContent = fmtBRL(m);
+        cycleEl.textContent = '/mês';
+      }
+    });
+  };
+  tbtns.forEach(b => b.addEventListener('click', () => setPeriod(b.dataset.period)));
+
+  /* ----- terms TOC active state ----- */
+  const tocLinks = document.querySelectorAll('#termsToc a');
+  const articles = document.querySelectorAll('.terms-body article');
+  const tio = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, {rootMargin:'-30% 0px -55% 0px', threshold:0});
+  articles.forEach(a => tio.observe(a));
+})();
+</script>
+</body>
+</html>
