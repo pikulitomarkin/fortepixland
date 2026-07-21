@@ -192,9 +192,14 @@
   async function loadPosts() {
     if (adminToken && !localMode) {
       try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 20000);
         const res = await fetch('/api/blog/admin/posts', {
           headers: { Authorization: `Bearer ${adminToken}` },
+          signal: controller.signal,
         });
+        clearTimeout(timer);
+
         if (res.status === 401) {
           toast('Sessão expirada. Faça login novamente.', 'error');
           localStorage.removeItem(STORAGE_TOKEN);
@@ -203,19 +208,15 @@
           location.reload();
           return;
         }
-        if (res.status === 503) {
-          const data = await res.json().catch(() => ({}));
-          toast(data.message || data.error || 'Serviço indisponível.', 'error');
-        }
         if (res.ok) {
           const data = await res.json();
           posts = data.posts || [];
-          if (data.source === 'json') {
-            toast('Banco indisponível — exibindo dados locais.', 'info');
-          }
+          if (data.warning) toast(data.warning, 'info');
           return;
         }
-      } catch (_) {}
+      } catch (err) {
+        console.error('loadPosts admin failed', err);
+      }
     }
 
     const draft = localStorage.getItem(STORAGE_DRAFT);
@@ -232,17 +233,20 @@
       if (res.ok) {
         const data = await res.json();
         posts = data.posts || [];
-        return;
+        if (posts.length) return;
       }
     } catch (_) {}
 
     try {
       const res = await fetch('/blog/data/posts.json');
-      const data = await res.json();
-      posts = data.posts || [];
-    } catch (_) {
-      posts = [];
-    }
+      if (res.ok) {
+        const data = await res.json();
+        posts = data.posts || [];
+        return;
+      }
+    } catch (_) {}
+
+    posts = [];
   }
 
   function saveDraft() {
@@ -517,12 +521,24 @@
   function showAdmin() {
     loginScreen.hidden = true;
     adminApp.hidden = false;
-    Promise.all([loadPosts(), loadMessages()]).then(() => {
-      renderList();
-      renderContactList();
-      updateContactBadge();
-      if (activeModule === 'blog' && posts.length && !activeId) openEditor(posts[0].id);
-    });
+    const loginBtn = document.getElementById('loginBtn');
+    if (loginBtn) {
+      loginBtn.disabled = false;
+      loginBtn.textContent = 'Entrar';
+    }
+
+    Promise.all([loadPosts(), loadMessages()])
+      .then(() => {
+        renderList();
+        renderContactList();
+        updateContactBadge();
+        if (activeModule === 'blog' && posts.length && !activeId) openEditor(posts[0].id);
+      })
+      .catch((err) => {
+        console.error(err);
+        toast('Painel aberto, mas houve falha ao carregar dados.', 'error');
+        renderList();
+      });
   }
 
   async function loadMessages() {
