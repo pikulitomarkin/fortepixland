@@ -1,0 +1,24 @@
+{
+  "rewrites": [
+    { "source": "/blog/api/posts", "destination": "/api/blog/posts" },
+    { "source": "/blog/api/posts/:slug", "destination": "/api/blog/posts?slug=:slug" },
+    { "source": "/blog/post/:slug", "destination": "/blog/post.html?slug=:slug" }
+  ],
+  "headers": [
+    {
+      "source": "/api/blog/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
+      ]
+    },
+    {
+      "source": "/blog/data/posts.json",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Blog — FortePix | Educação e segurança Pix</title>
+<meta name="description" content="Conteúdo diário sobre golpes Pix, segurança financeira, LGPD e dicas para proteger suas transferências." />
+<meta name="theme-color" content="#0A1628" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Blog FortePix — Segurança Pix" />
+<meta property="og:description" content="Artigos diários sobre golpes, fraudes e proteção em transferências Pix." />
+<meta property="og:url" content="https://www.fortepixfinance.com/blog" />
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%230A1628%22/><g fill=%22none%22 stroke=%22%23B8962E%22 stroke-width=%223%22 stroke-linecap=%22round%22><path d=%22M16 20 C 16 8, 48 8, 48 20%22/><path d=%22M14 30 C 14 14, 50 14, 50 30 V 36%22/><path d=%22M22 30 C 22 20, 42 20, 42 30 V 42%22/><path d=%22M28 32 V 46%22/><path d=%22M34 32 V 48%22/><path d=%22M14 30 V 22%22/><path d=%22M50 30 V 22%22/></g></svg>' />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/blog.css" />
+<link rel="alternate" type="application/json" href="/blog/api/posts" title="FortePix Blog API" />
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="FortePix — início">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+        <g fill="none" stroke="#B8962E" stroke-width="3" stroke-linecap="round">
+          <path d="M16 20 C 16 8, 48 8, 48 20"/><path d="M14 30 C 14 14, 50 14, 50 30 V 36"/>
+          <path d="M22 30 C 22 20, 42 20, 42 30 V 42"/><path d="M28 32 V 46"/><path d="M34 32 V 48"/>
+          <path d="M14 30 V 22"/><path d="M50 30 V 22"/>
+        </g>
+      </svg>
+      <span class="wm">FORTE<span class="gold">PIX</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="/">Início</a>
+      <a href="/blog" class="active">Blog</a>
+      <a href="/#planos">Planos</a>
+      <a href="/#contato">Contato</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.fortepix&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Baixar App</a>
+      <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu">
+    <a href="/">Início</a>
+    <a href="/blog">Blog</a>
+    <a href="/#planos">Planos</a>
+    <a href="/#contato">Contato</a>
+    <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.fortepix&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Baixar App</a>
+  </div>
+</header>
+
+<main>
+  <section class="blog-hero">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <span class="eyebrow">Conteúdo diário</span>
+      <h1 class="h-display">BLOG <span class="gold">FORTEPIX</span></h1>
+      <p>Artigos sobre golpes Pix, segurança financeira e educação para proteger cada transferência. Conteúdo atualizado para você e para o app.</p>
+      <div class="blog-filters" id="categoryFilters" role="tablist" aria-label="Filtrar por categoria">
+        <button class="filter-chip active" data-category="" role="tab" aria-selected="true">Todos</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div id="postsContainer" class="posts-grid" aria-live="polite">
+      <div class="loading" style="grid-column:1/-1">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Carregando artigos...</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+            <g fill="none" stroke="#B8962E" stroke-width="3" stroke-linecap="round">
+              <path d="M16 20 C 16 8, 48 8, 48 20"/><path d="M14 30 C 14 14, 50 14, 50 30 V 36"/>
+              <path d="M22 30 C 22 20, 42 20, 42 30 V 42"/><path d="M28 32 V 46"/><path d="M34 32 V 48"/>
+              <path d="M14 30 V 22"/><path d="M50 30 V 22"/>
+            </g>
+          </svg>
+          <span class="wm">FORTE<span class="gold">PIX</span></span>
+        </a>
+        <p>Educação e segurança Pix para o Brasil.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Produto</h5>
+        <ul>
+          <li><a href="/">Início</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/#planos">Planos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>API</h5>
+        <ul>
+          <li><a href="/blog/api/posts" target="_blank" rel="noopener">Feed JSON</a></li>
+          <li><a href="/blog/admin/">CMS Admin</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contato</h5>
+        <ul>
+          <li><a href="mailto:contato@fortepix.com.br">contato@fortepix.com.br</a></li>
+          <li><a href="/#contato">Fale conosco</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 FortePix. Todos os direitos reservados.</span>
+      <span>Feito no Brasil <span class="gold">●</span></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/blog.js"></script>
+<script>
+(function () {
+  const { fetchPosts, formatDate, initHeader } = FortePixBlog;
+  initHeader();
+
+  const container = document.getElementById('postsContainer');
+  const filtersEl = document.getElementById('categoryFilters');
+  let allPosts = [];
+  let activeCategory = '';
+
+  function renderPostCard(post) {
+    const href = `/blog/post/${post.slug}`;
+    return `
+      <article class="post-card">
+        <a href="${href}" aria-label="Ler: ${post.title}">
+          <img class="thumb" src="${post.coverImage || ''}" alt="" loading="lazy" width="400" height="225" onerror="this.style.display='none'" />
+        </a>
+        <div class="body">
+          <span class="cat">${post.category}</span>
+          <h2><a href="${href}">${post.title}</a></h2>
+          <p class="excerpt">${post.excerpt}</p>
+          <div class="meta">
+            <span>${formatDate(post.publishedAt)} · ${post.readingTimeMinutes || 3} min</span>
+            <a class="read" href="${href}">Ler →</a>
+          </div>
+        </div>
+      </article>`;
+  }
+
+  function renderPosts(posts) {
+    const filtered = activeCategory
+      ? posts.filter((p) => p.category === activeCategory)
+      : posts;
+
+    if (!filtered.length) {
+      container.innerHTML = '<div class="empty" style="grid-column:1/-1"><p>Nenhum artigo encontrado nesta categoria.</p></div>';
+      return;
+    }
+
+    container.innerHTML = filtered.map(renderPostCard).join('');
+  }
+
+  function buildFilters(posts) {
+    const categories = [...new Set(posts.map((p) => p.category))].sort();
+    categories.forEach((cat) => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-chip';
+      btn.dataset.category = cat;
+      btn.textContent = cat;
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-selected', 'false');
+      btn.addEventListener('click', () => {
+        activeCategory = cat;
+        filtersEl.querySelectorAll('.filter-chip').forEach((b) => {
+          const on = b.dataset.category === cat;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        renderPosts(allPosts);
+      });
+      filtersEl.appendChild(btn);
+    });
+
+    filtersEl.querySelector('[data-category=""]').addEventListener('click', () => {
+      activeCategory = '';
+      filtersEl.querySelectorAll('.filter-chip').forEach((b) => {
+        const on = b.dataset.category === '';
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      renderPosts(allPosts);
+    });
+  }
+
+  fetchPosts({ limit: 50 })
+    .then((data) => {
+      allPosts = data.posts || [];
+      buildFilters(allPosts);
+      renderPosts(allPosts);
+    })
+    .catch(() => {
+      container.innerHTML = '<div class="empty" style="grid-column:1/-1"><p>Não foi possível carregar os artigos. Tente novamente mais tarde.</p></div>';
+    });
+})();
+</script>
+</body>
+</html>

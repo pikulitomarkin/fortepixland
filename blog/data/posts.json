@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "updatedAt": "2026-07-21T13:00:00.000Z",
+  "posts": [
+    {
+      "id": "post-001",
+      "slug": "como-identificar-golpe-do-pix",
+      "title": "Como identificar o golpe do Pix em 5 passos",
+      "excerpt": "Golpistas usam urgência e falsas promessas para convencer vítimas a transferir via Pix. Aprenda os sinais de alerta antes de confirmar qualquer pagamento.",
+      "content": "## O que é o golpe do Pix?\n\nO golpe do Pix explora a velocidade das transferências instantâneas. Criminosos criam situações de pressão — prêmios falsos, cobranças indevidas ou supostos erros bancários — para que você transfira dinheiro sem tempo de pensar.\n\n## 5 sinais de alerta\n\n1. **Urgência extrema** — \"Pague agora ou perde o benefício\"\n2. **Chave Pix desconhecida** — sempre verifique o destinatário\n3. **Valor diferente do combinado** — confira antes de confirmar\n4. **Contato por WhatsApp sem contexto** — bancos não pedem Pix por mensagem\n5. **Promessa de retorno rápido** — lucro fácil é quase sempre golpe\n\n## O que fazer\n\nAntes de transferir, use o **FortePix** para analisar a chave Pix do destinatário. Se o risco for médio ou alto, desconfie e não confirme a transação.\n\n> Dica FortePix: nunca transfira para chaves que você não verificou, mesmo que a pessoa pareça confiável.",
+      "coverImage": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80",
+      "category": "Golpes",
+      "tags": ["pix", "golpe", "segurança", "fraude"],
+      "author": { "name": "Equipe FortePix" },
+      "publishedAt": "2026-07-21T10:00:00.000Z",
+      "updatedAt": "2026-07-21T10:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 4
+    },
+    {
+      "id": "post-002",
+      "slug": "falso-emprestimo-pix-como-evitar",
+      "title": "Falso empréstimo: como não cair na armadilha do Pix",
+      "excerpt": "Promessas de crédito fácil com taxa antecipada via Pix são um dos golpes mais comuns. Saiba como reconhecer e se proteger.",
+      "content": "## Como funciona o golpe\n\nO golpista oferece empréstimo com aprovação imediata e pede uma \"taxa de liberação\" via Pix antes de depositar o valor. Após o pagamento, some com o dinheiro.\n\n## Sinais de fraude\n\n- Pedido de pagamento antecipado para liberar crédito\n- Contato apenas por WhatsApp ou redes sociais\n- Taxas abaixo do mercado com aprovação garantida\n- CNPJ ou razão social que não confere com a empresa\n\n## Proteja-se\n\nInstituições financeiras legítimas **nunca** pedem Pix antecipado para liberar empréstimo. Verifique o CNPJ no site da Receita Federal e use o FortePix para analisar a chave antes de qualquer transferência.",
+      "coverImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
+      "category": "Golpes",
+      "tags": ["empréstimo", "pix", "fraude"],
+      "author": { "name": "Equipe FortePix" },
+      "publishedAt": "2026-07-20T14:30:00.000Z",
+      "updatedAt": "2026-07-20T14:30:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 3
+    },
+    {
+      "id": "post-003",
+      "slug": "chaves-pix-suspeitas-o-que-observar",
+      "title": "Chaves Pix suspeitas: o que observar antes de transferir",
+      "excerpt": "Nem toda chave Pix é segura. Entenda os padrões que indicam risco e como o FortePix ajuda na sua decisão.",
+      "content": "## Tipos de chave Pix\n\nChaves Pix podem ser CPF, CNPJ, e-mail, telefone ou chave aleatória. Golpistas frequentemente usam chaves recém-criadas ou vinculadas a contas com histórico suspeito.\n\n## Padrões de risco\n\n- Chave de pessoa física para pagamento empresarial sem justificativa\n- Múltiplas reclamações associadas ao mesmo CPF/CNPJ\n- Conta aberta recentemente com alto volume de recebimentos\n- Nome do destinatário diferente do combinado na transação\n\n## Verificação com FortePix\n\nO app analisa a chave em tempo real e classifica o risco como **Baixo**, **Médio** ou **Alto**. Use essa informação junto com o bom senso antes de confirmar qualquer Pix.",
+      "coverImage": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80",
+      "category": "Educação",
+      "tags": ["chave pix", "verificação", "segurança"],
+      "author": { "name": "Equipe FortePix" },
+      "publishedAt": "2026-07-19T09:00:00.000Z",
+      "updatedAt": "2026-07-19T09:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 5
+    },
+    {
+      "id": "post-004",
+      "slug": "lgpd-e-pix-seus-direitos",
+      "title": "LGPD e Pix: seus direitos ao compartilhar dados financeiros",
+      "excerpt": "Ao usar serviços de verificação Pix, seus dados precisam ser tratados com segurança. Conheça seus direitos pela LGPD.",
+      "content": "## Dados e Pix\n\nServiços de análise de risco consultam informações para avaliar a segurança de uma chave. Pela **Lei Geral de Proteção de Dados (LGPD)**, você tem direito a saber quais dados são coletados e para qual finalidade.\n\n## Seus direitos\n\n- **Acesso** aos dados que a empresa possui sobre você\n- **Correção** de informações incorretas\n- **Exclusão** quando não houver mais necessidade de tratamento\n- **Portabilidade** dos seus dados\n\n## Compromisso FortePix\n\nColetamos apenas dados necessários para a análise de risco. Não realizamos custódia de valores e não intermediamos pagamentos. Para exercer seus direitos, entre em contato: **privacidade@fortepix.com.br**.",
+      "coverImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80",
+      "category": "LGPD",
+      "tags": ["lgpd", "privacidade", "dados"],
+      "author": { "name": "Equipe FortePix" },
+      "publishedAt": "2026-07-18T11:00:00.000Z",
+      "updatedAt": "2026-07-18T11:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 4
+    }
+  ]
+}

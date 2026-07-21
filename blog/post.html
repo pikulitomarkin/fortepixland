@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Artigo — Blog FortePix</title>
+<meta name="description" content="Leia artigos sobre segurança Pix no blog FortePix." />
+<meta name="theme-color" content="#0A1628" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Blog FortePix" />
+<meta property="og:description" content="Artigo sobre segurança Pix" />
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%230A1628%22/><g fill=%22none%22 stroke=%22%23B8962E%22 stroke-width=%223%22 stroke-linecap=%22round%22><path d=%22M16 20 C 16 8, 48 8, 48 20%22/><path d=%22M14 30 C 14 14, 50 14, 50 30 V 36%22/><path d=%22M22 30 C 22 20, 42 20, 42 30 V 42%22/><path d=%22M28 32 V 46%22/><path d=%22M34 32 V 48%22/><path d=%22M14 30 V 22%22/><path d=%22M50 30 V 22%22/></g></svg>' />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/blog.css" />
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="FortePix — início">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+        <g fill="none" stroke="#B8962E" stroke-width="3" stroke-linecap="round">
+          <path d="M16 20 C 16 8, 48 8, 48 20"/><path d="M14 30 C 14 14, 50 14, 50 30 V 36"/>
+          <path d="M22 30 C 22 20, 42 20, 42 30 V 42"/><path d="M28 32 V 46"/><path d="M34 32 V 48"/>
+          <path d="M14 30 V 22"/><path d="M50 30 V 22"/>
+        </g>
+      </svg>
+      <span class="wm">FORTE<span class="gold">PIX</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="/">Início</a>
+      <a href="/blog" class="active">Blog</a>
+      <a href="/#planos">Planos</a>
+      <a href="/#contato">Contato</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.fortepix&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Baixar App</a>
+      <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu">
+    <a href="/">Início</a>
+    <a href="/blog">Blog</a>
+    <a href="/#planos">Planos</a>
+    <a href="/#contato">Contato</a>
+    <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.fortepix&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Baixar App</a>
+  </div>
+</header>
+
+<main>
+  <article class="post-article wrap" id="postArticle">
+    <div class="loading">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Carregando artigo...</p>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-bottom" style="margin-top:0;padding-top:0;border:0">
+      <span>© 2026 FortePix. Todos os direitos reservados.</span>
+      <a href="/blog" class="gold" style="font-weight:700">← Voltar ao blog</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/blog.js"></script>
+<script>
+(function () {
+  const { fetchPosts, formatDate, initHeader, renderMarkdown } = FortePixBlog;
+  initHeader();
+
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug') || window.location.pathname.split('/').filter(Boolean).pop();
+
+  if (!slug || slug === 'post.html') {
+    document.getElementById('postArticle').innerHTML =
+      '<div class="empty"><p>Artigo não encontrado.</p><a class="btn btn-outline" href="/blog" style="margin-top:16px">Voltar ao blog</a></div>';
+    return;
+  }
+
+  fetchPosts({ slug })
+    .then((data) => {
+      const post = data.post;
+      if (!post) throw new Error('not found');
+
+      document.title = `${post.title} — Blog FortePix`;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.content = post.excerpt;
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.content = post.title;
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.content = post.excerpt;
+      if (post.coverImage) {
+        let ogImg = document.querySelector('meta[property="og:image"]');
+        if (!ogImg) {
+          ogImg = document.createElement('meta');
+          ogImg.setAttribute('property', 'og:image');
+          document.head.appendChild(ogImg);
+        }
+        ogImg.content = post.coverImage;
+      }
+
+      const tagsHtml = (post.tags || [])
+        .map((t) => `<span>#${t}</span>`)
+        .join('');
+
+      document.getElementById('postArticle').innerHTML = `
+        <a class="back-link" href="/blog">← Voltar ao blog</a>
+        ${post.coverImage ? `<img class="cover" src="${post.coverImage}" alt="" loading="eager" width="800" height="450" />` : ''}
+        <header class="post-header">
+          <span class="eyebrow">${post.category}</span>
+          <h1 class="h-display">${post.title}</h1>
+          <div class="post-meta">
+            <span>${post.author?.name || 'Equipe FortePix'}</span>
+            <span>${formatDate(post.publishedAt)}</span>
+            <span>${post.readingTimeMinutes || 3} min de leitura</span>
+          </div>
+        </header>
+        <div class="post-content">${renderMarkdown(post.content)}</div>
+        ${tagsHtml ? `<div class="post-tags">${tagsHtml}</div>` : ''}
+        <div style="margin-top:40px;padding-top:32px;border-top:1px solid var(--hairline)">
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.fortepix&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Baixar o app FortePix</a>
+        </div>`;
+    })
+    .catch(() => {
+      document.getElementById('postArticle').innerHTML =
+        '<div class="empty"><p>Artigo não encontrado.</p><a class="btn btn-outline" href="/blog" style="margin-top:16px">Voltar ao blog</a></div>';
+    });
+})();
+</script>
+</body>
+</html>
