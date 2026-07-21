@@ -3,17 +3,12 @@ import {
   updateContactMessageStatus,
   countNewMessages,
 } from '../../lib/contact.js';
+import { requireAdmin } from '../../lib/auth.js';
 
 function cors(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, PATCH, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-}
-
-function checkAuth(req) {
-  const token = req.headers.authorization?.replace('Bearer ', '');
-  const adminToken = process.env.BLOG_ADMIN_TOKEN;
-  return adminToken && token === adminToken;
 }
 
 export default async function handler(req, res) {
@@ -23,9 +18,8 @@ export default async function handler(req, res) {
     return res.status(204).end();
   }
 
-  if (!checkAuth(req)) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
+  const auth = await requireAdmin(req, res);
+  if (!auth) return;
 
   try {
     if (req.method === 'GET') {
@@ -50,6 +44,6 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   } catch (err) {
     console.error('Contact admin API error:', err);
-    return res.status(500).json({ error: 'Erro ao processar solicitação' });
+    return res.status(500).json({ error: 'Erro ao processar solicitação', detail: err.message });
   }
 }

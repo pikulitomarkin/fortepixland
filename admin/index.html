@@ -83,16 +83,21 @@
 
 <div id="loginScreen" class="login-screen">
   <div class="login-card">
-    <h1>CMS <span class="gold">BLOG</span></h1>
-    <p>Entre com o token de administrador para publicar no banco Neon PostgreSQL.</p>
+    <h1>CMS <span class="gold">FORTEPIX</span></h1>
+    <p>Entre com seu e-mail e senha de administrador.</p>
     <form id="loginForm" class="form-grid">
       <div class="form-group">
-        <label for="adminToken">Token de acesso</label>
-        <input type="password" id="adminToken" required placeholder="BLOG_ADMIN_TOKEN" autocomplete="current-password" />
+        <label for="adminEmail">E-mail</label>
+        <input type="email" id="adminEmail" required placeholder="seu@email.com" autocomplete="username" />
       </div>
-      <button type="submit" class="btn btn-primary" style="width:100%">Entrar</button>
+      <div class="form-group">
+        <label for="adminPassword">Senha</label>
+        <input type="password" id="adminPassword" required placeholder="••••••••" autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn btn-primary" id="loginBtn" style="width:100%">Entrar</button>
     </form>
-    <p style="margin-top:16px;font-size:12px;color:var(--muted)">Sem token? Use o modo local para editar e exportar o JSON.</p>
+    <p id="loginError" style="margin-top:12px;font-size:13px;color:#ef9a9a;display:none"></p>
+    <p style="margin-top:16px;font-size:12px;color:var(--muted)">Sem acesso? Use o modo local para editar e exportar o JSON.</p>
     <button type="button" class="btn btn-ghost" id="localModeBtn" style="width:100%;margin-top:8px">Modo local (sem publicar)</button>
   </div>
 </div>
@@ -147,8 +152,9 @@
 (function () {
   const { slugify, estimateReadingTime, renderMarkdown, formatDate } = FortePixBlog;
 
-  const STORAGE_TOKEN = 'fortepix_blog_admin_token';
+  const STORAGE_TOKEN = 'fortepix_admin_session';
   const STORAGE_DRAFT = 'fortepix_blog_draft_posts';
+  const STORAGE_USER = 'fortepix_admin_user';
 
   let posts = [];
   let messages = [];
@@ -190,15 +196,16 @@
           headers: { Authorization: `Bearer ${adminToken}` },
         });
         if (res.status === 401) {
-          toast('Token inválido. Verifique BLOG_ADMIN_TOKEN na Vercel.', 'error');
+          toast('Sessão expirada. Faça login novamente.', 'error');
           localStorage.removeItem(STORAGE_TOKEN);
+          localStorage.removeItem(STORAGE_USER);
           adminToken = null;
           location.reload();
           return;
         }
         if (res.status === 503) {
           const data = await res.json().catch(() => ({}));
-          toast(data.message || 'CMS não configurado na Vercel.', 'error');
+          toast(data.message || data.error || 'Serviço indisponível.', 'error');
         }
         if (res.ok) {
           const data = await res.json();
@@ -658,12 +665,36 @@
     tab.addEventListener('click', () => switchModule(tab.dataset.module));
   });
 
-  document.getElementById('loginForm').addEventListener('submit', (e) => {
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    adminToken = document.getElementById('adminToken').value.trim();
-    localStorage.setItem(STORAGE_TOKEN, adminToken);
-    localMode = false;
-    showAdmin();
+    const email = document.getElementById('adminEmail').value.trim();
+    const password = document.getElementById('adminPassword').value;
+    const loginBtn = document.getElementById('loginBtn');
+    const loginError = document.getElementById('loginError');
+    loginError.style.display = 'none';
+    loginBtn.disabled = true;
+    loginBtn.textContent = 'Entrando...';
+
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Falha no login');
+
+      adminToken = data.token;
+      localStorage.setItem(STORAGE_TOKEN, data.token);
+      if (data.user) localStorage.setItem(STORAGE_USER, JSON.stringify(data.user));
+      localMode = false;
+      showAdmin();
+    } catch (err) {
+      loginError.textContent = err.message || 'Não foi possível entrar';
+      loginError.style.display = 'block';
+      loginBtn.disabled = false;
+      loginBtn.textContent = 'Entrar';
+    }
   });
 
   document.getElementById('localModeBtn').addEventListener('click', () => {
@@ -672,8 +703,17 @@
     showAdmin();
   });
 
-  document.getElementById('logoutBtn').addEventListener('click', () => {
+  document.getElementById('logoutBtn').addEventListener('click', async () => {
+    if (adminToken && !localMode) {
+      try {
+        await fetch('/api/auth/logout', {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${adminToken}` },
+        });
+      } catch (_) {}
+    }
     localStorage.removeItem(STORAGE_TOKEN);
+    localStorage.removeItem(STORAGE_USER);
     adminToken = null;
     location.reload();
   });

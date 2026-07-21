@@ -1,4 +1,5 @@
 import { listPosts, seedIfEmpty } from '../../lib/blog.js';
+import { requireAdmin } from '../../lib/auth.js';
 
 function cors(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -17,19 +18,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const token = req.headers.authorization?.replace('Bearer ', '');
-  const adminToken = process.env.BLOG_ADMIN_TOKEN;
-
-  if (!adminToken) {
-    return res.status(503).json({
-      error: 'CMS não configurado',
-      message: 'Defina BLOG_ADMIN_TOKEN nas variáveis de ambiente da Vercel.',
-    });
-  }
-
-  if (token !== adminToken) {
-    return res.status(401).json({ error: 'Token inválido' });
-  }
+  const auth = await requireAdmin(req, res);
+  if (!auth) return;
 
   try {
     try {
@@ -48,6 +38,7 @@ export default async function handler(req, res) {
       source: result.source,
       updatedAt: result.updatedAt,
       posts: result.posts || [],
+      user: auth.user,
     });
   } catch (err) {
     console.error('Blog admin API error:', err);
