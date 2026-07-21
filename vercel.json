@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/admin", "destination": "/admin/index.html" },
+    { "source": "/termos", "destination": "/termos.html" },
     { "source": "/blog/admin", "destination": "/blog/admin/index.html" },
     { "source": "/blog/api/posts", "destination": "/api/blog/posts" },
     { "source": "/blog/api/posts/:slug", "destination": "/api/blog/posts?slug=:slug" },
