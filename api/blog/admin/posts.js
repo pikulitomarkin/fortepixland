@@ -17,46 +17,29 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  const adminToken = process.env.BLOG_ADMIN_TOKEN;
+
+  if (!adminToken || token !== adminToken) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
   try {
     await seedIfEmpty();
 
-    const { slug, category, tag, page = '1', limit = '20' } = req.query;
-    const pageNum = Math.max(1, parseInt(page, 10) || 1);
-    const limitNum = Math.min(50, Math.max(1, parseInt(limit, 10) || 20));
-
     const result = await listPosts({
-      publishedOnly: true,
-      slug,
-      category,
-      tag,
-      page: pageNum,
-      limit: limitNum,
+      publishedOnly: false,
+      page: 1,
+      limit: 100,
     });
-
-    if (slug) {
-      if (!result.post) {
-        return res.status(404).json({ error: 'Post not found' });
-      }
-      return res.status(200).json({
-        source: result.source,
-        updatedAt: result.updatedAt,
-        post: result.post,
-      });
-    }
 
     return res.status(200).json({
       source: result.source,
       updatedAt: result.updatedAt,
-      pagination: {
-        page: pageNum,
-        limit: limitNum,
-        total: result.total,
-        totalPages: Math.ceil(result.total / limitNum),
-      },
       posts: result.posts,
     });
   } catch (err) {
-    console.error('Blog API error:', err);
+    console.error('Blog admin API error:', err);
     return res.status(500).json({ error: 'Failed to load posts' });
   }
 }

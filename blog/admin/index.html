@@ -70,7 +70,7 @@
 <div id="loginScreen" class="login-screen">
   <div class="login-card">
     <h1>CMS <span class="gold">BLOG</span></h1>
-    <p>Entre com o token de administrador para publicar conteúdo diário.</p>
+    <p>Entre com o token de administrador para publicar no banco Neon PostgreSQL.</p>
     <form id="loginForm" class="form-grid">
       <div class="form-group">
         <label for="adminToken">Token de acesso</label>
@@ -143,14 +143,36 @@
   }
 
   async function loadPosts() {
+    if (adminToken && !localMode) {
+      try {
+        const res = await fetch('/api/blog/admin/posts', {
+          headers: { Authorization: `Bearer ${adminToken}` },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          posts = data.posts || [];
+          return;
+        }
+      } catch (_) {}
+    }
+
     const draft = localStorage.getItem(STORAGE_DRAFT);
-    if (draft) {
+    if (draft && localMode) {
       try {
         const data = JSON.parse(draft);
         posts = data.posts || [];
         return;
       } catch (_) {}
     }
+
+    try {
+      const res = await fetch('/blog/api/posts?limit=50');
+      if (res.ok) {
+        const data = await res.json();
+        posts = data.posts || [];
+        return;
+      }
+    } catch (_) {}
 
     try {
       const res = await fetch('/blog/data/posts.json');
@@ -392,7 +414,7 @@
 
     if (localMode || !adminToken) {
       exportJson(payload);
-      toast('JSON exportado — faça commit no repositório ou configure o token para publicação automática', 'info');
+      toast('JSON exportado — use o token de admin para publicar no banco Neon', 'info');
       return;
     }
 
@@ -409,16 +431,15 @@
 
       if (data.saved) {
         localStorage.removeItem(STORAGE_DRAFT);
-        toast(`Publicado! ${data.count} artigos no ar.`, 'success');
-      } else if (data.data) {
-        exportJson(data.data);
-        toast(data.message || 'Exporte o JSON e faça deploy manualmente', 'info');
+        toast(`Publicado no Neon! ${data.count} artigos salvos.`, 'success');
+        await loadPosts();
+        renderList();
       } else {
-        throw new Error(data.error || 'Falha ao publicar');
+        throw new Error(data.message || data.error || 'Falha ao publicar');
       }
     } catch (err) {
       exportJson(payload);
-      toast('Erro na API — JSON exportado como backup', 'error');
+      toast(err.message || 'Erro na API — JSON exportado como backup', 'error');
     }
   }
 
