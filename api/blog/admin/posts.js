@@ -1,10 +1,23 @@
 import { listPosts, seedIfEmpty } from '../../lib/blog.js';
 import { requireAdmin } from '../../lib/auth.js';
+import { readFileSync, existsSync } from 'fs';
+import { join } from 'path';
 
 function cors(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+}
+
+function loadJsonPosts() {
+  try {
+    const filePath = join(process.cwd(), 'blog', 'data', 'posts.json');
+    if (!existsSync(filePath)) return [];
+    const data = JSON.parse(readFileSync(filePath, 'utf8'));
+    return data.posts || [];
+  } catch {
+    return [];
+  }
 }
 
 export default async function handler(req, res) {
@@ -18,30 +31,53 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const auth = await requireAdmin(req, res);
-  if (!auth) return;
-
   try {
+    const auth = await requireAdmin(req, res);
+    if (!auth) return;
+
+    let posts = [];
+    let source = 'json';
+    let updatedAt = new Date().toISOString();
+
     try {
       await seedIfEmpty();
     } catch (seedErr) {
-      console.error('Seed skipped:', seedErr);
+      console.error('Seed skipped:', seedErr?.message || seedErr);
     }
 
-    const result = await listPosts({
-      publishedOnly: false,
-      page: 1,
-      limit: 100,
-    });
+    try {
+      const result = await listPosts({
+        publishedOnly: false,
+        page: 1,
+        limit: 100,
+      });
+      posts = result.posts || [];
+      source = result.source || 'postgres';
+      updatedAt = result.updatedAt || updatedAt;
+    } catch (listErr) {
+      console.error('List posts failed:', listErr?.message || listErr);
+      posts = [];
+    }
+
+    if (!posts.length) {
+      posts = loadJsonPosts();
+      source = 'json';
+    }
 
     return res.status(200).json({
-      source: result.source,
-      updatedAt: result.updatedAt,
-      posts: result.posts || [],
+      source,
+      updatedAt,
+      posts,
       user: auth.user,
     });
   } catch (err) {
     console.error('Blog admin API error:', err);
-    return res.status(500).json({ error: 'Failed to load posts', detail: err.message });
+    // Nunca derruba o painel: devolve JSON local
+    return res.status(200).json({
+      source: 'json',
+      updatedAt: new Date().toISOString(),
+      posts: loadJsonPosts(),
+      warning: err.message || 'Fallback para posts locais',
+    });
   }
 }
