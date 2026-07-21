@@ -189,9 +189,23 @@
         const res = await fetch('/api/blog/admin/posts', {
           headers: { Authorization: `Bearer ${adminToken}` },
         });
+        if (res.status === 401) {
+          toast('Token inválido. Verifique BLOG_ADMIN_TOKEN na Vercel.', 'error');
+          localStorage.removeItem(STORAGE_TOKEN);
+          adminToken = null;
+          location.reload();
+          return;
+        }
+        if (res.status === 503) {
+          const data = await res.json().catch(() => ({}));
+          toast(data.message || 'CMS não configurado na Vercel.', 'error');
+        }
         if (res.ok) {
           const data = await res.json();
           posts = data.posts || [];
+          if (data.source === 'json') {
+            toast('Banco indisponível — exibindo dados locais.', 'info');
+          }
           return;
         }
       } catch (_) {}

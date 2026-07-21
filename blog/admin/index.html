@@ -189,9 +189,23 @@
         const res = await fetch('/api/blog/admin/posts', {
           headers: { Authorization: `Bearer ${adminToken}` },
         });
+        if (res.status === 401) {
+          toast('Token inválido. Verifique BLOG_ADMIN_TOKEN na Vercel.', 'error');
+          localStorage.removeItem(STORAGE_TOKEN);
+          adminToken = null;
+          location.reload();
+          return;
+        }
+        if (res.status === 503) {
+          const data = await res.json().catch(() => ({}));
+          toast(data.message || 'CMS não configurado na Vercel.', 'error');
+        }
         if (res.ok) {
           const data = await res.json();
           posts = data.posts || [];
+          if (data.source === 'json') {
+            toast('Banco indisponível — exibindo dados locais.', 'info');
+          }
           return;
         }
       } catch (_) {}
@@ -217,11 +231,15 @@
 
     try {
       const res = await fetch('/blog/data/posts.json');
-      const data = await res.json();
-      posts = data.posts || [];
-    } catch (_) {
-      posts = [];
-    }
+      if (res.ok) {
+        const data = await res.json();
+        posts = data.posts || [];
+        return;
+      }
+    } catch (_) {}
+
+    posts = [];
+    toast('Não foi possível carregar artigos. Use Modo local ou verifique o deploy.', 'error');
   }
 
   function saveDraft() {

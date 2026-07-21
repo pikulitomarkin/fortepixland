@@ -18,7 +18,11 @@ export default async function handler(req, res) {
   }
 
   try {
-    await seedIfEmpty();
+    try {
+      await seedIfEmpty();
+    } catch (seedErr) {
+      console.error('Seed skipped:', seedErr);
+    }
 
     const { slug, category, tag, page = '1', limit = '20' } = req.query;
     const pageNum = Math.max(1, parseInt(page, 10) || 1);
@@ -51,12 +55,12 @@ export default async function handler(req, res) {
         page: pageNum,
         limit: limitNum,
         total: result.total,
-        totalPages: Math.ceil(result.total / limitNum),
+        totalPages: Math.ceil((result.total || 0) / limitNum),
       },
       posts: result.posts,
     });
   } catch (err) {
     console.error('Blog API error:', err);
-    return res.status(500).json({ error: 'Failed to load posts' });
+    return res.status(500).json({ error: 'Failed to load posts', detail: err.message });
   }
 }
