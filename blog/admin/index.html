@@ -15,6 +15,9 @@
 .admin{min-height:100vh;display:flex;flex-direction:column}
 .admin-bar{background:var(--bg-2);border-bottom:1px solid var(--hairline);padding:12px 0;position:sticky;top:0;z-index:60}
 .admin-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.admin-bar .wrap > h1{flex:1 1 auto}
+.module-tabs{flex:1 1 100%;order:3}
+@media(min-width:900px){.module-tabs{flex:0 0 auto;order:0;margin-top:0}}
 .admin-bar h1{font-family:var(--display);font-size:22px;letter-spacing:.06em}
 .admin-actions{display:flex;gap:8px;flex-wrap:wrap}
 .admin-layout{display:grid;grid-template-columns:1fr;flex:1}
@@ -29,6 +32,17 @@
 .post-list-item .status{display:inline-block;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;margin-top:6px}
 .post-list-item .status.published{background:rgba(76,175,80,.15);color:#81c784}
 .post-list-item .status.draft{background:rgba(255,193,7,.15);color:#ffd54f}
+.post-list-item .status.new{background:rgba(33,150,243,.15);color:#64b5f6}
+.post-list-item .status.read{background:rgba(76,175,80,.15);color:#81c784}
+.post-list-item .status.archived{background:rgba(158,158,158,.15);color:#bdbdbd}
+.module-tabs{display:flex;gap:8px;margin-top:8px}
+.module-tab{padding:8px 14px;border-radius:999px;font-size:12px;font-weight:800;border:1px solid var(--hairline);color:var(--muted-2);background:transparent;cursor:pointer}
+.module-tab.active,.module-tab:hover{border-color:var(--gold);color:var(--gold);background:rgba(184,150,46,.08)}
+.module-tab .badge{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;margin-left:6px;border-radius:999px;background:var(--gold);color:var(--bg);font-size:10px}
+.contact-detail .field-block{margin-bottom:18px}
+.contact-detail .field-block .lbl{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.contact-detail .field-block .val{font-size:15px;color:var(--text);line-height:1.6}
+.contact-detail .message-box{padding:16px;border-radius:12px;border:1px solid var(--hairline);background:rgba(255,255,255,.03);white-space:pre-wrap}
 .admin-main{padding:20px;overflow-y:auto}
 @media(min-width:1024px){.admin-main{padding:28px 32px}}
 .form-grid{display:grid;gap:16px;max-width:900px}
@@ -87,7 +101,11 @@
   <div class="admin-bar">
     <div class="wrap">
       <h1>CMS <span class="gold">FORTEPIX</span></h1>
-      <div class="admin-actions">
+      <div class="module-tabs" role="tablist" aria-label="Módulos">
+        <button type="button" class="module-tab active" data-module="blog" role="tab" aria-selected="true">Blog</button>
+        <button type="button" class="module-tab" data-module="contact" role="tab" aria-selected="false">Contato <span class="badge" id="contactBadge" hidden>0</span></button>
+      </div>
+      <div class="admin-actions" id="blogActions">
         <button type="button" class="btn btn-ghost btn-sm" id="newPostBtn">+ Novo artigo</button>
         <button type="button" class="btn btn-outline btn-sm" id="exportBtn">Exportar JSON</button>
         <button type="button" class="btn btn-primary btn-sm" id="publishBtn">Publicar</button>
@@ -96,7 +114,7 @@
     </div>
   </div>
 
-  <div class="admin-layout">
+  <div class="admin-layout" id="blogModule">
     <aside class="admin-sidebar">
       <h2>Artigos (<span id="postCount">0</span>)</h2>
       <div id="postList"></div>
@@ -106,6 +124,19 @@
       <div class="empty-editor">
         <p>Selecione um artigo ou crie um novo para começar.</p>
         <button type="button" class="btn btn-primary" id="newPostBtn2" style="margin-top:16px">+ Novo artigo</button>
+      </div>
+    </main>
+  </div>
+
+  <div class="admin-layout" id="contactModule" hidden>
+    <aside class="admin-sidebar">
+      <h2>Mensagens (<span id="contactCount">0</span>)</h2>
+      <div id="contactList"></div>
+    </aside>
+
+    <main class="admin-main" id="contactPanel">
+      <div class="empty-editor">
+        <p>Selecione uma mensagem de contato para visualizar.</p>
       </div>
     </main>
   </div>
@@ -120,7 +151,10 @@
   const STORAGE_DRAFT = 'fortepix_blog_draft_posts';
 
   let posts = [];
+  let messages = [];
   let activeId = null;
+  let activeMessageId = null;
+  let activeModule = 'blog';
   let adminToken = null;
   let localMode = false;
 
@@ -129,6 +163,13 @@
   const postList = document.getElementById('postList');
   const editorPanel = document.getElementById('editorPanel');
   const postCount = document.getElementById('postCount');
+  const contactList = document.getElementById('contactList');
+  const contactPanel = document.getElementById('contactPanel');
+  const contactCount = document.getElementById('contactCount');
+  const contactBadge = document.getElementById('contactBadge');
+  const blogModule = document.getElementById('blogModule');
+  const contactModule = document.getElementById('contactModule');
+  const blogActions = document.getElementById('blogActions');
 
   function toast(msg, type = 'info') {
     const el = document.createElement('div');
@@ -455,11 +496,153 @@
   function showAdmin() {
     loginScreen.hidden = true;
     adminApp.hidden = false;
-    loadPosts().then(() => {
+    Promise.all([loadPosts(), loadMessages()]).then(() => {
       renderList();
-      if (posts.length && !activeId) openEditor(posts[0].id);
+      renderContactList();
+      updateContactBadge();
+      if (activeModule === 'blog' && posts.length && !activeId) openEditor(posts[0].id);
     });
   }
+
+  async function loadMessages() {
+    if (!adminToken || localMode) {
+      messages = [];
+      return;
+    }
+    try {
+      const res = await fetch('/api/contact/admin', {
+        headers: { Authorization: `Bearer ${adminToken}` },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        messages = data.messages || [];
+        updateContactBadge(data.newCount);
+      }
+    } catch (_) {
+      messages = [];
+    }
+  }
+
+  function updateContactBadge(count) {
+    const total = typeof count === 'number' ? count : messages.filter((m) => m.status === 'new').length;
+    if (total > 0) {
+      contactBadge.hidden = false;
+      contactBadge.textContent = total;
+    } else {
+      contactBadge.hidden = true;
+    }
+  }
+
+  function renderContactList() {
+    contactCount.textContent = messages.length;
+    if (!messages.length) {
+      contactList.innerHTML = '<p style="color:var(--muted);font-size:13px">Nenhuma mensagem ainda.</p>';
+      return;
+    }
+
+    contactList.innerHTML = messages
+      .map(
+        (m) => `
+      <div class="post-list-item ${m.id === activeMessageId ? 'active' : ''}" data-id="${m.id}">
+        <div class="title">${esc(m.name)} — ${esc(m.subject)}</div>
+        <div class="meta">${formatDate(m.createdAt)} · ${esc(m.email)}</div>
+        <span class="status ${m.status}">${m.status === 'new' ? 'Nova' : m.status === 'read' ? 'Lida' : 'Arquivada'}</span>
+      </div>`
+      )
+      .join('');
+
+    contactList.querySelectorAll('.post-list-item').forEach((el) => {
+      el.addEventListener('click', () => openMessage(el.dataset.id));
+    });
+  }
+
+  async function openMessage(id) {
+    activeMessageId = id;
+    const msg = messages.find((m) => m.id === id);
+    if (!msg) return;
+    renderContactList();
+
+    if (msg.status === 'new' && adminToken && !localMode) {
+      await updateMessageStatus(id, 'read', false);
+    }
+
+    contactPanel.innerHTML = `
+      <div class="contact-detail form-grid">
+        <div class="form-row">
+          <div class="field-block">
+            <div class="lbl">Nome</div>
+            <div class="val">${esc(msg.name)}</div>
+          </div>
+          <div class="field-block">
+            <div class="lbl">E-mail</div>
+            <div class="val"><a href="mailto:${esc(msg.email)}">${esc(msg.email)}</a></div>
+          </div>
+        </div>
+        <div class="field-block">
+          <div class="lbl">Assunto</div>
+          <div class="val">${esc(msg.subject)}</div>
+        </div>
+        <div class="field-block">
+          <div class="lbl">Recebida em</div>
+          <div class="val">${formatDate(msg.createdAt)}</div>
+        </div>
+        <div class="field-block">
+          <div class="lbl">Mensagem</div>
+          <div class="message-box">${esc(msg.message)}</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="mailto:${esc(msg.email)}?subject=Re: ${encodeURIComponent(msg.subject)}">Responder por e-mail</a>
+          ${msg.status !== 'archived' ? '<button type="button" class="btn btn-outline" id="archiveMsgBtn">Arquivar</button>' : ''}
+          ${msg.status === 'archived' ? '<button type="button" class="btn btn-ghost" id="restoreMsgBtn">Marcar como nova</button>' : ''}
+        </div>
+      </div>`;
+
+    document.getElementById('archiveMsgBtn')?.addEventListener('click', () => updateMessageStatus(id, 'archived'));
+    document.getElementById('restoreMsgBtn')?.addEventListener('click', () => updateMessageStatus(id, 'new'));
+  }
+
+  async function updateMessageStatus(id, status, rerender = true) {
+    if (!adminToken || localMode) return;
+    try {
+      const res = await fetch('/api/contact/admin', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${adminToken}`,
+        },
+        body: JSON.stringify({ id, status }),
+      });
+      if (!res.ok) throw new Error('Falha ao atualizar');
+      const data = await res.json();
+      const idx = messages.findIndex((m) => m.id === id);
+      if (idx >= 0) messages[idx] = data.message;
+      updateContactBadge();
+      if (rerender) {
+        renderContactList();
+        openMessage(id);
+      }
+      toast('Status atualizado', 'success');
+    } catch (_) {
+      toast('Erro ao atualizar mensagem', 'error');
+    }
+  }
+
+  function switchModule(module) {
+    activeModule = module;
+    document.querySelectorAll('.module-tab').forEach((tab) => {
+      const on = tab.dataset.module === module;
+      tab.classList.toggle('active', on);
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    blogModule.hidden = module !== 'blog';
+    contactModule.hidden = module !== 'contact';
+    blogActions.hidden = module !== 'blog';
+    if (module === 'contact') loadMessages().then(renderContactList);
+  }
+
+  document.querySelectorAll('.module-tab').forEach((tab) => {
+    tab.addEventListener('click', () => switchModule(tab.dataset.module));
+  });
 
   document.getElementById('loginForm').addEventListener('submit', (e) => {
     e.preventDefault();

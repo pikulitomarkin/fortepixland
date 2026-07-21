@@ -1005,14 +1005,14 @@ body.menu-open .mobile-menu{transform:translateY(0);opacity:1;pointer-events:aut
           <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
           <div>
             <div class="lbl">E-mail geral</div>
-            <div class="v">contato@fortepix.com.br</div>
+            <div class="v"><a href="mailto:contato@fortepixfinance.com">contato@fortepixfinance.com</a></div>
           </div>
         </div>
         <div class="contact-row">
           <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 1 1 5.7 1.5c-.6 1.2-2.3 1.5-2.8 2.5-.2.4-.2.8-.2 1.2"/><circle cx="12" cy="17.5" r=".8" fill="currentColor"/></svg></div>
           <div>
             <div class="lbl">Suporte</div>
-            <div class="v">suporte@fortepix.com.br</div>
+            <div class="v"><a href="mailto:suporte@fortepixfinance.com">suporte@fortepixfinance.com</a></div>
           </div>
         </div>
         <div class="contact-row">
@@ -1034,7 +1034,7 @@ body.menu-open .mobile-menu{transform:translateY(0);opacity:1;pointer-events:aut
         </div>
       </div>
 
-      <form class="contact-form reveal" data-delay="1" novalidate onsubmit="event.preventDefault(); this.querySelector('button[type=submit]').textContent='Mensagem enviada ✓'; this.querySelector('button[type=submit]').disabled=true;">
+      <form class="contact-form reveal" id="contactForm" data-delay="1" novalidate>
         <div class="field-row">
           <div class="field">
             <label for="f-nome">Nome</label>
@@ -1059,7 +1059,7 @@ body.menu-open .mobile-menu{transform:translateY(0);opacity:1;pointer-events:aut
           <label for="f-msg">Mensagem</label>
           <textarea id="f-msg" required placeholder="Conte o que precisa — respondemos rapidamente."></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="width:100%">Enviar mensagem</button>
+        <button type="submit" class="btn btn-primary" id="contactSubmitBtn" style="width:100%">Enviar mensagem</button>
       </form>
     </div>
   </div>
@@ -1224,6 +1224,42 @@ body.menu-open .mobile-menu{transform:translateY(0);opacity:1;pointer-events:aut
     });
   }, {rootMargin:'-30% 0px -55% 0px', threshold:0});
   articles.forEach(a => tio.observe(a));
+
+  /* ----- contact form ----- */
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('contactSubmitBtn');
+      const originalText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+
+      const payload = {
+        name: document.getElementById('f-nome').value.trim(),
+        email: document.getElementById('f-email').value.trim(),
+        subject: document.getElementById('f-assunto').value,
+        message: document.getElementById('f-msg').value.trim(),
+      };
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Erro ao enviar');
+
+        btn.textContent = 'Mensagem enviada ✓';
+        contactForm.reset();
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = originalText;
+        alert(err.message || 'Não foi possível enviar. Tente novamente.');
+      }
+    });
+  }
 })();
 </script>
 </body>
