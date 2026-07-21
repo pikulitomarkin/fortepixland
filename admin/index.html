@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>CMS Blog — FortePix Admin</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#0A1628" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/blog.css" />
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+.admin{min-height:100vh;display:flex;flex-direction:column}
+.admin-bar{background:var(--bg-2);border-bottom:1px solid var(--hairline);padding:12px 0;position:sticky;top:0;z-index:60}
+.admin-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.admin-bar .wrap > h1{flex:1 1 auto}
+.module-tabs{flex:1 1 100%;order:3}
+@media(min-width:900px){.module-tabs{flex:0 0 auto;order:0;margin-top:0}}
+.admin-bar h1{font-family:var(--display);font-size:22px;letter-spacing:.06em}
+.admin-actions{display:flex;gap:8px;flex-wrap:wrap}
+.admin-layout{display:grid;grid-template-columns:1fr;flex:1}
+@media(min-width:1024px){.admin-layout{grid-template-columns:320px 1fr}}
+.admin-sidebar{background:var(--bg-2);border-bottom:1px solid var(--hairline);padding:16px;max-height:40vh;overflow-y:auto}
+@media(min-width:1024px){.admin-sidebar{border-bottom:0;border-right:1px solid var(--hairline);max-height:none;padding:20px}}
+.admin-sidebar h2{font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.post-list-item{padding:12px;border-radius:10px;border:1px solid var(--hairline);margin-bottom:8px;cursor:pointer;transition:all .2s}
+.post-list-item:hover,.post-list-item.active{border-color:var(--gold-line);background:rgba(184,150,46,.06)}
+.post-list-item .title{font-weight:700;font-size:14px;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.post-list-item .meta{font-size:11px;color:var(--muted)}
+.post-list-item .status{display:inline-block;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;margin-top:6px}
+.post-list-item .status.published{background:rgba(76,175,80,.15);color:#81c784}
+.post-list-item .status.draft{background:rgba(255,193,7,.15);color:#ffd54f}
+.post-list-item .status.new{background:rgba(33,150,243,.15);color:#64b5f6}
+.post-list-item .status.read{background:rgba(76,175,80,.15);color:#81c784}
+.post-list-item .status.archived{background:rgba(158,158,158,.15);color:#bdbdbd}
+.module-tabs{display:flex;gap:8px;margin-top:8px}
+.module-tab{padding:8px 14px;border-radius:999px;font-size:12px;font-weight:800;border:1px solid var(--hairline);color:var(--muted-2);background:transparent;cursor:pointer}
+.module-tab.active,.module-tab:hover{border-color:var(--gold);color:var(--gold);background:rgba(184,150,46,.08)}
+.module-tab .badge{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;margin-left:6px;border-radius:999px;background:var(--gold);color:var(--bg);font-size:10px}
+.contact-detail .field-block{margin-bottom:18px}
+.contact-detail .field-block .lbl{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.contact-detail .field-block .val{font-size:15px;color:var(--text);line-height:1.6}
+.contact-detail .message-box{padding:16px;border-radius:12px;border:1px solid var(--hairline);background:rgba(255,255,255,.03);white-space:pre-wrap}
+.admin-main{padding:20px;overflow-y:auto}
+@media(min-width:1024px){.admin-main{padding:28px 32px}}
+.form-grid{display:grid;gap:16px;max-width:900px}
+.form-group label{display:block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--hairline);
+  background:rgba(255,255,255,.04);color:var(--text);font-size:15px;
+}
+.form-group textarea{min-height:200px;resize:vertical;font-family:ui-monospace,monospace;font-size:14px;line-height:1.6}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);outline:none}
+.form-row{display:grid;gap:16px}
+@media(min-width:640px){.form-row{grid-template-columns:1fr 1fr}}
+.editor-tabs{display:flex;gap:4px;margin-bottom:12px}
+.editor-tab{padding:8px 16px;border-radius:8px 8px 0 0;font-size:13px;font-weight:700;color:var(--muted);border:1px solid transparent}
+.editor-tab.active{color:var(--gold);border-color:var(--hairline);border-bottom-color:var(--bg);background:var(--bg)}
+.preview-pane{padding:20px;border:1px solid var(--hairline);border-radius:0 12px 12px 12px;background:rgba(255,255,255,.02);min-height:200px}
+.preview-pane .post-content{font-size:15px}
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.login-card{max-width:400px;width:100%;padding:32px;border-radius:var(--radius);border:1px solid var(--hairline);background:var(--bg-2)}
+.login-card h1{font-family:var(--display);font-size:32px;margin-bottom:8px}
+.login-card p{color:var(--muted);font-size:14px;margin-bottom:24px}
+.toast{position:fixed;bottom:24px;right:24px;left:24px;padding:14px 20px;border-radius:10px;font-weight:700;font-size:14px;z-index:100;animation:slideUp .3s ease}
+.toast.success{background:#1b5e20;color:#a5d6a7;border:1px solid #2e7d32}
+.toast.error{background:#b71c1c;color:#ef9a9a;border:1px solid #c62828}
+.toast.info{background:var(--bg-3);color:var(--gold);border:1px solid var(--gold-line)}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.empty-editor{text-align:center;padding:48px 20px;color:var(--muted)}
+.mobile-preview{margin-top:24px;padding:16px;border:1px solid var(--hairline);border-radius:var(--radius);background:var(--bg-3)}
+.mobile-preview h3{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.mobile-frame{max-width:375px;margin:0 auto;border:2px solid var(--hairline);border-radius:24px;overflow:hidden;background:var(--bg)}
+.mobile-frame .mf-header{padding:12px 16px;border-bottom:1px solid var(--hairline);font-family:var(--display);font-size:18px}
+.mobile-frame .mf-body{padding:16px;font-size:13px}
+.mobile-frame .mf-body h4{font-family:var(--display);font-size:20px;margin-bottom:8px}
+.mobile-frame .mf-body p{color:var(--muted);font-size:12px;line-height:1.5}
+</style>
+</head>
+<body>
+
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <h1>CMS <span class="gold">BLOG</span></h1>
+    <p>Entre com o token de administrador para publicar no banco Neon PostgreSQL.</p>
+    <form id="loginForm" class="form-grid">
+      <div class="form-group">
+        <label for="adminToken">Token de acesso</label>
+        <input type="password" id="adminToken" required placeholder="BLOG_ADMIN_TOKEN" autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Entrar</button>
+    </form>
+    <p style="margin-top:16px;font-size:12px;color:var(--muted)">Sem token? Use o modo local para editar e exportar o JSON.</p>
+    <button type="button" class="btn btn-ghost" id="localModeBtn" style="width:100%;margin-top:8px">Modo local (sem publicar)</button>
+  </div>
+</div>
+
+<div id="adminApp" class="admin" hidden>
+  <div class="admin-bar">
+    <div class="wrap">
+      <h1>CMS <span class="gold">FORTEPIX</span></h1>
+      <div class="module-tabs" role="tablist" aria-label="Módulos">
+        <button type="button" class="module-tab active" data-module="blog" role="tab" aria-selected="true">Blog</button>
+        <button type="button" class="module-tab" data-module="contact" role="tab" aria-selected="false">Contato <span class="badge" id="contactBadge" hidden>0</span></button>
+      </div>
+      <div class="admin-actions" id="blogActions">
+        <button type="button" class="btn btn-ghost btn-sm" id="newPostBtn">+ Novo artigo</button>
+        <button type="button" class="btn btn-outline btn-sm" id="exportBtn">Exportar JSON</button>
+        <button type="button" class="btn btn-primary btn-sm" id="publishBtn">Publicar</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="logoutBtn">Sair</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-layout" id="blogModule">
+    <aside class="admin-sidebar">
+      <h2>Artigos (<span id="postCount">0</span>)</h2>
+      <div id="postList"></div>
+    </aside>
+
+    <main class="admin-main" id="editorPanel">
+      <div class="empty-editor">
+        <p>Selecione um artigo ou crie um novo para começar.</p>
+        <button type="button" class="btn btn-primary" id="newPostBtn2" style="margin-top:16px">+ Novo artigo</button>
+      </div>
+    </main>
+  </div>
+
+  <div class="admin-layout" id="contactModule" hidden>
+    <aside class="admin-sidebar">
+      <h2>Mensagens (<span id="contactCount">0</span>)</h2>
+      <div id="contactList"></div>
+    </aside>
+
+    <main class="admin-main" id="contactPanel">
+      <div class="empty-editor">
+        <p>Selecione uma mensagem de contato para visualizar.</p>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="/assets/blog.js"></script>
+<script>
+(function () {
+  const { slugify, estimateReadingTime, renderMarkdown, formatDate } = FortePixBlog;
+
+  const STORAGE_TOKEN = 'fortepix_blog_admin_token';
+  const STORAGE_DRAFT = 'fortepix_blog_draft_posts';
+
+  let posts = [];
+  let messages = [];
+  let activeId = null;
+  let activeMessageId = null;
+  let activeModule = 'blog';
+  let adminToken = null;
+  let localMode = false;
+
+  const loginScreen = document.getElementById('loginScreen');
+  const adminApp = document.getElementById('adminApp');
+  const postList = document.getElementById('postList');
+  const editorPanel = document.getElementById('editorPanel');
+  const postCount = document.getElementById('postCount');
+  const contactList = document.getElementById('contactList');
+  const contactPanel = document.getElementById('contactPanel');
+  const contactCount = document.getElementById('contactCount');
+  const contactBadge = document.getElementById('contactBadge');
+  const blogModule = document.getElementById('blogModule');
+  const contactModule = document.getElementById('contactModule');
+  const blogActions = document.getElementById('blogActions');
+
+  function toast(msg, type = 'info') {
+    const el = document.createElement('div');
+    el.className = `toast ${type}`;
+    el.textContent = msg;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 4000);
+  }
+
+  function uid() {
+    return 'post-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  }
+
+  async function loadPosts() {
+    if (adminToken && !localMode) {
+      try {
+        const res = await fetch('/api/blog/admin/posts', {
+          headers: { Authorization: `Bearer ${adminToken}` },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          posts = data.posts || [];
+          return;
+        }
+      } catch (_) {}
+    }
+
+    const draft = localStorage.getItem(STORAGE_DRAFT);
+    if (draft && localMode) {
+      try {
+        const data = JSON.parse(draft);
+        posts = data.posts || [];
+        return;
+      } catch (_) {}
+    }
+
+    try {
+      const res = await fetch('/blog/api/posts?limit=50');
+      if (res.ok) {
+        const data = await res.json();
+        posts = data.posts || [];
+        return;
+      }
+    } catch (_) {}
+
+    try {
+      const res = await fetch('/blog/data/posts.json');
+      const data = await res.json();
+      posts = data.posts || [];
+    } catch (_) {
+      posts = [];
+    }
+  }
+
+  function saveDraft() {
+    localStorage.setItem(STORAGE_DRAFT, JSON.stringify({ posts, updatedAt: new Date().toISOString() }));
+  }
+
+  function renderList() {
+    postCount.textContent = posts.length;
+    const sorted = [...posts].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+
+    if (!sorted.length) {
+      postList.innerHTML = '<p style="color:var(--muted);font-size:13px">Nenhum artigo ainda.</p>';
+      return;
+    }
+
+    postList.innerHTML = sorted
+      .map(
+        (p) => `
+      <div class="post-list-item ${p.id === activeId ? 'active' : ''}" data-id="${p.id}">
+        <div class="title">${p.title || 'Sem título'}</div>
+        <div class="meta">${formatDate(p.publishedAt)} · ${p.category || '—'}</div>
+        <span class="status ${p.status}">${p.status === 'published' ? 'Publicado' : 'Rascunho'}</span>
+      </div>`
+      )
+      .join('');
+
+    postList.querySelectorAll('.post-list-item').forEach((el) => {
+      el.addEventListener('click', () => openEditor(el.dataset.id));
+    });
+  }
+
+  function getPost(id) {
+    return posts.find((p) => p.id === id);
+  }
+
+  function openEditor(id) {
+    activeId = id;
+    const post = getPost(id);
+    if (!post) return;
+    renderList();
+    renderEditor(post);
+  }
+
+  function renderEditor(post) {
+    editorPanel.innerHTML = `
+      <form id="postForm" class="form-grid">
+        <div class="form-row">
+          <div class="form-group" style="grid-column:1/-1">
+            <label for="f-title">Título</label>
+            <input type="text" id="f-title" value="${esc(post.title)}" required />
+          </div>
+          <div class="form-group">
+            <label for="f-slug">Slug (URL)</label>
+            <input type="text" id="f-slug" value="${esc(post.slug)}" required pattern="[a-z0-9-]+" />
+          </div>
+          <div class="form-group">
+            <label for="f-status">Status</label>
+            <select id="f-status">
+              <option value="published" ${post.status === 'published' ? 'selected' : ''}>Publicado</option>
+              <option value="draft" ${post.status === 'draft' ? 'selected' : ''}>Rascunho</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-category">Categoria</label>
+            <select id="f-category">
+              ${['Golpes', 'Educação', 'LGPD', 'Dicas', 'Notícias']
+                .map((c) => `<option value="${c}" ${post.category === c ? 'selected' : ''}>${c}</option>`)
+                .join('')}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-date">Data de publicação</label>
+            <input type="datetime-local" id="f-date" value="${toLocalDatetime(post.publishedAt)}" />
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label for="f-cover">URL da imagem de capa</label>
+            <input type="url" id="f-cover" value="${esc(post.coverImage || '')}" placeholder="https://..." />
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label for="f-excerpt">Resumo (excerpt)</label>
+            <textarea id="f-excerpt" rows="2" required>${esc(post.excerpt)}</textarea>
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label for="f-tags">Tags (separadas por vírgula)</label>
+            <input type="text" id="f-tags" value="${esc((post.tags || []).join(', '))}" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Conteúdo (Markdown)</label>
+          <div class="editor-tabs">
+            <button type="button" class="editor-tab active" data-tab="edit">Editar</button>
+            <button type="button" class="editor-tab" data-tab="preview">Preview</button>
+          </div>
+          <textarea id="f-content" rows="16">${esc(post.content)}</textarea>
+          <div id="previewPane" class="preview-pane post-content" hidden></div>
+        </div>
+
+        <div class="mobile-preview">
+          <h3>Preview mobile (como no app)</h3>
+          <div class="mobile-frame">
+            <div class="mf-header">EXPLORAR</div>
+            <div class="mf-body" id="mobilePreview">
+              <h4>${esc(post.title)}</h4>
+              <p>${esc(post.excerpt)}</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <button type="submit" class="btn btn-primary">Salvar rascunho local</button>
+          <button type="button" class="btn btn-outline" id="deletePostBtn">Excluir artigo</button>
+        </div>
+      </form>`;
+
+    const form = document.getElementById('postForm');
+    const titleInput = document.getElementById('f-title');
+    const slugInput = document.getElementById('f-slug');
+    const contentInput = document.getElementById('f-content');
+    const excerptInput = document.getElementById('f-excerpt');
+    const previewPane = document.getElementById('previewPane');
+    const mobilePreview = document.getElementById('mobilePreview');
+
+    let slugManual = !!post.slug;
+
+    titleInput.addEventListener('input', () => {
+      if (!slugManual) slugInput.value = slugify(titleInput.value);
+      updateMobilePreview();
+    });
+    slugInput.addEventListener('input', () => { slugManual = true; });
+    excerptInput.addEventListener('input', updateMobilePreview);
+    contentInput.addEventListener('input', () => {
+      if (!previewPane.hidden) previewPane.innerHTML = renderMarkdown(contentInput.value);
+      updateMobilePreview();
+    });
+
+    function updateMobilePreview() {
+      mobilePreview.innerHTML = `
+        <h4>${esc(titleInput.value || 'Título')}</h4>
+        <p>${esc(excerptInput.value || 'Resumo do artigo...')}</p>`;
+    }
+
+    document.querySelectorAll('.editor-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.editor-tab').forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
+        const isPreview = tab.dataset.tab === 'preview';
+        contentInput.hidden = isPreview;
+        previewPane.hidden = !isPreview;
+        if (isPreview) previewPane.innerHTML = renderMarkdown(contentInput.value);
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      saveCurrentPost();
+      toast('Rascunho salvo localmente', 'success');
+    });
+
+    document.getElementById('deletePostBtn').addEventListener('click', () => {
+      if (!confirm('Excluir este artigo?')) return;
+      posts = posts.filter((p) => p.id !== post.id);
+      activeId = null;
+      saveDraft();
+      renderList();
+      editorPanel.innerHTML = '<div class="empty-editor"><p>Artigo excluído.</p></div>';
+      toast('Artigo excluído', 'info');
+    });
+  }
+
+  function saveCurrentPost() {
+    if (!activeId) return;
+    const post = getPost(activeId);
+    if (!post) return;
+
+    post.title = document.getElementById('f-title').value.trim();
+    post.slug = document.getElementById('f-slug').value.trim();
+    post.status = document.getElementById('f-status').value;
+    post.category = document.getElementById('f-category').value;
+    post.publishedAt = new Date(document.getElementById('f-date').value).toISOString();
+    post.updatedAt = new Date().toISOString();
+    post.coverImage = document.getElementById('f-cover').value.trim();
+    post.excerpt = document.getElementById('f-excerpt').value.trim();
+    post.content = document.getElementById('f-content').value;
+    post.tags = document.getElementById('f-tags').value.split(',').map((t) => t.trim()).filter(Boolean);
+    post.readingTimeMinutes = estimateReadingTime(post.content);
+    post.author = post.author || { name: 'Equipe FortePix' };
+
+    saveDraft();
+    renderList();
+  }
+
+  function createPost() {
+    const now = new Date().toISOString();
+    const post = {
+      id: uid(),
+      slug: '',
+      title: '',
+      excerpt: '',
+      content: '## Título do artigo\n\nEscreva o conteúdo aqui em **Markdown**.\n\n- Dica 1\n- Dica 2\n\n> Citação ou alerta importante',
+      coverImage: '',
+      category: 'Golpes',
+      tags: [],
+      author: { name: 'Equipe FortePix' },
+      publishedAt: now,
+      updatedAt: now,
+      status: 'draft',
+      readingTimeMinutes: 1,
+    };
+    posts.unshift(post);
+    saveDraft();
+    openEditor(post.id);
+  }
+
+  function esc(str) {
+    const d = document.createElement('div');
+    d.textContent = str || '';
+    return d.innerHTML;
+  }
+
+  function toLocalDatetime(iso) {
+    const d = new Date(iso);
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
+  async function publish() {
+    if (activeId) saveCurrentPost();
+
+    const payload = { version: 1, posts };
+
+    if (localMode || !adminToken) {
+      exportJson(payload);
+      toast('JSON exportado — use o token de admin para publicar no banco Neon', 'info');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/blog/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${adminToken}`,
+        },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+
+      if (data.saved) {
+        localStorage.removeItem(STORAGE_DRAFT);
+        toast(`Publicado no Neon! ${data.count} artigos salvos.`, 'success');
+        await loadPosts();
+        renderList();
+      } else {
+        throw new Error(data.message || data.error || 'Falha ao publicar');
+      }
+    } catch (err) {
+      exportJson(payload);
+      toast(err.message || 'Erro na API — JSON exportado como backup', 'error');
+    }
+  }
+
+  function exportJson(data) {
+    const blob = new Blob([JSON.stringify(data || { version: 1, posts }, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'posts.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  function showAdmin() {
+    loginScreen.hidden = true;
+    adminApp.hidden = false;
+    Promise.all([loadPosts(), loadMessages()]).then(() => {
+      renderList();
+      renderContactList();
+      updateContactBadge();
+      if (activeModule === 'blog' && posts.length && !activeId) openEditor(posts[0].id);
+    });
+  }
+
+  async function loadMessages() {
+    if (!adminToken || localMode) {
+      messages = [];
+      return;
+    }
+    try {
+      const res = await fetch('/api/contact/admin', {
+        headers: { Authorization: `Bearer ${adminToken}` },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        messages = data.messages || [];
+        updateContactBadge(data.newCount);
+      }
+    } catch (_) {
+      messages = [];
+    }
+  }
+
+  function updateContactBadge(count) {
+    const total = typeof count === 'number' ? count : messages.filter((m) => m.status === 'new').length;
+    if (total > 0) {
+      contactBadge.hidden = false;
+      contactBadge.textContent = total;
+    } else {
+      contactBadge.hidden = true;
+    }
+  }
+
+  function renderContactList() {
+    contactCount.textContent = messages.length;
+    if (!messages.length) {
+      contactList.innerHTML = '<p style="color:var(--muted);font-size:13px">Nenhuma mensagem ainda.</p>';
+      return;
+    }
+
+    contactList.innerHTML = messages
+      .map(
+        (m) => `
+      <div class="post-list-item ${m.id === activeMessageId ? 'active' : ''}" data-id="${m.id}">
+        <div class="title">${esc(m.name)} — ${esc(m.subject)}</div>
+        <div class="meta">${formatDate(m.createdAt)} · ${esc(m.email)}</div>
+        <span class="status ${m.status}">${m.status === 'new' ? 'Nova' : m.status === 'read' ? 'Lida' : 'Arquivada'}</span>
+      </div>`
+      )
+      .join('');
+
+    contactList.querySelectorAll('.post-list-item').forEach((el) => {
+      el.addEventListener('click', () => openMessage(el.dataset.id));
+    });
+  }
+
+  async function openMessage(id) {
+    activeMessageId = id;
+    const msg = messages.find((m) => m.id === id);
+    if (!msg) return;
+    renderContactList();
+
+    if (msg.status === 'new' && adminToken && !localMode) {
+      await updateMessageStatus(id, 'read', false);
+    }
+
+    contactPanel.innerHTML = `
+      <div class="contact-detail form-grid">
+        <div class="form-row">
+          <div class="field-block">
+            <div class="lbl">Nome</div>
+            <div class="val">${esc(msg.name)}</div>
+          </div>
+          <div class="field-block">
+            <div class="lbl">E-mail</div>
+            <div class="val"><a href="mailto:${esc(msg.email)}">${esc(msg.email)}</a></div>
+          </div>
+        </div>
+        <div class="field-block">
+          <div class="lbl">Assunto</div>
+          <div class="val">${esc(msg.subject)}</div>
+        </div>
+        <div class="field-block">
+          <div class="lbl">Recebida em</div>
+          <div class="val">${formatDate(msg.createdAt)}</div>
+        </div>
+        <div class="field-block">
+          <div class="lbl">Mensagem</div>
+          <div class="message-box">${esc(msg.message)}</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="mailto:${esc(msg.email)}?subject=Re: ${encodeURIComponent(msg.subject)}">Responder por e-mail</a>
+          ${msg.status !== 'archived' ? '<button type="button" class="btn btn-outline" id="archiveMsgBtn">Arquivar</button>' : ''}
+          ${msg.status === 'archived' ? '<button type="button" class="btn btn-ghost" id="restoreMsgBtn">Marcar como nova</button>' : ''}
+        </div>
+      </div>`;
+
+    document.getElementById('archiveMsgBtn')?.addEventListener('click', () => updateMessageStatus(id, 'archived'));
+    document.getElementById('restoreMsgBtn')?.addEventListener('click', () => updateMessageStatus(id, 'new'));
+  }
+
+  async function updateMessageStatus(id, status, rerender = true) {
+    if (!adminToken || localMode) return;
+    try {
+      const res = await fetch('/api/contact/admin', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${adminToken}`,
+        },
+        body: JSON.stringify({ id, status }),
+      });
+      if (!res.ok) throw new Error('Falha ao atualizar');
+      const data = await res.json();
+      const idx = messages.findIndex((m) => m.id === id);
+      if (idx >= 0) messages[idx] = data.message;
+      updateContactBadge();
+      if (rerender) {
+        renderContactList();
+        openMessage(id);
+      }
+      toast('Status atualizado', 'success');
+    } catch (_) {
+      toast('Erro ao atualizar mensagem', 'error');
+    }
+  }
+
+  function switchModule(module) {
+    activeModule = module;
+    document.querySelectorAll('.module-tab').forEach((tab) => {
+      const on = tab.dataset.module === module;
+      tab.classList.toggle('active', on);
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    blogModule.hidden = module !== 'blog';
+    contactModule.hidden = module !== 'contact';
+    blogActions.hidden = module !== 'blog';
+    if (module === 'contact') loadMessages().then(renderContactList);
+  }
+
+  document.querySelectorAll('.module-tab').forEach((tab) => {
+    tab.addEventListener('click', () => switchModule(tab.dataset.module));
+  });
+
+  document.getElementById('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    adminToken = document.getElementById('adminToken').value.trim();
+    localStorage.setItem(STORAGE_TOKEN, adminToken);
+    localMode = false;
+    showAdmin();
+  });
+
+  document.getElementById('localModeBtn').addEventListener('click', () => {
+    localMode = true;
+    adminToken = null;
+    showAdmin();
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    localStorage.removeItem(STORAGE_TOKEN);
+    adminToken = null;
+    location.reload();
+  });
+
+  document.getElementById('newPostBtn').addEventListener('click', createPost);
+  document.getElementById('adminApp').addEventListener('click', (e) => {
+    if (e.target.id === 'newPostBtn2') createPost();
+  });
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    if (activeId) saveCurrentPost();
+    exportJson({ version: 1, updatedAt: new Date().toISOString(), posts });
+    toast('JSON exportado', 'success');
+  });
+  document.getElementById('publishBtn').addEventListener('click', publish);
+
+  const savedToken = localStorage.getItem(STORAGE_TOKEN);
+  if (savedToken) {
+    adminToken = savedToken;
+    showAdmin();
+  }
+})();
+</script>
+</body>
+</html>
