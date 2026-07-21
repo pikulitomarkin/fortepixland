@@ -30,7 +30,9 @@ window.FortePixBlog = (function () {
 
         if (data.posts) {
           const published = data.posts.filter((p) => p.status === 'published');
-          return { ...data, posts: published };
+          if (published.length > 0 || slug) {
+            return { ...data, posts: published };
+          }
         }
       } catch (_) {
         /* try next */
