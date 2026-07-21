@@ -194,9 +194,10 @@
       try {
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), 20000);
-        const res = await fetch('/api/blog/admin/posts', {
+        const res = await fetch('/api/blog/admin/posts?t=' + Date.now(), {
           headers: { Authorization: `Bearer ${adminToken}` },
           signal: controller.signal,
+          cache: 'no-store',
         });
         clearTimeout(timer);
 
@@ -229,7 +230,7 @@
     }
 
     try {
-      const res = await fetch('/blog/api/posts?limit=50');
+      const res = await fetch('/blog/api/posts?limit=50&t=' + Date.now(), { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
         posts = data.posts || [];
@@ -692,11 +693,16 @@
     loginBtn.textContent = 'Entrando...';
 
     try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 15000);
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
+        signal: controller.signal,
+        cache: 'no-store',
       });
+      clearTimeout(timer);
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Falha no login');
 
@@ -704,9 +710,13 @@
       localStorage.setItem(STORAGE_TOKEN, data.token);
       if (data.user) localStorage.setItem(STORAGE_USER, JSON.stringify(data.user));
       localMode = false;
+
+      // Abre o painel imediatamente — não espera posts
       showAdmin();
     } catch (err) {
-      loginError.textContent = err.message || 'Não foi possível entrar';
+      loginError.textContent = err.name === 'AbortError'
+        ? 'Tempo esgotado. Tente novamente.'
+        : (err.message || 'Não foi possível entrar');
       loginError.style.display = 'block';
       loginBtn.disabled = false;
       loginBtn.textContent = 'Entrar';
