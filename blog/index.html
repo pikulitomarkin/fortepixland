@@ -57,7 +57,7 @@
     <div class="wrap">
       <span class="eyebrow">Conteúdo diário</span>
       <h1 class="h-display">BLOG <span class="gold">FORTEPIX</span></h1>
-      <p>Artigos sobre golpes Pix, segurança financeira e educação para proteger cada transferência. Conteúdo atualizado para você e para o app.</p>
+      <p>Campanha Aprendendo com a FortePix, Canal Educativo e dicas de segurança para proteger cada transferência. Conteúdo atualizado para você e para o app.</p>
       <div class="blog-filters" id="categoryFilters" role="tablist" aria-label="Filtrar por categoria">
         <button class="filter-chip active" data-category="" role="tab" aria-selected="true">Todos</button>
       </div>
@@ -164,7 +164,12 @@
   }
 
   function buildFilters(posts) {
-    const categories = [...new Set(posts.map((p) => p.category))].sort();
+    const preferred = ['Aprendendo com a FortePix', 'Canal_Educativo'];
+    const found = [...new Set(posts.map((p) => p.category))];
+    const categories = [
+      ...preferred.filter((c) => found.includes(c)),
+      ...found.filter((c) => !preferred.includes(c)).sort(),
+    ];
     categories.forEach((cat) => {
       const btn = document.createElement('button');
       btn.className = 'filter-chip';
