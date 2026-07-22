@@ -313,7 +313,7 @@
           <div class="form-group">
             <label for="f-category">Categoria</label>
             <select id="f-category">
-              ${['Golpes', 'Educação', 'LGPD', 'Dicas', 'Notícias']
+              ${['Canal_Educativo', 'Educação', 'LGPD', 'Dicas', 'Notícias']
                 .map((c) => `<option value="${c}" ${post.category === c ? 'selected' : ''}>${c}</option>`)
                 .join('')}
             </select>
@@ -449,7 +449,7 @@
       excerpt: '',
       content: '## Título do artigo\n\nEscreva o conteúdo aqui em **Markdown**.\n\n- Dica 1\n- Dica 2\n\n> Citação ou alerta importante',
       coverImage: '',
-      category: 'Golpes',
+      category: 'Canal_Educativo',
       tags: [],
       author: { name: 'Equipe FortePix' },
       publishedAt: now,
