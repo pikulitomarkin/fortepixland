@@ -50,7 +50,7 @@ export default async function handler(req, res) {
       const publishedAt = post.publishedAt || now;
       const updatedAt = post.updatedAt || now;
       const status = post.status || 'draft';
-      const category = post.category || 'Golpes';
+      const category = post.category || 'Aprendendo com a FortePix';
       const reading = Number(post.readingTimeMinutes) || 1;
 
       await sql`

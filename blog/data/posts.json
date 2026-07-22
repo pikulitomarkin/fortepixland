@@ -1,7 +1,427 @@
 {
-  "version": 3,
-  "updatedAt": "2026-07-22T12:40:00.000Z",
+  "version": 4,
+  "updatedAt": "2026-07-22T13:00:00.000Z",
   "posts": [
+    {
+      "id": "apr-001",
+      "slug": "conheca-antes-de-pagar",
+      "title": "Conheça antes de pagar",
+      "excerpt": "Antes de realizar um Pix, use as ferramentas do FortePix para analisar a chave informada e apoiar sua decisão.",
+      "content": "## Por que isso importa\n\nAntes de realizar um Pix, utilize as ferramentas do aplicativo para analisar os dados disponíveis sobre a chave informada. Essa consulta ajuda a reunir informações que apoiam sua decisão.\n\n## Como praticar\n\n- Insira a chave Pix no FortePix antes de transferir\n- Observe o indicador de risco apresentado\n- Só confirme o pagamento depois de analisar os dados\n\n> Prevenir é mais seguro do que remediar.",
+      "coverImage": "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "prevenção",
+        "chave pix",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T12:00:00.000Z",
+      "updatedAt": "2026-07-22T12:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-002",
+      "slug": "faca-da-prevencao-um-habito",
+      "title": "Faça da prevenção um hábito",
+      "excerpt": "Reserve alguns segundos para revisar os dados da transação. Prevenir costuma ser mais eficaz do que resolver depois.",
+      "content": "## Por que isso importa\n\nReserve alguns segundos para revisar os dados da transação. A prevenção costuma ser mais eficaz do que tentar resolver um problema depois que o pagamento foi realizado.\n\n## Como praticar\n\n- Pare e releia nome, valor e chave\n- Não confirme no automático\n- Transforme a verificação em rotina\n\n> Alguns segundos de atenção podem evitar um prejuízo.",
+      "coverImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "hábito",
+        "prevenção",
+        "segurança"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T11:00:00.000Z",
+      "updatedAt": "2026-07-22T11:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-003",
+      "slug": "analise-o-nivel-de-atencao",
+      "title": "Analise o nível de atenção",
+      "excerpt": "Quando o app mostrar alertas ou recomendações, leia com calma antes de confirmar a operação.",
+      "content": "## Por que isso importa\n\nSempre que o aplicativo apresentar alertas ou recomendações, leia o conteúdo com calma e considere essas informações antes de confirmar a operação.\n\n## Como praticar\n\n- Não ignore avisos de risco\n- Leia a recomendação completa\n- Reavalie se ainda deseja seguir com o Pix\n\n> Alertas existem para proteger você.",
+      "coverImage": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "alertas",
+        "atenção",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T10:00:00.000Z",
+      "updatedAt": "2026-07-22T10:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-004",
+      "slug": "confira-o-destinatario",
+      "title": "Confira o destinatário",
+      "excerpt": "Compare nome, chave Pix e valor. Pequenas diferenças podem indicar erro ou tentativa de fraude.",
+      "content": "## Por que isso importa\n\nCompare nome, chave Pix e valor. Pequenas diferenças podem indicar erro de digitação ou tentativa de fraude.\n\n## Como praticar\n\n- Confirme se o nome bate com o combinado\n- Verifique a chave Pix com cuidado\n- Cheque o valor até o último centavo\n\n> Um detalhe errado pode mudar tudo.",
+      "coverImage": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "destinatário",
+        "pix",
+        "verificação"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T09:00:00.000Z",
+      "updatedAt": "2026-07-22T09:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-005",
+      "slug": "evite-decisoes-sob-pressao",
+      "title": "Evite decisões sob pressão",
+      "excerpt": "Golpistas criam urgência. Use o FortePix para analisar a situação antes de enviar dinheiro.",
+      "content": "## Por que isso importa\n\nGolpistas costumam criar sensação de urgência. Use o aplicativo como apoio para analisar a situação antes de enviar dinheiro.\n\n## Como praticar\n\n- Desconfie de “preciso agora”\n- Pare e analise a chave no FortePix\n- Confirme por outro canal quando possível\n\n> Urgência artificial é um sinal clássico de golpe.",
+      "coverImage": "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "urgência",
+        "golpe",
+        "calma"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T08:00:00.000Z",
+      "updatedAt": "2026-07-22T08:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-006",
+      "slug": "aprenda-com-os-conteudos-educativos",
+      "title": "Aprenda com os conteúdos educativos",
+      "excerpt": "Consulte regularmente os canais educativos do app para conhecer novos golpes e formas de prevenção.",
+      "content": "## Por que isso importa\n\nConsulte regularmente os canais educativos do aplicativo para conhecer novas modalidades de golpes e formas de prevenção.\n\n## Como praticar\n\n- Acompanhe o Canal Educativo no blog e no app\n- Compartilhe o que aprendeu com a família\n- Atualize-se sempre que surgir um golpe novo\n\n> Informação é proteção.",
+      "coverImage": "https://images.unsplash.com/photo-1456513080880-7d93d20f7ba6?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "educação",
+        "conteúdo",
+        "prevenção"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T07:00:00.000Z",
+      "updatedAt": "2026-07-22T07:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-007",
+      "slug": "aproveite-a-rede-de-informacao",
+      "title": "Aproveite a rede de informação",
+      "excerpt": "Use informações da comunidade e dos canais oficiais para conhecer riscos já identificados.",
+      "content": "## Por que isso importa\n\nQuando disponível, utilize informações compartilhadas pela comunidade e pelos canais oficiais para conhecer riscos já identificados.\n\n## Como praticar\n\n- Consulte alertas e conteúdos oficiais\n- Não ignore relatos de risco recorrentes\n- Prefira fontes confiáveis\n\n> A informação coletiva fortalece a segurança de todos.",
+      "coverImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "comunidade",
+        "informação",
+        "risco"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T06:00:00.000Z",
+      "updatedAt": "2026-07-22T06:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-008",
+      "slug": "registre-situacoes-suspeitas",
+      "title": "Registre situações suspeitas",
+      "excerpt": "Ao encontrar uma tentativa de golpe, use os canais de denúncia do app para ajudar outros usuários.",
+      "content": "## Por que isso importa\n\nAo encontrar uma tentativa de golpe, utilize os canais de denúncia do aplicativo para colaborar com a conscientização de outros usuários.\n\n## Como praticar\n\n- Relate a tentativa no FortePix\n- Guarde evidências quando possível\n- Ajude a rede a ficar mais segura\n\n> Sua denúncia pode proteger alguém.",
+      "coverImage": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "denúncia",
+        "golpe",
+        "comunidade"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T05:00:00.000Z",
+      "updatedAt": "2026-07-22T05:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-009",
+      "slug": "mantenha-seu-cadastro-atualizado",
+      "title": "Mantenha seu cadastro atualizado",
+      "excerpt": "Dados atualizados facilitam o acesso aos recursos de segurança e às notificações importantes.",
+      "content": "## Por que isso importa\n\nDados atualizados facilitam o acesso aos recursos de segurança e às notificações importantes.\n\n## Como praticar\n\n- Revise e-mail e telefone no cadastro\n- Ative notificações de segurança\n- Mantenha seus dados corretos no FortePix\n\n> Cadastro atualizado = proteção mais eficiente.",
+      "coverImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "cadastro",
+        "dados",
+        "segurança"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T04:00:00.000Z",
+      "updatedAt": "2026-07-22T04:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-010",
+      "slug": "ative-os-recursos-de-protecao",
+      "title": "Ative os recursos de proteção",
+      "excerpt": "Habilite autenticação em dois fatores, biometria e demais mecanismos de segurança sempre que disponíveis.",
+      "content": "## Por que isso importa\n\nSempre que disponíveis, habilite autenticação em dois fatores, biometria e demais mecanismos de segurança.\n\n## Como praticar\n\n- Ative 2FA e biometria no app\n- Não compartilhe códigos de autenticação\n- Use camadas extras de proteção\n\n> Segurança em camadas reduz riscos.",
+      "coverImage": "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "2fa",
+        "biometria",
+        "proteção"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T03:00:00.000Z",
+      "updatedAt": "2026-07-22T03:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-011",
+      "slug": "confira-comprovantes",
+      "title": "Confira comprovantes",
+      "excerpt": "Nunca confie só em imagens enviadas por terceiros. Verifique sempre as informações direto na sua conta.",
+      "content": "## Por que isso importa\n\nNunca confie apenas em imagens enviadas por terceiros. Verifique sempre as informações diretamente em sua conta.\n\n## Como praticar\n\n- Ignore prints como prova de pagamento\n- Confira o extrato bancário\n- Só libere produto/serviço após o crédito\n\n> Comprovante verdadeiro está no extrato.",
+      "coverImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "comprovante",
+        "extrato",
+        "pix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T02:00:00.000Z",
+      "updatedAt": "2026-07-22T02:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-012",
+      "slug": "organize-suas-financas",
+      "title": "Organize suas finanças",
+      "excerpt": "Planeje seus pagamentos e evite fazer Pix por impulso ou sem verificar todas as informações.",
+      "content": "## Por que isso importa\n\nPlaneje seus pagamentos e evite fazer Pix por impulso ou sem verificar todas as informações.\n\n## Como praticar\n\n- Programe pagamentos com antecedência\n- Evite transferências impulsivas\n- Revise os dados antes de confirmar\n\n> Organização financeira também é proteção.",
+      "coverImage": "https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "finanças",
+        "planejamento",
+        "pix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T01:00:00.000Z",
+      "updatedAt": "2026-07-22T01:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-013",
+      "slug": "utilize-apenas-canais-oficiais",
+      "title": "Utilize apenas canais oficiais",
+      "excerpt": "Em caso de dúvidas, procure atendimento somente pelos canais oficiais da sua instituição financeira.",
+      "content": "## Por que isso importa\n\nEm caso de dúvidas, procure atendimento somente pelos canais oficiais da sua instituição financeira.\n\n## Como praticar\n\n- Não use links recebidos por mensagem\n- Ligue para o número oficial do banco\n- Desconfie de “suporte” espontâneo\n\n> Canal oficial é o caminho seguro.",
+      "coverImage": "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "banco",
+        "atendimento",
+        "oficial"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T00:00:00.000Z",
+      "updatedAt": "2026-07-22T00:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-014",
+      "slug": "compartilhe-conhecimento",
+      "title": "Compartilhe conhecimento",
+      "excerpt": "Ensine familiares e amigos a identificar golpes e a utilizar o Pix com responsabilidade.",
+      "content": "## Por que isso importa\n\nEnsine familiares e amigos a identificar golpes e a utilizar o Pix com responsabilidade.\n\n## Como praticar\n\n- Compartilhe conteúdos do blog FortePix\n- Oriente quem tem menos familiaridade digital\n- Converse sobre sinais de golpe\n\n> Proteção também se multiplica quando compartilhada.",
+      "coverImage": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "família",
+        "educação",
+        "compartilhar"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T23:00:00.000Z",
+      "updatedAt": "2026-07-21T23:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-015",
+      "slug": "acompanhe-seu-historico",
+      "title": "Acompanhe seu histórico",
+      "excerpt": "Revise periodicamente suas transações para identificar movimentações inesperadas.",
+      "content": "## Por que isso importa\n\nRevise periodicamente suas transações para identificar movimentações inesperadas.\n\n## Como praticar\n\n- Confira o extrato com frequência\n- Marque lançamentos desconhecidos\n- Conteste rapidamente o que não reconhecer\n\n> Monitorar o histórico reduz surpresas.",
+      "coverImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "histórico",
+        "extrato",
+        "monitoramento"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T22:00:00.000Z",
+      "updatedAt": "2026-07-21T22:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-016",
+      "slug": "proteja-seu-dispositivo",
+      "title": "Proteja seu dispositivo",
+      "excerpt": "Mantenha o celular atualizado, protegido por senha e evite apps de origem desconhecida.",
+      "content": "## Por que isso importa\n\nMantenha o celular atualizado, protegido por senha e evite instalar aplicativos de origem desconhecida.\n\n## Como praticar\n\n- Atualize o sistema operacional\n- Use senha/biometria no aparelho\n- Instale apps só de lojas oficiais\n\n> O celular seguro protege suas contas.",
+      "coverImage": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "celular",
+        "segurança",
+        "dispositivo"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T21:00:00.000Z",
+      "updatedAt": "2026-07-21T21:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-017",
+      "slug": "confirme-pedidos-de-dinheiro",
+      "title": "Confirme pedidos de dinheiro",
+      "excerpt": "Sempre valide solicitações recebidas por mensagens antes de realizar qualquer transferência.",
+      "content": "## Por que isso importa\n\nSempre valide solicitações recebidas por mensagens antes de realizar qualquer transferência.\n\n## Como praticar\n\n- Ligue para confirmar o pedido\n- Desconfie de urgência por WhatsApp\n- Analise a chave no FortePix\n\n> Mensagem não é confirmação.",
+      "coverImage": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "whatsapp",
+        "confirmação",
+        "pix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T20:00:00.000Z",
+      "updatedAt": "2026-07-21T20:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-018",
+      "slug": "valorize-a-educacao-financeira",
+      "title": "Valorize a educação financeira",
+      "excerpt": "Compreender como funciona o Pix ajuda a reduzir erros, controlar gastos e decidir com mais consciência.",
+      "content": "## Por que isso importa\n\nCompreender como funciona o Pix ajuda a reduzir erros, controlar gastos e tomar decisões mais conscientes.\n\n## Como praticar\n\n- Aprenda os limites e riscos do Pix\n- Acompanhe conteúdos educativos\n- Decida com base em informação\n\n> Educação financeira fortalece a segurança.",
+      "coverImage": "https://images.unsplash.com/photo-1553729784-e91953dec042?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "consciência"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T19:00:00.000Z",
+      "updatedAt": "2026-07-21T19:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-019",
+      "slug": "colabore-com-uma-comunidade-mais-segura",
+      "title": "Colabore com uma comunidade mais segura",
+      "excerpt": "Ao relatar fraudes e compartilhar boas práticas, você ajuda outras pessoas a evitar prejuízos.",
+      "content": "## Por que isso importa\n\nAo relatar tentativas de fraude e compartilhar boas práticas, você ajuda outras pessoas a evitar prejuízos.\n\n## Como praticar\n\n- Relate tentativas de golpe\n- Compartilhe dicas úteis\n- Incentive hábitos seguros\n\n> Segurança coletiva começa com cada usuário.",
+      "coverImage": "https://images.unsplash.com/photo-1531206716108-7c0b3d0e0e0e?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "comunidade",
+        "denúncia",
+        "boas práticas"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T18:00:00.000Z",
+      "updatedAt": "2026-07-21T18:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "apr-020",
+      "slug": "use-a-fortepix-como-apoio-a-decisao",
+      "title": "Use a FortePix como apoio à decisão",
+      "excerpt": "As ferramentas do app apoiam sua análise e incentivam escolhas mais seguras. A decisão final continua sendo sua.",
+      "content": "## Por que isso importa\n\nAs ferramentas educativas e preventivas do aplicativo foram desenvolvidas para apoiar sua análise e incentivar escolhas mais seguras. A decisão final sobre realizar uma transação continua sendo do usuário.\n\n## Mensagem final\n\nA informação, a atenção e o uso consciente das ferramentas disponíveis contribuem para reduzir riscos nas transações Pix. A FortePix incentiva uma cultura de prevenção, cooperação e educação financeira para que cada usuário possa tomar decisões mais seguras.\n\n**FortePix por Você.**",
+      "coverImage": "https://images.unsplash.com/photo-1563986768494-4dee2763ff36?w=800&q=80",
+      "category": "Aprendendo com a FortePix",
+      "tags": [
+        "fortepix",
+        "decisão",
+        "segurança"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T17:00:00.000Z",
+      "updatedAt": "2026-07-21T17:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
     {
       "id": "golpe-001",
       "slug": "golpe-inteligencia-artificial-deepfake",
@@ -9,9 +429,16 @@
       "excerpt": "Criminosos usam IA para clonar voz, imagem e vídeo de familiares ou representantes de empresas e pedir Pix com urgência. Saiba como se proteger.",
       "content": "## Como o golpe funciona\n\nCriminosos utilizam inteligência artificial para reproduzir vozes, imagens e até vídeos de familiares, amigos ou representantes de empresas. Em muitos casos, criam uma situação de urgência para convencer a vítima a fazer um Pix antes de conseguir confirmar se o pedido é verdadeiro.\n\n## Sinais de alerta\n\n- Pedido de dinheiro com muita urgência\n- Ligação ou vídeo que “parece” alguém conhecido, mas com pouco diálogo natural\n- Solicitação para não contar a ninguém\n- Pressão para transferir imediatamente\n\n## Dica de prevenção\n\nNunca envie dinheiro apenas porque reconheceu uma voz ou uma imagem. Confirme o pedido por outro canal, faça uma videochamada sempre que possível e combine uma “palavra-chave” com a família para situações de emergência.\n\n> Antes de qualquer Pix, verifique a chave do destinatário com o FortePix.",
       "coverImage": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
-      "category": "Golpes",
-      "tags": ["deepfake", "inteligência artificial", "pix", "engenharia social"],
-      "author": { "name": "Equipe FortePix" },
+      "category": "Canal_Educativo",
+      "tags": [
+        "deepfake",
+        "inteligência artificial",
+        "pix",
+        "engenharia social"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
       "publishedAt": "2026-07-22T12:00:00.000Z",
       "updatedAt": "2026-07-22T12:00:00.000Z",
       "status": "published",
@@ -24,9 +451,16 @@
       "excerpt": "Golpistas se passam por funcionários do banco, alegam problemas na conta e pedem senhas, códigos ou Pix para uma 'conta segura'.",
       "content": "## Como o golpe funciona\n\nGolpistas entram em contato por telefone, mensagem ou redes sociais fingindo ser do banco. Eles alegam problemas na conta, tentativa de fraude ou necessidade de “proteger o dinheiro” e convencem a vítima a informar senhas, códigos de autenticação ou a realizar um Pix.\n\n## Sinais de alerta\n\n- Contato inesperado alegando fraude na conta\n- Pedido de senha, token ou código SMS\n- Orientação para transferir valores para uma “conta segura”\n- Pressão para agir imediatamente\n\n## Dica de prevenção\n\nBancos não pedem senha, código de segurança nem transferência para “conta segura”. Encerre o contato e busque os canais oficiais da instituição.\n\n> Em caso de dúvida, desligue e ligue para o número oficial do seu banco — nunca use o telefone informado pelo suposto atendente.",
       "coverImage": "https://images.unsplash.com/photo-1556742031-c6961e8560b0?w=800&q=80",
-      "category": "Golpes",
-      "tags": ["banco", "falso atendimento", "senha", "pix"],
-      "author": { "name": "Equipe FortePix" },
+      "category": "Canal_Educativo",
+      "tags": [
+        "banco",
+        "falso atendimento",
+        "senha",
+        "pix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
       "publishedAt": "2026-07-21T15:00:00.000Z",
       "updatedAt": "2026-07-21T15:00:00.000Z",
       "status": "published",
@@ -39,9 +473,16 @@
       "excerpt": "Após uma negociação, o criminoso mostra um comprovante adulterado ou de Pix agendado como se o pagamento já tivesse caído. Não entregue nada sem conferir o extrato.",
       "content": "## Como o golpe funciona\n\nApós uma negociação, o criminoso apresenta um comprovante adulterado ou um comprovante de Pix agendado como se o pagamento já tivesse sido concluído. A vítima, então, entrega o produto ou presta o serviço antes de verificar se o crédito realmente entrou na conta.\n\n## Sinais de alerta\n\n- Comprovante enviado por print ou PDF editável\n- Status de “agendado” em vez de “concluído”\n- Pressão para liberar o produto imediatamente\n- Valor ainda não aparece no extrato bancário\n\n## Dica de prevenção\n\nSempre confirme diretamente no extrato da sua conta se o valor realmente foi creditado antes de liberar qualquer produto ou serviço.\n\n> Print de comprovante não é pagamento. Só o crédito no extrato conta.",
       "coverImage": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80",
-      "category": "Golpes",
-      "tags": ["comprovante falso", "pix", "venda", "fraude"],
-      "author": { "name": "Equipe FortePix" },
+      "category": "Canal_Educativo",
+      "tags": [
+        "comprovante falso",
+        "pix",
+        "venda",
+        "fraude"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
       "publishedAt": "2026-07-20T14:00:00.000Z",
       "updatedAt": "2026-07-20T14:00:00.000Z",
       "status": "published",
@@ -54,9 +495,16 @@
       "excerpt": "Em anúncios, boletos ou estabelecimentos, o QR Code original é trocado por outro que desvia o Pix para a conta do golpista. Confira o destinatário antes de pagar.",
       "content": "## Como o golpe funciona\n\nEm anúncios, boletos ou estabelecimentos físicos, o QR Code original é substituído por outro que direciona o pagamento para a conta do golpista.\n\n## Sinais de alerta\n\n- QR Code colado por cima de outro\n- Nome do beneficiário diferente do esperado\n- Instituição financeira desconhecida\n- Valor diferente do combinado\n\n## Dica de prevenção\n\nAntes de confirmar o Pix, confira com atenção o nome do beneficiário, a instituição financeira e o valor total da operação na tela de confirmação.\n\n> Use o FortePix para analisar a chave Pix do destinatário antes de confirmar o pagamento.",
       "coverImage": "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&q=80",
-      "category": "Golpes",
-      "tags": ["qr code", "pix", "boleto", "pagamento"],
-      "author": { "name": "Equipe FortePix" },
+      "category": "Canal_Educativo",
+      "tags": [
+        "qr code",
+        "pix",
+        "boleto",
+        "pagamento"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
       "publishedAt": "2026-07-19T13:00:00.000Z",
       "updatedAt": "2026-07-19T13:00:00.000Z",
       "status": "published",
@@ -69,9 +517,16 @@
       "excerpt": "O criminoso acessa ou simula o perfil de um contato e pede dinheiro com justificativas urgentes a amigos e familiares. Sempre confirme por ligação.",
       "content": "## Como o golpe funciona\n\nO criminoso consegue acessar ou simular o perfil de um contato e envia mensagens para amigos e familiares pedindo dinheiro com justificativas urgentes — como acidente, multa, viagem ou conta a pagar.\n\n## Sinais de alerta\n\n- Pedido de Pix com urgência por WhatsApp\n- Contato diz que “mudou de número”\n- Pedido para não ligar ou não contar a ninguém\n- Justificativas emocionais e pressão de tempo\n\n## Dica de prevenção\n\nSempre confirme pedidos financeiros fazendo uma ligação ou usando outro meio de contato independente antes de realizar qualquer transferência.\n\n> Se o pedido veio por mensagem, confirme por voz. Em seguida, verifique a chave Pix com o FortePix.",
       "coverImage": "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&q=80",
-      "category": "Golpes",
-      "tags": ["whatsapp", "clonagem", "pix", "família"],
-      "author": { "name": "Equipe FortePix" },
+      "category": "Canal_Educativo",
+      "tags": [
+        "whatsapp",
+        "clonagem",
+        "pix",
+        "família"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
       "publishedAt": "2026-07-18T12:00:00.000Z",
       "updatedAt": "2026-07-18T12:00:00.000Z",
       "status": "published",
@@ -84,9 +539,16 @@
       "excerpt": "Sites e anúncios falsos usam fotos profissionais, avaliações manipuladas e preços muito abaixo do mercado para convencer a vítima a pagar via Pix.",
       "content": "## Como o golpe funciona\n\nSites e anúncios falsos usam imagens profissionais, avaliações manipuladas e preços muito abaixo da média do mercado para convencer a vítima a pagar via Pix. Depois do pagamento, o produto nunca chega — ou o site some.\n\n## Sinais de alerta\n\n- Preços absurdamente baixos\n- Site recém-criado ou sem CNPJ claro\n- Atendimento apenas por WhatsApp\n- Avaliações genéricas ou repetidas\n\n## Dica de prevenção\n\nPesquise a reputação da empresa, confira o CNPJ, verifique canais de atendimento e desconfie de ofertas excessivamente vantajosas.\n\n> Se for pagar via Pix, analise a chave do vendedor com o FortePix antes de confirmar.",
       "coverImage": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
-      "category": "Golpes",
-      "tags": ["loja falsa", "e-commerce", "pix", "compra online"],
-      "author": { "name": "Equipe FortePix" },
+      "category": "Canal_Educativo",
+      "tags": [
+        "loja falsa",
+        "e-commerce",
+        "pix",
+        "compra online"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
       "publishedAt": "2026-07-17T11:00:00.000Z",
       "updatedAt": "2026-07-17T11:00:00.000Z",
       "status": "published",
@@ -99,9 +561,16 @@
       "excerpt": "Golpistas prometem ganhos rápidos, retorno garantido ou multiplicação do dinheiro após um Pix inicial. Nenhuma aplicação séria garante lucro alto sem risco.",
       "content": "## Como o golpe funciona\n\nGolpistas prometem ganhos rápidos, retorno garantido ou multiplicação do dinheiro após um pagamento inicial via Pix. Usam depoimentos falsos, grupos de “investidores” e pressão para aumentar o valor aplicado.\n\n## Sinais de alerta\n\n- Promessa de lucro alto e garantido\n- Pressão para investir imediatamente\n- Empresa sem registro ou transparência\n- Pedido de Pix para “liberar rendimento”\n\n## Dica de prevenção\n\nNenhum investimento sério garante lucro alto sem risco. Pesquise a empresa e nunca invista sob pressão.\n\n> Informação é uma das maiores ferramentas de proteção contra fraudes. Confirme tudo antes de pagar e compartilhe essas orientações com familiares e amigos.\n\n**FortePix por Você.**",
       "coverImage": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80",
-      "category": "Golpes",
-      "tags": ["investimento", "pirâmide", "pix", "fraude financeira"],
-      "author": { "name": "Equipe FortePix" },
+      "category": "Canal_Educativo",
+      "tags": [
+        "investimento",
+        "pirâmide",
+        "pix",
+        "fraude financeira"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
       "publishedAt": "2026-07-16T10:00:00.000Z",
       "updatedAt": "2026-07-16T10:00:00.000Z",
       "status": "published",
