@@ -230,7 +230,7 @@
     }
 
     try {
-      const res = await fetch('/blog/api/posts?limit=50&t=' + Date.now(), { cache: 'no-store' });
+      const res = await fetch('/blog/api/posts?limit=100&t=' + Date.now(), { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
         posts = data.posts || [];
@@ -313,7 +313,7 @@
           <div class="form-group">
             <label for="f-category">Categoria</label>
             <select id="f-category">
-              ${['Aprendendo com a FortePix', 'Canal_Educativo', 'Educação', 'LGPD', 'Dicas', 'Notícias']
+              ${['Aprendendo com a FortePix', 'Educação Financeira', 'Canal_Educativo', 'Educação', 'LGPD', 'Dicas', 'Notícias']
                 .map((c) => `<option value="${c}" ${post.category === c ? 'selected' : ''}>${c}</option>`)
                 .join('')}
             </select>

@@ -57,7 +57,7 @@
     <div class="wrap">
       <span class="eyebrow">Conteúdo diário</span>
       <h1 class="h-display">BLOG <span class="gold">FORTEPIX</span></h1>
-      <p>Campanha Aprendendo com a FortePix, Canal Educativo e dicas de segurança para proteger cada transferência. Conteúdo atualizado para você e para o app.</p>
+      <p>Campanhas de educação financeira, Aprendendo com a FortePix, Canal Educativo e dicas de segurança para proteger cada transferência.</p>
       <div class="blog-filters" id="categoryFilters" role="tablist" aria-label="Filtrar por categoria">
         <button class="filter-chip active" data-category="" role="tab" aria-selected="true">Todos</button>
       </div>
@@ -164,7 +164,7 @@
   }
 
   function buildFilters(posts) {
-    const preferred = ['Aprendendo com a FortePix', 'Canal_Educativo'];
+    const preferred = ['Aprendendo com a FortePix', 'Educação Financeira', 'Canal_Educativo'];
     const found = [...new Set(posts.map((p) => p.category))];
     const categories = [
       ...preferred.filter((c) => found.includes(c)),
@@ -200,7 +200,7 @@
     });
   }
 
-  fetchPosts({ limit: 50 })
+  fetchPosts({ limit: 100 })
     .then((data) => {
       allPosts = data.posts || [];
       buildFilters(allPosts);

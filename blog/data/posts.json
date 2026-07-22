@@ -1,7 +1,667 @@
 {
-  "version": 4,
-  "updatedAt": "2026-07-22T13:00:00.000Z",
+  "version": 5,
+  "updatedAt": "2026-07-22T16:00:00.000Z",
   "posts": [
+    {
+      "id": "edu-001",
+      "slug": "edu-01-confira-sempre-o-destinatario",
+      "title": "Confira sempre o destinatário",
+      "excerpt": "Antes de confirmar um Pix, verifique cuidadosamente o nome do favorecido, a instituição financeira e o valor informado. Pequenos descuidos podem direcionar...",
+      "content": "## Dica 1\n\nAntes de confirmar um Pix, verifique cuidadosamente o nome do favorecido, a instituição financeira e o valor informado. Pequenos descuidos podem direcionar o dinheiro para outra pessoa e, em muitos casos, a recuperação do valor depende da colaboração do recebedor.\n",
+      "coverImage": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T16:00:00.000Z",
+      "updatedAt": "2026-07-22T16:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-002",
+      "slug": "edu-02-leia-a-tela-de-confirmacao",
+      "title": "Leia a tela de confirmação",
+      "excerpt": "Nunca confirme uma transferência com pressa. Reserve alguns segundos para revisar todas as informações apresentadas pelo aplicativo.",
+      "content": "## Dica 2\n\nNunca confirme uma transferência com pressa. Reserve alguns segundos para revisar todas as informações apresentadas pelo aplicativo.\n",
+      "coverImage": "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T15:00:00.000Z",
+      "updatedAt": "2026-07-22T15:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-003",
+      "slug": "edu-03-desconfie-da-urgencia",
+      "title": "Desconfie da urgência",
+      "excerpt": "Golpistas costumam pressionar dizendo que o pagamento precisa ser feito imediatamente. Situações de pressão reduzem a atenção e aumentam a chance de erro.",
+      "content": "## Dica 3\n\nGolpistas costumam pressionar dizendo que o pagamento precisa ser feito imediatamente. Situações de pressão reduzem a atenção e aumentam a chance de erro.\n",
+      "coverImage": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T14:00:00.000Z",
+      "updatedAt": "2026-07-22T14:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-004",
+      "slug": "edu-04-confirme-pedidos-de-familiares",
+      "title": "Confirme pedidos de familiares",
+      "excerpt": "Sempre confirme pedidos de dinheiro por ligação ou vídeo quando a solicitação parecer incomum.",
+      "content": "## Dica 4\n\nSempre confirme pedidos de dinheiro por ligação ou vídeo quando a solicitação parecer incomum.\n",
+      "coverImage": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T13:00:00.000Z",
+      "updatedAt": "2026-07-22T13:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-005",
+      "slug": "edu-05-evite-redes-wi-fi-publicas",
+      "title": "Evite redes Wi-Fi públicas",
+      "excerpt": "Prefira utilizar redes móveis ou redes Wi-Fi confiáveis para acessar aplicativos financeiros.",
+      "content": "## Dica 5\n\nPrefira utilizar redes móveis ou redes Wi-Fi confiáveis para acessar aplicativos financeiros.\n",
+      "coverImage": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T12:00:00.000Z",
+      "updatedAt": "2026-07-22T12:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-006",
+      "slug": "edu-06-proteja-seu-celular",
+      "title": "Proteja seu celular",
+      "excerpt": "Utilize senha forte, biometria e bloqueio automático de tela.",
+      "content": "## Dica 6\n\nUtilize senha forte, biometria e bloqueio automático de tela.\n",
+      "coverImage": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T11:00:00.000Z",
+      "updatedAt": "2026-07-22T11:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-007",
+      "slug": "edu-07-ative-autenticacao-em-dois-fatores",
+      "title": "Ative autenticação em dois fatores",
+      "excerpt": "Sempre que disponível, utilize autenticação adicional para aumentar a segurança da conta.",
+      "content": "## Dica 7\n\nSempre que disponível, utilize autenticação adicional para aumentar a segurança da conta.\n",
+      "coverImage": "https://images.unsplash.com/photo-1633265486064-086b219458ec?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T10:00:00.000Z",
+      "updatedAt": "2026-07-22T10:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-008",
+      "slug": "edu-08-nunca-compartilhe-codigos",
+      "title": "Nunca compartilhe códigos",
+      "excerpt": "Códigos enviados por SMS ou aplicativos autenticadores são pessoais e não devem ser informados a terceiros.",
+      "content": "## Dica 8\n\nCódigos enviados por SMS ou aplicativos autenticadores são pessoais e não devem ser informados a terceiros.\n",
+      "coverImage": "https://images.unsplash.com/photo-1563986768494-4dee2763ff36?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T09:00:00.000Z",
+      "updatedAt": "2026-07-22T09:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-009",
+      "slug": "edu-09-atualize-o-aplicativo",
+      "title": "Atualize o aplicativo",
+      "excerpt": "Manter o aplicativo bancário atualizado reduz riscos relacionados a vulnerabilidades conhecidas.",
+      "content": "## Dica 9\n\nManter o aplicativo bancário atualizado reduz riscos relacionados a vulnerabilidades conhecidas.\n",
+      "coverImage": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T08:00:00.000Z",
+      "updatedAt": "2026-07-22T08:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-010",
+      "slug": "edu-10-desconfie-de-ofertas-faceis",
+      "title": "Desconfie de ofertas fáceis",
+      "excerpt": "Promoções milagrosas e investimentos com retorno garantido costumam ser golpes.",
+      "content": "## Dica 10\n\nPromoções milagrosas e investimentos com retorno garantido costumam ser golpes.\n",
+      "coverImage": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T07:00:00.000Z",
+      "updatedAt": "2026-07-22T07:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-011",
+      "slug": "edu-11-confira-qr-codes",
+      "title": "Confira QR Codes",
+      "excerpt": "Verifique se o beneficiário exibido corresponde ao destinatário esperado.",
+      "content": "## Dica 11\n\nVerifique se o beneficiário exibido corresponde ao destinatário esperado.\n",
+      "coverImage": "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T06:00:00.000Z",
+      "updatedAt": "2026-07-22T06:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-012",
+      "slug": "edu-12-verifique-comprovantes",
+      "title": "Verifique comprovantes",
+      "excerpt": "Nunca entregue produtos apenas com base em imagens de comprovantes. Confirme o crédito na conta.",
+      "content": "## Dica 12\n\nNunca entregue produtos apenas com base em imagens de comprovantes. Confirme o crédito na conta.\n",
+      "coverImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T05:00:00.000Z",
+      "updatedAt": "2026-07-22T05:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-013",
+      "slug": "edu-13-organize-seu-orcamento",
+      "title": "Organize seu orçamento",
+      "excerpt": "Use o Pix de forma planejada, evitando compras impulsivas.",
+      "content": "## Dica 13\n\nUse o Pix de forma planejada, evitando compras impulsivas.\n",
+      "coverImage": "https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T04:00:00.000Z",
+      "updatedAt": "2026-07-22T04:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-014",
+      "slug": "edu-14-defina-limites",
+      "title": "Defina limites",
+      "excerpt": "Configure limites de transações compatíveis com sua rotina.",
+      "content": "## Dica 14\n\nConfigure limites de transações compatíveis com sua rotina.\n",
+      "coverImage": "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T03:00:00.000Z",
+      "updatedAt": "2026-07-22T03:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-015",
+      "slug": "edu-15-evite-compartilhar-dados-pessoais",
+      "title": "Evite compartilhar dados pessoais",
+      "excerpt": "Não divulgue informações bancárias em redes sociais ou mensagens.",
+      "content": "## Dica 15\n\nNão divulgue informações bancárias em redes sociais ou mensagens.\n",
+      "coverImage": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T02:00:00.000Z",
+      "updatedAt": "2026-07-22T02:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-016",
+      "slug": "edu-16-use-contatos-confiaveis",
+      "title": "Use contatos confiáveis",
+      "excerpt": "Prefira enviar Pix para contatos previamente conhecidos.",
+      "content": "## Dica 16\n\nPrefira enviar Pix para contatos previamente conhecidos.\n",
+      "coverImage": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T01:00:00.000Z",
+      "updatedAt": "2026-07-22T01:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-017",
+      "slug": "edu-17-revise-chaves-pix",
+      "title": "Revise chaves Pix",
+      "excerpt": "Confirme se a chave informada pertence realmente ao destinatário.",
+      "content": "## Dica 17\n\nConfirme se a chave informada pertence realmente ao destinatário.\n",
+      "coverImage": "https://images.unsplash.com/photo-1556742031-c6961e8560b0?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-22T00:00:00.000Z",
+      "updatedAt": "2026-07-22T00:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-018",
+      "slug": "edu-18-cuidado-com-links",
+      "title": "Cuidado com links",
+      "excerpt": "Não acesse links recebidos por mensagens sem verificar a origem.",
+      "content": "## Dica 18\n\nNão acesse links recebidos por mensagens sem verificar a origem.\n",
+      "coverImage": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T23:00:00.000Z",
+      "updatedAt": "2026-07-21T23:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-019",
+      "slug": "edu-19-mantenha-antivirus",
+      "title": "Mantenha antivírus",
+      "excerpt": "Utilize soluções de segurança em seus dispositivos.",
+      "content": "## Dica 19\n\nUtilize soluções de segurança em seus dispositivos.\n",
+      "coverImage": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T22:00:00.000Z",
+      "updatedAt": "2026-07-21T22:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-020",
+      "slug": "edu-20-proteja-seus-documentos",
+      "title": "Proteja seus documentos",
+      "excerpt": "Evite enviar fotos de documentos sem necessidade.",
+      "content": "## Dica 20\n\nEvite enviar fotos de documentos sem necessidade.\n",
+      "coverImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T21:00:00.000Z",
+      "updatedAt": "2026-07-21T21:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-021",
+      "slug": "edu-21-guarde-comprovantes",
+      "title": "Guarde comprovantes",
+      "excerpt": "Armazene comprovantes para facilitar conferências futuras.",
+      "content": "## Dica 21\n\nArmazene comprovantes para facilitar conferências futuras.\n",
+      "coverImage": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T20:00:00.000Z",
+      "updatedAt": "2026-07-21T20:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-022",
+      "slug": "edu-22-revise-pagamentos-recorrentes",
+      "title": "Revise pagamentos recorrentes",
+      "excerpt": "Confira periodicamente pagamentos frequentes.",
+      "content": "## Dica 22\n\nConfira periodicamente pagamentos frequentes.\n",
+      "coverImage": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T19:00:00.000Z",
+      "updatedAt": "2026-07-21T19:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-023",
+      "slug": "edu-23-eduque-sua-familia",
+      "title": "Eduque sua família",
+      "excerpt": "Compartilhe orientações de segurança com familiares, principalmente idosos.",
+      "content": "## Dica 23\n\nCompartilhe orientações de segurança com familiares, principalmente idosos.\n",
+      "coverImage": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T18:00:00.000Z",
+      "updatedAt": "2026-07-21T18:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-024",
+      "slug": "edu-24-denuncie-tentativas",
+      "title": "Denuncie tentativas",
+      "excerpt": "Comunique tentativas de golpe ao banco e às autoridades competentes.",
+      "content": "## Dica 24\n\nComunique tentativas de golpe ao banco e às autoridades competentes.\n",
+      "coverImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T17:00:00.000Z",
+      "updatedAt": "2026-07-21T17:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-025",
+      "slug": "edu-25-conheca-seus-gastos",
+      "title": "Conheça seus gastos",
+      "excerpt": "Acompanhe o histórico de transações para identificar movimentações incomuns.",
+      "content": "## Dica 25\n\nAcompanhe o histórico de transações para identificar movimentações incomuns.\n",
+      "coverImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T16:00:00.000Z",
+      "updatedAt": "2026-07-21T16:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-026",
+      "slug": "edu-26-faca-pausas-antes-de-pagar",
+      "title": "Faça pausas antes de pagar",
+      "excerpt": "Quando estiver emocionalmente abalado, espere alguns minutos antes de confirmar um Pix.",
+      "content": "## Dica 26\n\nQuando estiver emocionalmente abalado, espere alguns minutos antes de confirmar um Pix.\n",
+      "coverImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T15:00:00.000Z",
+      "updatedAt": "2026-07-21T15:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-027",
+      "slug": "edu-27-utilize-canais-oficiais",
+      "title": "Utilize canais oficiais",
+      "excerpt": "Procure atendimento apenas nos canais divulgados oficialmente pela instituição financeira.",
+      "content": "## Dica 27\n\nProcure atendimento apenas nos canais divulgados oficialmente pela instituição financeira.\n",
+      "coverImage": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T14:00:00.000Z",
+      "updatedAt": "2026-07-21T14:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-028",
+      "slug": "edu-28-atencao-a-emprestimos",
+      "title": "Atenção a empréstimos",
+      "excerpt": "Leia todas as condições antes de aceitar qualquer proposta financeira.",
+      "content": "## Dica 28\n\nLeia todas as condições antes de aceitar qualquer proposta financeira.\n",
+      "coverImage": "https://images.unsplash.com/photo-1554224154-22dec7ec8818?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T13:00:00.000Z",
+      "updatedAt": "2026-07-21T13:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-029",
+      "slug": "edu-29-confirme-compras-online",
+      "title": "Confirme compras online",
+      "excerpt": "Pesquise a reputação da empresa antes de pagar via Pix.",
+      "content": "## Dica 29\n\nPesquise a reputação da empresa antes de pagar via Pix.\n",
+      "coverImage": "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T12:00:00.000Z",
+      "updatedAt": "2026-07-21T12:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
+    {
+      "id": "edu-030",
+      "slug": "edu-30-faca-da-prevencao-um-habito",
+      "title": "Faça da prevenção um hábito",
+      "excerpt": "Segurança financeira depende de atenção constante, informação e boas práticas em todas as transações.",
+      "content": "## Dica 30\n\nSegurança financeira depende de atenção constante, informação e boas práticas em todas as transações.\n\n## Mensagem final\n\nCada transação realizada com atenção reduz significativamente os riscos de fraude e de erros. Desenvolver bons hábitos financeiros é a melhor forma de proteger seu patrimônio e contribuir para um ambiente digital mais seguro.\n\n**FortePix por Você.**\n",
+      "coverImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80",
+      "category": "Educação Financeira",
+      "tags": [
+        "educação financeira",
+        "pix",
+        "segurança",
+        "fortepix"
+      ],
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-21T11:00:00.000Z",
+      "updatedAt": "2026-07-21T11:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 2
+    },
     {
       "id": "apr-001",
       "slug": "conheca-antes-de-pagar",

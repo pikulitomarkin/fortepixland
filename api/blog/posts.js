@@ -26,7 +26,7 @@ export default async function handler(req, res) {
 
     const { slug, category, tag, page = '1', limit = '20' } = req.query;
     const pageNum = Math.max(1, parseInt(page, 10) || 1);
-    const limitNum = Math.min(50, Math.max(1, parseInt(limit, 10) || 20));
+    const limitNum = Math.min(100, Math.max(1, parseInt(limit, 10) || 20));
 
     const result = await listPosts({
       publishedOnly: true,
