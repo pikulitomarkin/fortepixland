@@ -32,6 +32,7 @@
     </a>
     <nav class="nav-links">
       <a href="/">Início</a>
+      <a href="/fiquepordentro">Fique por Dentro</a>
       <a href="/blog" class="active">Blog</a>
       <a href="/#planos">Planos</a>
       <a href="/#contato">Contato</a>
@@ -43,6 +44,7 @@
   </div>
   <div class="mobile-menu">
     <a href="/">Início</a>
+    <a href="/fiquepordentro">Fique por Dentro</a>
     <a href="/blog">Blog</a>
     <a href="/#planos">Planos</a>
     <a href="/#contato">Contato</a>
@@ -63,7 +65,8 @@
   <div class="wrap">
     <div class="footer-bottom" style="margin-top:0;padding-top:0;border:0">
       <span>© 2026 FortePix. Todos os direitos reservados.</span>
-      <a href="/blog" class="gold" style="font-weight:700">← Voltar ao blog</a>
+      <a href="/fiquepordentro" class="gold" style="font-weight:700">Fique por Dentro</a>
+      <a href="/blog" class="gold" style="font-weight:700">Blog</a>
     </div>
   </div>
 </footer>
@@ -109,8 +112,13 @@
         .map((t) => `<span>#${t}</span>`)
         .join('');
 
+      const isFique = post.category === 'Fique por Dentro';
+      const backHref = isFique ? '/fiquepordentro' : '/blog';
+      const backLabel = isFique ? '← Voltar ao Fique por Dentro' : '← Voltar ao blog';
+      document.title = `${post.title} — ${isFique ? 'Fique por Dentro' : 'Blog'} FortePix`;
+
       document.getElementById('postArticle').innerHTML = `
-        <a class="back-link" href="/blog">← Voltar ao blog</a>
+        <a class="back-link" href="${backHref}">${backLabel}</a>
         ${post.coverImage ? `<img class="cover" src="${post.coverImage}" alt="" loading="eager" width="800" height="450" />` : ''}
         <header class="post-header">
           <span class="eyebrow">${post.category}</span>

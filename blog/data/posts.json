@@ -1,7 +1,72 @@
 {
-  "version": 5,
-  "updatedAt": "2026-07-22T16:00:00.000Z",
+  "version": 6,
+  "updatedAt": "2026-07-26T21:00:00.000Z",
   "posts": [
+    {
+      "id": "fpd-001",
+      "slug": "alerta-golpe-falso-boleto-pix",
+      "title": "Alerta: golpe do falso boleto via Pix",
+      "excerpt": "Criminosos enviam boletos falsos por e-mail e WhatsApp pedindo pagamento via Pix. Confira o beneficiário antes de pagar.",
+      "content": "## O que está acontecendo\n\nGolpistas têm enviado boletos e cobranças falsas por e-mail, SMS e WhatsApp, pedindo pagamento imediato via Pix.\n\n![Alerta de segurança](https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80)\n\n## Sinais de alerta\n\n- Cobrança inesperada com urgência\n- Link encurtado ou domínio estranho\n- Nome do beneficiário diferente do esperado\n\n## Como se proteger\n\n- Confira o nome e a instituição na tela de confirmação\n- Não pague sob pressão\n- Use o FortePix para analisar a chave antes de transferir\n\n> Em dúvida, entre em contato pelos canais oficiais da empresa — nunca pelo número da mensagem.",
+      "coverImage": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80",
+      "tags": [
+        "fique por dentro",
+        "boleto",
+        "golpe",
+        "pix"
+      ],
+      "category": "Fique por Dentro",
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-26T18:00:00.000Z",
+      "updatedAt": "2026-07-26T18:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 3
+    },
+    {
+      "id": "fpd-002",
+      "slug": "cuidado-com-falso-suporte-bancario",
+      "title": "Cuidado com falso suporte bancário",
+      "excerpt": "Ligações e mensagens fingindo ser do banco pedem senha, token ou Pix para “conta segura”. Bancos não fazem isso.",
+      "content": "## O golpe\n\nCriminosos se passam por atendentes do banco e pedem códigos, senhas ou transferência para uma suposta conta segura.\n\n![Segurança digital](https://images.unsplash.com/photo-1556742031-c6961e8560b0?w=800&q=80)\n\n## Lembrete importante\n\nBancos **não pedem** senha, token nem Pix para “proteger” sua conta.\n\n## O que fazer\n\n1. Encerre o contato\n2. Ligue para o número oficial do banco\n3. Verifique chaves Pix com o FortePix antes de qualquer transferência\n\n**FortePix por Você.**",
+      "coverImage": "https://images.unsplash.com/photo-1556742031-c6961e8560b0?w=800&q=80",
+      "tags": [
+        "fique por dentro",
+        "banco",
+        "suporte falso"
+      ],
+      "category": "Fique por Dentro",
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-26T12:00:00.000Z",
+      "updatedAt": "2026-07-26T12:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 3
+    },
+    {
+      "id": "fpd-003",
+      "slug": "deepfake-e-pedidos-de-pix-com-urgencia",
+      "title": "Deepfake e pedidos de Pix com urgência",
+      "excerpt": "Vozes e vídeos clonados por IA pedem dinheiro com pressa. Confirme sempre por outro canal antes de transferir.",
+      "content": "## Tendência no Brasil\n\nGolpes com deepfake usam IA para clonar voz ou imagem de familiares e pedir Pix com urgência.\n\n![Inteligência artificial](https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80)\n\n## Proteção prática\n\n- Combine uma palavra-chave com a família\n- Confirme por ligação ou videochamada em outro app\n- Nunca transfira só porque “reconheceu” a voz\n\n> Alguns segundos de verificação evitam um prejuízo difícil de reverter.",
+      "coverImage": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+      "tags": [
+        "fique por dentro",
+        "deepfake",
+        "ia",
+        "pix"
+      ],
+      "category": "Fique por Dentro",
+      "author": {
+        "name": "Equipe FortePix"
+      },
+      "publishedAt": "2026-07-26T06:00:00.000Z",
+      "updatedAt": "2026-07-26T06:00:00.000Z",
+      "status": "published",
+      "readingTimeMinutes": 3
+    },
     {
       "id": "edu-001",
       "slug": "edu-01-confira-sempre-o-destinatario",

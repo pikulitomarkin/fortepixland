@@ -108,6 +108,7 @@
       <h1>CMS <span class="gold">FORTEPIX</span></h1>
       <div class="module-tabs" role="tablist" aria-label="Módulos">
         <button type="button" class="module-tab active" data-module="blog" role="tab" aria-selected="true">Blog</button>
+        <button type="button" class="module-tab" data-module="fique" role="tab" aria-selected="false">Fique por Dentro</button>
         <button type="button" class="module-tab" data-module="contact" role="tab" aria-selected="false">Contato <span class="badge" id="contactBadge" hidden>0</span></button>
       </div>
       <div class="admin-actions" id="blogActions">
@@ -121,7 +122,7 @@
 
   <div class="admin-layout" id="blogModule">
     <aside class="admin-sidebar">
-      <h2>Artigos (<span id="postCount">0</span>)</h2>
+      <h2><span id="sidebarTitle">Artigos</span> (<span id="postCount">0</span>)</h2>
       <div id="postList"></div>
     </aside>
 
@@ -161,6 +162,8 @@
   let activeId = null;
   let activeMessageId = null;
   let activeModule = 'blog';
+  const FIQUE_CATEGORY = 'Fique por Dentro';
+  const BLOG_CATEGORIES = new Set(['Aprendendo com a FortePix', 'Educação Financeira', 'Canal_Educativo', 'Educação', 'LGPD', 'Dicas', 'Notícias']);
   let adminToken = null;
   let localMode = false;
 
@@ -254,12 +257,22 @@
     localStorage.setItem(STORAGE_DRAFT, JSON.stringify({ posts, updatedAt: new Date().toISOString() }));
   }
 
+  function visiblePosts() {
+    if (activeModule === 'fique') {
+      return posts.filter((p) => p.category === FIQUE_CATEGORY);
+    }
+    // Blog: campanhas educativas (exclui Fique por Dentro)
+    return posts.filter((p) => p.category !== FIQUE_CATEGORY);
+  }
+
   function renderList() {
-    postCount.textContent = posts.length;
-    const sorted = [...posts].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    const sorted = visiblePosts().sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    postCount.textContent = sorted.length;
+    const titleEl = document.getElementById('sidebarTitle');
+    if (titleEl) titleEl.textContent = activeModule === 'fique' ? 'Fique por Dentro' : 'Artigos';
 
     if (!sorted.length) {
-      postList.innerHTML = '<p style="color:var(--muted);font-size:13px">Nenhum artigo ainda.</p>';
+      postList.innerHTML = '<p style="color:var(--muted);font-size:13px">Nenhuma publicação neste canal.</p>';
       return;
     }
 
@@ -313,7 +326,7 @@
           <div class="form-group">
             <label for="f-category">Categoria</label>
             <select id="f-category">
-              ${['Aprendendo com a FortePix', 'Educação Financeira', 'Canal_Educativo', 'Educação', 'LGPD', 'Dicas', 'Notícias']
+              ${['Fique por Dentro', 'Aprendendo com a FortePix', 'Educação Financeira', 'Canal_Educativo', 'Educação', 'LGPD', 'Dicas', 'Notícias']
                 .map((c) => `<option value="${c}" ${post.category === c ? 'selected' : ''}>${c}</option>`)
                 .join('')}
             </select>
@@ -325,6 +338,7 @@
           <div class="form-group" style="grid-column:1/-1">
             <label for="f-cover">URL da imagem de capa</label>
             <input type="url" id="f-cover" value="${esc(post.coverImage || '')}" placeholder="https://..." />
+            <div id="coverPreview" style="margin-top:10px">${post.coverImage ? `<img src="${esc(post.coverImage)}" alt="" style="max-width:280px;border-radius:10px;border:1px solid var(--hairline)" onerror="this.style.display='none'" />` : '<span style="font-size:12px;color:var(--muted)">Cole uma URL de imagem para preview</span>'}</div>
           </div>
           <div class="form-group" style="grid-column:1/-1">
             <label for="f-excerpt">Resumo (excerpt)</label>
@@ -337,11 +351,15 @@
         </div>
 
         <div class="form-group">
-          <label>Conteúdo (Markdown)</label>
+          <label>Conteúdo (Markdown — texto e imagens)</label>
           <div class="editor-tabs">
             <button type="button" class="editor-tab active" data-tab="edit">Editar</button>
             <button type="button" class="editor-tab" data-tab="preview">Preview</button>
           </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+            <button type="button" class="btn btn-ghost btn-sm" id="insertImageBtn">+ Inserir imagem no texto</button>
+          </div>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:8px">Use Markdown para texto e imagens inline: <code>![descrição](https://url-da-imagem.jpg)</code></p>
           <textarea id="f-content" rows="16">${esc(post.content)}</textarea>
           <div id="previewPane" class="preview-pane post-content" hidden></div>
         </div>
@@ -378,6 +396,25 @@
       updateMobilePreview();
     });
     slugInput.addEventListener('input', () => { slugManual = true; });
+    const coverInput = document.getElementById('f-cover');
+    const coverPreview = document.getElementById('coverPreview');
+    coverInput.addEventListener('input', () => {
+      const url = coverInput.value.trim();
+      coverPreview.innerHTML = url
+        ? `<img src="${esc(url)}" alt="" style="max-width:280px;border-radius:10px;border:1px solid var(--hairline)" onerror="this.style.display='none'" />`
+        : '<span style="font-size:12px;color:var(--muted)">Cole uma URL de imagem para preview</span>';
+    });
+    document.getElementById('insertImageBtn').addEventListener('click', () => {
+      const url = prompt('URL da imagem (https://...)');
+      if (!url) return;
+      const alt = prompt('Descrição da imagem (acessibilidade)', 'Ilustração') || 'imagem';
+      const md = `\n\n![${alt}](${url.trim()})\n\n`;
+      const start = contentInput.selectionStart || contentInput.value.length;
+      const end = contentInput.selectionEnd || start;
+      contentInput.value = contentInput.value.slice(0, start) + md + contentInput.value.slice(end);
+      contentInput.focus();
+      if (!previewPane.hidden) previewPane.innerHTML = renderMarkdown(contentInput.value);
+    });
     excerptInput.addEventListener('input', updateMobilePreview);
     contentInput.addEventListener('input', () => {
       if (!previewPane.hidden) previewPane.innerHTML = renderMarkdown(contentInput.value);
@@ -442,15 +479,18 @@
 
   function createPost() {
     const now = new Date().toISOString();
+    const isFique = activeModule === 'fique';
     const post = {
       id: uid(),
       slug: '',
       title: '',
       excerpt: '',
-      content: '## Título do artigo\n\nEscreva o conteúdo aqui em **Markdown**.\n\n- Dica 1\n- Dica 2\n\n> Citação ou alerta importante',
+      content: isFique
+        ? '## O que aconteceu\n\nResumo do golpe ou alerta do dia.\n\n![Ilustração](https://)\n\n## Como se proteger\n\n- Dica 1\n- Dica 2\n\n> Use o FortePix antes de confirmar o Pix.'
+        : '## Título do artigo\n\nEscreva o conteúdo aqui em **Markdown**.\n\n![Ilustração](https://)\n\n- Dica 1\n- Dica 2\n\n> Citação ou alerta importante',
       coverImage: '',
-      category: 'Aprendendo com a FortePix',
-      tags: [],
+      category: isFique ? FIQUE_CATEGORY : 'Aprendendo com a FortePix',
+      tags: isFique ? ['fique por dentro', 'segurança', 'pix'] : [],
       author: { name: 'Equipe FortePix' },
       publishedAt: now,
       updatedAt: now,
@@ -533,7 +573,7 @@
         renderList();
         renderContactList();
         updateContactBadge();
-        if (activeModule === 'blog' && posts.length && !activeId) openEditor(posts[0].id);
+        if ((activeModule === 'blog' || activeModule === 'fique') && !activeId) { const list = visiblePosts(); if (list.length) openEditor(list.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))[0].id); }
       })
       .catch((err) => {
         console.error(err);
@@ -672,10 +712,22 @@
       tab.classList.toggle('active', on);
       tab.setAttribute('aria-selected', on ? 'true' : 'false');
     });
-    blogModule.hidden = module !== 'blog';
+    const contentModule = module === 'blog' || module === 'fique';
+    blogModule.hidden = !contentModule;
     contactModule.hidden = module !== 'contact';
-    blogActions.hidden = module !== 'blog';
-    if (module === 'contact') loadMessages().then(renderContactList);
+    blogActions.hidden = !contentModule;
+    if (module === 'contact') {
+      loadMessages().then(renderContactList);
+      return;
+    }
+    activeId = null;
+    renderList();
+    const list = visiblePosts();
+    if (list.length) {
+      openEditor(list.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))[0].id);
+    } else {
+      editorPanel.innerHTML = `<div class="empty-editor"><p>${module === 'fique' ? 'Nenhuma publicação em Fique por Dentro.' : 'Nenhum artigo no Blog.'}</p><button type="button" class="btn btn-primary" id="newPostBtn2" style="margin-top:16px">+ Nova publicação</button></div>`;
+    }
   }
 
   document.querySelectorAll('.module-tab').forEach((tab) => {
