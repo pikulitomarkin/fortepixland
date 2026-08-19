@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /blog/admin
+Disallow: /api/
+
+Sitemap: https://www.fortepixfinance.com/sitemap.xml

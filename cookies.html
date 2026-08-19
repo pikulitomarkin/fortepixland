@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Política de Cookies — FortePix</title>
+<meta name="description" content="Como o site FortePix utiliza cookies e como você pode gerenciá-los." />
+<meta name="theme-color" content="#0A1628" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/blog.css" />
+<link rel="stylesheet" href="/assets/legal.css" />
+</head>
+<body>
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="/"><span class="wm">FORTE<span class="gold">PIX</span></span></a>
+    <nav class="nav-links">
+      <a href="/">Início</a>
+      <a href="/as-claras">Às Claras</a>
+      <a href="/blog">Blog</a>
+    </nav>
+    <div class="nav-cta"><a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.fortepix&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Baixar App</a></div>
+  </div>
+</header>
+<main class="legal-page">
+  <div class="wrap">
+    <a class="back-link" href="/">← Voltar para o site</a>
+    <span class="eyebrow">Documentação</span>
+    <h1 class="h-display" style="font-size:clamp(40px,8vw,72px);margin:12px 0 0">POLÍTICA DE <span class="gold">COOKIES</span></h1>
+    <p class="legal-updated">Última atualização: 19 de agosto de 2026</p>
+    <div class="legal-nav-links">
+      <a href="/termos">Termos</a>
+      <a href="/privacidade">Privacidade</a>
+      <a href="/lgpd">LGPD</a>
+      <a href="/cookies">Cookies</a>
+      <a href="/as-claras">Às Claras</a>
+    </div>
+    <div class="legal-layout">
+      <aside class="legal-toc" aria-label="Sumário">
+        <h4>Sumário</h4>
+        <ol id="legalToc">
+          <li><a href="#c1">O que são</a></li>
+          <li><a href="#c2">Tipos</a></li>
+          <li><a href="#c3">Gerenciar</a></li>
+          <li><a href="#c4">Contato</a></li>
+        </ol>
+      </aside>
+      <div class="legal-body">
+
+        <article id="c1"><h3>1. O que são cookies</h3>
+          <p>Cookies são pequenos arquivos armazenados no seu navegador para lembrar preferências, medir uso do site ou manter sessões seguras.</p>
+        </article>
+        <article id="c2"><h3>2. Cookies que usamos</h3>
+          <ul>
+            <li><strong>Essenciais:</strong> funcionamento do site e segurança (ex.: sessão administrativa).</li>
+            <li><strong>Preferências:</strong> idioma ou configurações salvas localmente.</li>
+            <li><strong>Analíticos (se habilitados):</strong> estatísticas agregadas de visita.</li>
+          </ul>
+        </article>
+        <article id="c3"><h3>3. Como gerenciar</h3>
+          <p>Você pode bloquear ou apagar cookies nas configurações do navegador. Algumas funções do site podem deixar de funcionar corretamente.</p>
+        </article>
+        <article id="c4"><h3>4. Contato</h3>
+          <p>Dúvidas sobre cookies: <a href="mailto:contato@fortepixfinance.com">contato@fortepixfinance.com</a></p>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="footer"><div class="wrap"><div class="footer-bottom" style="margin-top:0;padding-top:0;border:0"><span>© 2026 FortePix Finance Ltda. · CNPJ 67.082.175/0001-66</span></div></div></footer>
+<script src="/assets/blog.js"></script>
+<script>
+(function(){
+  FortePixBlog.initHeader();
+  const tocLinks = document.querySelectorAll('#legalToc a');
+  const articles = document.querySelectorAll('.legal-body article');
+  const tio = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id)); });
+  }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+  articles.forEach(a => tio.observe(a));
+})();
+</script>
+</body>
+</html>
