@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Direitos do Titular LGPD — FortePix</title>
+<meta name="description" content="Como exercer seus direitos de privacidade e proteção de dados no FortePix." />
+<meta name="theme-color" content="#0A1628" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/blog.css" />
+<link rel="stylesheet" href="/assets/legal.css" />
+</head>
+<body>
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="/"><span class="wm">FORTE<span class="gold">PIX</span></span></a>
+    <nav class="nav-links">
+      <a href="/">Início</a>
+      <a href="/as-claras">Às Claras</a>
+      <a href="/blog">Blog</a>
+    </nav>
+    <div class="nav-cta"><a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.fortepix&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Baixar App</a></div>
+  </div>
+</header>
+<main class="legal-page">
+  <div class="wrap">
+    <a class="back-link" href="/">← Voltar para o site</a>
+    <span class="eyebrow">Documentação</span>
+    <h1 class="h-display" style="font-size:clamp(40px,8vw,72px);margin:12px 0 0">DIREITOS DO <span class="gold">TITULAR</span></h1>
+    <p class="legal-updated">Última atualização: 19 de agosto de 2026</p>
+    <div class="legal-nav-links">
+      <a href="/termos">Termos</a>
+      <a href="/privacidade">Privacidade</a>
+      <a href="/lgpd">LGPD</a>
+      <a href="/cookies">Cookies</a>
+      <a href="/as-claras">Às Claras</a>
+    </div>
+    <div class="legal-layout">
+      <aside class="legal-toc" aria-label="Sumário">
+        <h4>Sumário</h4>
+        <ol id="legalToc">
+          <li><a href="#l1">Canal</a></li>
+          <li><a href="#l2">Direitos</a></li>
+          <li><a href="#l3">Como solicitar</a></li>
+          <li><a href="#l4">Prazo</a></li>
+          <li><a href="#l5">ANPD</a></li>
+        </ol>
+      </aside>
+      <div class="legal-body">
+
+        <article id="l1"><h3>1. Encarregado e canal</h3>
+          <p>Para exercer seus direitos como titular de dados, entre em contato: <a href="mailto:contato@fortepixfinance.com">contato@fortepixfinance.com</a> (assunto: LGPD).</p>
+        </article>
+        <article id="l2"><h3>2. Direitos do titular (art. 18 LGPD)</h3>
+          <ul>
+            <li>Confirmação da existência de tratamento</li>
+            <li>Acesso aos dados</li>
+            <li>Correção de dados incompletos ou desatualizados</li>
+            <li>Anonimização, bloqueio ou eliminação</li>
+            <li>Portabilidade</li>
+            <li>Informação sobre compartilhamentos</li>
+            <li>Revogação do consentimento</li>
+          </ul>
+        </article>
+        <article id="l3"><h3>3. Como solicitar</h3>
+          <p>Envie e-mail identificando-se (nome, CPF e e-mail cadastrado) e descrevendo o pedido. Podemos solicitar informações adicionais para confirmar sua identidade.</p>
+        </article>
+        <article id="l4"><h3>4. Prazo de resposta</h3>
+          <p>Responderemos em prazo razoável, em geral até 15 dias úteis, conforme a LGPD.</p>
+        </article>
+        <article id="l5"><h3>5. Autoridade nacional</h3>
+          <p>Se entender que seus direitos não foram atendidos, você pode contatar a Autoridade Nacional de Proteção de Dados (ANPD).</p>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="footer"><div class="wrap"><div class="footer-bottom" style="margin-top:0;padding-top:0;border:0"><span>© 2026 FortePix Finance Ltda. · CNPJ 67.082.175/0001-66</span></div></div></footer>
+<script src="/assets/blog.js"></script>
+<script>
+(function(){
+  FortePixBlog.initHeader();
+  const tocLinks = document.querySelectorAll('#legalToc a');
+  const articles = document.querySelectorAll('.legal-body article');
+  const tio = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id)); });
+  }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+  articles.forEach(a => tio.observe(a));
+})();
+</script>
+</body>
+</html>

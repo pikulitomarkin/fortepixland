@@ -2,6 +2,10 @@
   "rewrites": [
     { "source": "/admin", "destination": "/admin/index.html" },
     { "source": "/termos", "destination": "/termos.html" },
+    { "source": "/privacidade", "destination": "/privacidade.html" },
+    { "source": "/lgpd", "destination": "/lgpd.html" },
+    { "source": "/cookies", "destination": "/cookies.html" },
+    { "source": "/as-claras", "destination": "/as-claras.html" },
     { "source": "/fiquepordentro", "destination": "/fiquepordentro.html" },
     { "source": "/blog/admin", "destination": "/blog/admin/index.html" },
     { "source": "/blog/api/posts", "destination": "/api/blog/posts" },
@@ -15,6 +19,15 @@
     }
   },
   "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
     {
       "source": "/api/auth/(.*)",
       "headers": [
