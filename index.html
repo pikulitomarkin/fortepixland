@@ -283,81 +283,6 @@ body.menu-open .mobile-menu{transform:translateY(0);opacity:1;pointer-events:aut
 }
 .disclaimer p{color:var(--muted-2);font-size:15px;line-height:1.7}
 
-/* -------- planos -------- */
-.plans-toggle{
-  display:inline-flex;background:rgba(255,255,255,.04);border:1px solid var(--hairline);
-  border-radius:999px;padding:4px;margin:0 auto 48px;position:relative;
-}
-.plans-toggle button{
-  padding:10px 22px;border-radius:999px;font-weight:800;font-size:13px;letter-spacing:.06em;
-  text-transform:uppercase;color:var(--muted);transition:color .2s;position:relative;z-index:1;
-}
-.plans-toggle button.on{color:var(--bg)}
-.plans-toggle .slider{
-  position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);
-  background:var(--gold);border-radius:999px;transition:transform .3s ease;
-}
-.plans-toggle.annual .slider{transform:translateX(100%)}
-.save-pill{
-  display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;
-  background:rgba(91,208,127,.15);color:#5bd07f;border:1px solid rgba(91,208,127,.4);
-  font-size:11px;font-weight:800;letter-spacing:.05em;
-}
-.plans-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:stretch}
-.plan{
-  border:1.5px solid var(--gold-soft);border-radius:var(--radius);
-  background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));
-  padding:32px 28px;display:flex;flex-direction:column;
-  position:relative;transition:transform .25s,border-color .25s,box-shadow .25s;
-}
-.plan:hover{transform:translateY(-4px)}
-.plan .gem{
-  width:64px;height:64px;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;margin-bottom:18px;
-  background:rgba(255,255,255,.03);
-}
-.plan.silver{border-color:rgba(192,192,192,.35)}
-.plan.silver .gem{background:rgba(192,192,192,.08);border:1px solid rgba(192,192,192,.3);color:var(--silver)}
-.plan.gold{
-  border-color:var(--gold);
-  box-shadow:0 0 0 1px var(--gold),0 30px 80px -30px rgba(184,150,46,.5);
-  background:linear-gradient(180deg,rgba(184,150,46,.06),rgba(184,150,46,0));
-}
-.plan.gold .gem{background:rgba(184,150,46,.1);border:1px solid var(--gold-soft);color:var(--gold)}
-.plan.diamond{border-color:rgba(79,195,247,.35)}
-.plan.diamond .gem{background:rgba(79,195,247,.08);border:1px solid rgba(79,195,247,.3);color:var(--diamond)}
-.plan .badge{
-  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
-  padding:6px 14px;border-radius:999px;font-size:11px;font-weight:900;letter-spacing:.1em;
-  text-transform:uppercase;
-}
-.plan .badge.pop{background:var(--gold);color:var(--bg)}
-.plan .tier{
-  font-family:var(--display);font-size:13px;letter-spacing:.2em;color:var(--muted);margin-bottom:6px;
-}
-.plan h3{font-family:var(--display);font-size:48px;letter-spacing:.04em;line-height:1}
-.plan.silver h3{color:var(--silver)}
-.plan.gold h3{color:var(--gold)}
-.plan.diamond h3{color:var(--diamond)}
-.plan .price{display:flex;align-items:baseline;gap:6px;margin:18px 0 6px}
-.plan .price .v{font-family:var(--display);font-size:56px;line-height:1;color:var(--text)}
-.plan .price .c{color:var(--muted);font-size:14px;font-weight:600}
-.plan .price .strike{text-decoration:line-through;color:var(--muted);font-size:14px;margin-left:6px}
-.plan .price-sub{color:var(--muted);font-size:13px;margin-bottom:22px}
-.plan ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
-.plan li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted-2)}
-.plan li .check{width:18px;height:18px;flex:none;margin-top:2px}
-.plan.silver li .check{color:var(--silver)}
-.plan.gold li .check{color:var(--gold)}
-.plan.diamond li .check{color:var(--diamond)}
-.plan li.off{color:var(--muted);opacity:.55}
-.plan li.off .check{color:var(--muted)}
-.plan .btn{margin-top:auto;width:100%}
-.plan.silver .btn{border:1.5px solid var(--silver);color:var(--silver)}
-.plan.silver .btn:hover{background:rgba(192,192,192,.08)}
-.plan.diamond .btn{border:1.5px solid var(--diamond);color:var(--diamond)}
-.plan.diamond .btn:hover{background:rgba(79,195,247,.08)}
-.plans-note{text-align:center;color:var(--muted);font-size:14px;margin-top:32px}
 
 /* -------- termos -------- */
 .terms-section{background:var(--bg-2)}
@@ -480,7 +405,6 @@ body.menu-open .mobile-menu{transform:translateY(0);opacity:1;pointer-events:aut
   .about-grid{grid-template-columns:repeat(3,1fr)}
   .stats{grid-template-columns:repeat(3,1fr)}
   .pillars{grid-template-columns:repeat(3,1fr)}
-  .plans-grid{grid-template-columns:repeat(3,1fr);align-items:center}
   .plan.gold{transform:scale(1.04)}
   .plan.gold:hover{transform:scale(1.04) translateY(-4px)}
   .contact-grid{grid-template-columns:1fr 1.1fr}
@@ -521,7 +445,6 @@ body.menu-open .mobile-menu{transform:translateY(0);opacity:1;pointer-events:aut
       <a href="#inicio">Início</a>
       <a href="#sobre">Sobre</a>
       <a href="#como-funciona">Como Funciona</a>
-      <a href="#planos">Planos</a>
       <a href="/as-claras">Às Claras</a>
       <a href="/fiquepordentro">Fique por Dentro</a>
       <a href="/blog">Blog</a>
@@ -537,7 +460,6 @@ body.menu-open .mobile-menu{transform:translateY(0);opacity:1;pointer-events:aut
       <a href="#inicio">Início</a>
       <a href="#sobre">Sobre</a>
       <a href="#como-funciona">Como Funciona</a>
-      <a href="#planos">Planos</a>
       <a href="/as-claras">Às Claras</a>
       <a href="/fiquepordentro">Fique por Dentro</a>
       <a href="/blog">Blog</a>
@@ -569,7 +491,7 @@ body.menu-open .mobile-menu{transform:translateY(0);opacity:1;pointer-events:aut
           <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5V3.5c0-.7.8-1.1 1.4-.7L20 11.3c.6.4.6 1.3 0 1.7L4.4 21.2c-.6.4-1.4 0-1.4-.7z"/></svg>
           Baixar na Play Store
         </a>
-        <a class="btn btn-outline" href="#planos">
+        <a class="btn btn-outline" href="#contato">
           <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 1c.1 1.5-.5 3-1.4 4-1 1-2.5 1.8-4 1.7-.2-1.5.5-3 1.4-4 1-1 2.6-1.8 4-1.7zM20.3 17.5c-.7 1.6-1.1 2.3-2 3.7-1.3 2-3.2 4.5-5.5 4.5-2 0-2.6-1.3-5.4-1.3-2.8 0-3.4 1.3-5.4 1.3C-.3 25.7-2.2 23.3-3.5 21.3c-3.6-5.7-4-12.3-1.8-15.9 1.6-2.5 4.1-4 6.4-4 2.4 0 3.9 1.3 5.9 1.3 1.9 0 3.1-1.3 5.8-1.3 2.1 0 4.3 1.1 5.9 3.1-5.2 2.8-4.3 10.2 1.6 12.0z" transform="translate(3 0)"/></svg>
           Disponível em breve no iOS
         </a>
@@ -801,85 +723,6 @@ body.menu-open .mobile-menu{transform:translateY(0);opacity:1;pointer-events:aut
   </div>
 </section>
 
-<!-- ============================ PLANOS ============================ -->
-<section id="planos" class="section">
-  <div class="glow gold" style="width:600px;height:600px;top:10%;left:-200px;opacity:.25"></div>
-  <div class="wrap" style="position:relative;z-index:1">
-    <div class="section-head">
-      <span class="eyebrow reveal">Planos</span>
-      <h2 class="h-display h2 reveal" data-delay="1">ESCOLHA SEU <span class="gold">PLANO</span></h2>
-      <p class="reveal" data-delay="2">Compare os benefícios de cada plano. Valores e assinatura estão disponíveis no aplicativo. Sem fidelidade, cancele quando quiser.</p>
-    </div>
-
-
-    <div class="plans-grid">
-
-      <!-- PRATA -->
-      <div class="plan silver reveal">
-        <div class="gem" aria-hidden="true">
-          <svg viewBox="0 0 32 32" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
-            <path d="M6 12 16 4l10 8-10 16z"/><path d="M6 12h20"/><path d="M11 12 16 4l5 8-5 16z"/>
-          </svg>
-        </div>
-        <div class="tier">Plano</div>
-        <h3>PRATA</h3>
-        <div class="price-sub">Ideal para começar. Sem fidelidade.</div>
-        <ul>
-          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> 50 verificações por mês</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Histórico dos últimos 30 dias</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Alertas de risco básicos</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Conteúdo educacional completo</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Suporte por e-mail em até 48h</li>
-          <li class="off"><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 11h14v2H5z"/></svg> Suporte prioritário</li>
-          <li class="off"><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 11h14v2H5z"/></svg> API de integração</li>
-        </ul>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=com.fortepix&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Assinar Prata</a>
-      </div>
-
-      <!-- OURO -->
-      <div class="plan gold reveal" data-delay="1">
-        <span class="badge pop">Mais Popular</span>
-        <div class="gem" aria-hidden="true">
-          <svg viewBox="0 0 32 32" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
-            <path d="M16 3l3.5 7 7.5 1-5.5 5.3 1.3 7.7L16 20.5 9.2 24l1.3-7.7L5 11l7.5-1z"/>
-          </svg>
-        </div>
-        <div class="tier">Plano</div>
-        <h3>OURO</h3>
-        <div class="price-sub">Recomendado para uso pessoal intenso.</div>
-        <ul>
-          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Verificações ampliadas</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Histórico completo sem limite</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Alertas de risco em tempo real</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Suporte por e-mail em até 48h</li>
-          <li class="off"><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 11h14v2H5z"/></svg> Gerente de conta dedicado</li>
-        </ul>
-        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.fortepix&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Assinar Ouro</a>
-      </div>
-
-      <!-- DIAMANTE -->
-      <div class="plan diamond reveal" data-delay="2">
-        <div class="gem" aria-hidden="true">
-          <svg viewBox="0 0 32 32" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
-            <path d="M8 11 16 3l8 8-8 18z"/><path d="M8 11h16"/><path d="M16 3v8"/><path d="M16 29l-4-18M16 29l4-18"/>
-          </svg>
-        </div>
-        <div class="tier">Plano</div>
-        <h3>DIAMANTE</h3>
-        <div class="price-sub">Para quem usa o app com maior frequência.</div>
-        <ul>
-          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Tudo do plano Ouro</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Suporte por e-mail em até 48h</li>
-          <li><svg class="check" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 16.6 4.6 12l1.4-1.4 3.2 3.2 8.8-8.8L19.4 6.4z"/></svg> Prioridade no atendimento (em evolução)</li>
-        </ul>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=com.fortepix&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Assinar Diamante</a>
-      </div>
-
-    </div>
-
-    <p class="plans-note reveal">Valores e cobrança são definidos no aplicativo (Google Play). Todos os planos incluem <strong>período de teste gratuito de 7 dias</strong>. Cancele quando quiser, sem multa.</p>
-  </div>
-</section>
 
 <!-- ============================ CONTATO ============================ -->
 <section id="contato" class="section">
@@ -941,7 +784,7 @@ body.menu-open .mobile-menu{transform:translateY(0);opacity:1;pointer-events:aut
           <select id="f-assunto" required>
             <option value="" disabled selected>Selecione um assunto</option>
             <option>Suporte Técnico</option>
-            <option>Planos</option>
+            <option>Assinatura / App</option>
             <option>Parceria</option>
             <option>Outro</option>
           </select>
@@ -994,7 +837,6 @@ body.menu-open .mobile-menu{transform:translateY(0);opacity:1;pointer-events:aut
         <ul>
           <li><a href="#inicio">Início</a></li>
           <li><a href="#como-funciona">Como funciona</a></li>
-          <li><a href="#planos">Planos</a></li>
           <li><a href="/as-claras">FortePix às Claras</a></li>
           <li><a href="/fiquepordentro">Fique por Dentro</a></li>
           <li><a href="/blog">Blog</a></li>
