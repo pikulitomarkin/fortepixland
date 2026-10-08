@@ -194,32 +194,35 @@
 
   async function loadPosts() {
     if (adminToken && !localMode) {
-      try {
-        const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), 20000);
-        const res = await fetch('/api/blog/admin/posts?t=' + Date.now(), {
-          headers: { Authorization: `Bearer ${adminToken}` },
-          signal: controller.signal,
-          cache: 'no-store',
-        });
-        clearTimeout(timer);
+      const endpoints = ['/api/blog/admin-posts', '/api/blog/admin/posts', '/blog/api/admin/posts'];
+      for (const base of endpoints) {
+        try {
+          const controller = new AbortController();
+          const timer = setTimeout(() => controller.abort(), 20000);
+          const res = await fetch(base + '?t=' + Date.now(), {
+            headers: { Authorization: `Bearer ${adminToken}` },
+            signal: controller.signal,
+            cache: 'no-store',
+          });
+          clearTimeout(timer);
 
-        if (res.status === 401) {
-          toast('Sessão expirada. Faça login novamente.', 'error');
-          localStorage.removeItem(STORAGE_TOKEN);
-          localStorage.removeItem(STORAGE_USER);
-          adminToken = null;
-          location.reload();
-          return;
+          if (res.status === 401) {
+            toast('Sessão expirada. Faça login novamente.', 'error');
+            localStorage.removeItem(STORAGE_TOKEN);
+            localStorage.removeItem(STORAGE_USER);
+            adminToken = null;
+            location.reload();
+            return;
+          }
+          if (res.ok) {
+            const data = await res.json();
+            posts = data.posts || [];
+            if (data.warning) toast(data.warning, 'info');
+            return;
+          }
+        } catch (err) {
+          console.error('loadPosts admin failed', base, err);
         }
-        if (res.ok) {
-          const data = await res.json();
-          posts = data.posts || [];
-          if (data.warning) toast(data.warning, 'info');
-          return;
-        }
-      } catch (err) {
-        console.error('loadPosts admin failed', err);
       }
     }
 
