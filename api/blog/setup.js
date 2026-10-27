@@ -22,8 +22,13 @@ export default async function handler(req, res) {
   if (!auth) return;
 
   try {
+    // Seed seguro: só preenche banco vazio ou adiciona slugs do JSON ausentes.
+    // Nunca apaga posts criados no CMS.
     const result = await seedIfEmpty();
-    return res.status(200).json(result);
+    return res.status(200).json({
+      ...result,
+      note: 'Seed não remove publicações do CMS. Para publicar posts novos, use Publicar no painel com status published.',
+    });
   } catch (err) {
     console.error('Blog setup error:', err);
     return res.status(500).json({ error: err.message || 'Failed to setup database' });
